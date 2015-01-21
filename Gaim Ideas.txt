@@ -1,0 +1,41 @@
+Cole Kainz's idea
+
+a 3d game
+a ball rolling through a maze
+randomly generated maze that will always have at least one solution
+maby traps and obstacles to overcome
+generated graphics on the walls for fancy effects
+
+
+
+
+Josh Philippy's idea
+
+2d or 3d game
+
+procedure generated dungeon crawl with instanced dungeons
+
+an over world with access to all the dungeons or a dungeon listing system to select instanced dungeons
+
+proficiency diagram - works by percentages increasing proficiency
+decreases proficiency in opposing attribute
+
+melee proficiency - percentage of the items potential is used 80% melee proficient makes the character use 80% of the item stats
+magic proficiency - but with magic
+enchanting proficiency - apply magic properties to items, usefulness of enchantment affected by magic
+
+the percent value for crafting and enchanting is a multiple against the likely hood of successful creating the item/enchantment
+
+killing enemies leave a deconstruct able corpse and possibly items they wearing
+
+enchanting uses the essence of corpse - kill enemy -> deconstruct corpse -> use tool
+                                                   \-> draw essence -> use enchanted item
+                                                   
+crafting & enchanting
+
+% of over all skill is multiple
+each skill has list of products - 2 ways to become proficient
+
+1 brute force - a lot of material -> uses brute force method uses skill multiple
+2 trainer - costs currency, slight increase in item specific proficiency, uses some amount of material as 1 item to produce
+
