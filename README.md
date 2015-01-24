@@ -10,6 +10,6 @@ Cole Kainz
 
 Josh Philippy
 
-Mai
+Mi Huynh
 
-Erik
+Erick Rhen
