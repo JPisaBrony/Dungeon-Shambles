@@ -1,6 +1,6 @@
 # Gaim
 
-TEH BEST GAIM
+TEH BEST Generated Agnostic Interaction of Monsters (GAIM)
 
 group members:
 
