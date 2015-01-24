@@ -1,3 +1,7 @@
+http://www.glprogramming.com/red/index.html
+
+http://www.opentk.com/doc/links/opengl-books-and-tutorials
+
 http://neokabuto.blogspot.com/2013/02/opentk-tutorial-1-opening-windows-and.html
 
 c++ opengl tutorial
