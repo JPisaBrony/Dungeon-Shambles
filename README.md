@@ -2,7 +2,7 @@
 
 TEH BEST Generated Agnostic Interaction of Monsters (GAIM)
 
-group members:
+**group members:**
 
 Josh Pohl (JP)
 
@@ -13,3 +13,13 @@ Josh Philippy
 Mi Huynh
 
 Erick Rhen
+
+**conventions:**
+
+added				+
+
+removed				-
+
+updated/revisedchanged		^  or ~
+
+fixed bug				%
