@@ -1,0 +1,46 @@
+Dungeons – possibly 3 levels, should have an entrance or starting hall
+	+ Forest
+	+ Factory
+	+ Rainbows
+	+ Caves
+Puzzles/Problem solving in the dungeon: find key to a room
+Crafting: proficient building, instead of leveling up
+	+ EX. Beginning of game: have high failure rate
+	+ Possibly mobile station for crafting as player levels up
+Smooth Scrolling Dungeon?
+Keyboard options: ESDF keys
+Idea of having a continuous game
+
+JP
+--------------------------------
+Dungeon Generating 
+Input
+In game actions
+---------------------------------
+
+Cole
+--------------------------------
+Monsters & Characters
+Graphics
+--------------------------------
+
+Mi
+--------------------------------
+UI – hud, saving scheme, inventory, main menu
+Combat system
+--------------------------------
+
+Josh
+--------------------------------
+Status grid
+--------------------------------
+
+
+Next meeting topics: 
+	+ monsters
+	+ characters
+	+ combat
+	+ UI
+	+ items
+	+ puzzles
+	+ graphics
