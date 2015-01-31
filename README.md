@@ -1,6 +1,4 @@
-# Gaim
-
-TEH BEST Generated Agnostic Interaction of Monsters (GAIM)
+# Dungeon Shambles
 
 **group members:**
 
@@ -11,8 +9,6 @@ Cole Kainz
 Josh Philippy
 
 Mi Huynh
-
-Erick Rhen
 
 **conventions:**
 
