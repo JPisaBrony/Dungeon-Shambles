@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Main.cs">
+    <Files>
+      <File FileName="Dungeon-Shambles/Main.cs" Line="14" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

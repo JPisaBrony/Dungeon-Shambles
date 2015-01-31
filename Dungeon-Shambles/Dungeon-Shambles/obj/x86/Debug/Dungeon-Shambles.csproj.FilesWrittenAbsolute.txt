@@ -1,0 +1,5 @@
+/mnt/D/Windows/Desktop/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/mnt/D/Windows/Desktop/Dungeon-Shambles/Dungeon-Shambles/bin/Debug/Dungeon-Shambles.exe.mdb
+/mnt/D/Windows/Desktop/Dungeon-Shambles/Dungeon-Shambles/bin/Debug/Dungeon-Shambles.exe
+/mnt/D/Windows/Desktop/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/Dungeon-Shambles.exe
+/mnt/D/Windows/Desktop/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/Dungeon-Shambles.exe.mdb
