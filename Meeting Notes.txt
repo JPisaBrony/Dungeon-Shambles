@@ -1,0 +1,42 @@
+1/30/15
+---------------------------------------------------------------------------------
+Game Name: Dungeon Shambles
+Group Name: MicJ's
+
+Leader: JP
+Git notes:
+	follow conventions
+	create branches in the aspect of game parts
+
+Meeting date and times undecided
+	Possible places: DU, JP's 
+
+Tools
+	Monodevelop
+	Visual studio
+
+Team info form: JP will fill out
+		Erik (Undecided)
+
+Game specific
+	layout: passages currently should be base rooms and halls
+	camera: 1st person
+	weapons: physical - sword, short ranged weapons
+		 magical - book
+	storing items: inventory being some sort of backpack
+	monters: Cave level - rabbitts, snakes, rats, spiders
+			    - spider web: slow down movement speed
+					: drops health
+					: must cast spell to purify
+		Factory level - similar to five nights at freddy's
+			      - toys, teddy bears with menacing eyes, baby dolls
+		Spawning - in certain rooms
+	finding items: easter egg style
+	treasure: solve puzzle to retrieve it
+		  fake treasure: can affect character status
+
+TODO/Next Discussion:
+	figure out how to load binary files
+	meeting place and time
+	game engine
+
