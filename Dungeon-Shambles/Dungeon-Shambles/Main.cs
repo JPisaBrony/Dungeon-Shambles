@@ -14,7 +14,7 @@ namespace DungeonShambles
 			using (Game game = new Game())
 			{
 				init ();
-				game.Run(30);
+				game.Run(30);				
 			}
 		}
 
@@ -35,7 +35,7 @@ namespace DungeonShambles
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-			GL.Color3(Color.FromArgb(239, 80, 145));
+			GL.Color3(Color.FromArgb(120, 80, 145));
 
 			GL.Begin(PrimitiveType.Quads);
 			GL.Vertex2 (0.25, 0.75);
