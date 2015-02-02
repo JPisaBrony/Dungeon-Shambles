@@ -4,6 +4,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using aimp = Assimp;
 
 namespace DungeonShambles
 {
@@ -13,6 +14,7 @@ namespace DungeonShambles
 		{
 			using (Game game = new Game())
 			{
+				modelImporter ("test.blend");
 				init ();
 				game.Run(30);
 			}
@@ -45,6 +47,11 @@ namespace DungeonShambles
 			GL.End ();
 
 			SwapBuffers();
+		}
+
+		public static void modelImporter(String name)
+		{
+			aimp.AssimpContext importer = new aimp.AssimpContext();
 		}
 
 		protected override void OnResize(EventArgs e) {}

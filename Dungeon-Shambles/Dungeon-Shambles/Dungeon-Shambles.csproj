@@ -35,6 +35,9 @@
       <Package>opentk</Package>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="AssimpNet">
+      <HintPath>bin\Debug\AssimpNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
