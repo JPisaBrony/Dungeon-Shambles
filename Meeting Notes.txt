@@ -1,3 +1,59 @@
+---------------------------------------------------------------------------------
+2/06/15
+---------------------------------------------------------------------------------
+OFFICIAL MEETING TIME: 
+	THURSDAY at 6:00
+
+Possible alternative way of communication
+	Online forum
+	Cole’s Fraternity: Slack
+
+Game Evaluation 
+	Runescape vs Diablo III – Josh and Mi
+
+Attacks
+	Shooting attacks by cursor aiming 
+	Weapons will have physical attributes and magic enchantments
+		will determine health status, hit, etc…
+	Magic = no elements
+		One type only: ranged or area of effect
+
+Items
+	Enchantments for items - same effects as attacks
+		Magical Items can be orbs, gauntlet, or book
+		Orbs can collect items
+	Later levels: players can have use both magical and physical attacks
+		Possibly a floating orb next to player
+	Weapons are just base model – will be level it up with materials collected
+	
+Enemies
+	Monsters – can be weak to magical or physical damage
+	Enemies won’t be dropping items 
+	When enemies’ corpse is dismantled 
+		Attribute of items can be chosen by player
+	Dismantling 
+		Make enemies disappear
+		Instances of the dungeon will handle that
+			If dungeon gone – all corpse gone
+
+Generating enemies
+	Will have a number of enemies at certain points
+	Will then generate upon ranged area
+	Boss generated when player reach place
+	Problem: viewing range of area when exiting
+	Corpse should be simple
+		Can turn into 2D image
+		Can interact when mouse hover over image
+
+Erick: Dungeon generating? Help JP
+Plan
+	Dungeon is generated upon entering (dynamic), then static afterwards
+	There are limits to combinations for rooms and hallways
+	Each hallway is fixed height and width
+
+JP – cover rendering and destruction
+
+---------------------------------------------------------------------------------
 1/30/15
 ---------------------------------------------------------------------------------
 Game Name: Dungeon Shambles
@@ -16,7 +72,6 @@ Tools
 	Visual studio
 
 Team info form: JP will fill out
-		Erik (Undecided)
 
 Game specific
 	layout: passages currently should be base rooms and halls
