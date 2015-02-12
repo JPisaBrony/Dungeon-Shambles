@@ -15,5 +15,14 @@ namespace DungeonShambles
             if ((.5 + mod) * r.NextDouble() > .5) return true;
             return false;
         }
+
+        public static int randomInt(int max)
+        {
+            int theReturn = 0;
+            if (max == 0) return theReturn;
+            Random r = new Random(max);
+            theReturn = (int)(r.NextDouble() * 10);
+            return theReturn;
+        }
     }
 }
