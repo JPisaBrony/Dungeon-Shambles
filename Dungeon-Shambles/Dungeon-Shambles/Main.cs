@@ -32,6 +32,12 @@ namespace DungeonShambles
 			GL.ClearColor(Color.FromArgb (204, 159, 213));
 		}
 
+        protected override void OnUpdateFrame(FrameEventArgs e)
+        {
+            base.OnUpdateFrame(e);
+
+        }
+
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
