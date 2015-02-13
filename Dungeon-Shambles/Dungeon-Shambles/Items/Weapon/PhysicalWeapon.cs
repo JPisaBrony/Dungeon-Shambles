@@ -9,7 +9,13 @@ namespace DungeonShambles.Items
     class PhysicalWeapon : Weapon
     {
         public PhysicalWeapon()
-            : base(1, 1, 3, 1)
+            : base(.6, 1, 3, 1)
+        {
+
+        }
+
+        public PhysicalWeapon(Double hit, Double damage)
+            : base(hit, damage, 3, 1)
         {
 
         }
