@@ -2,11 +2,12 @@
 
 namespace DungeonShambles
 {
-	public class Globals
+	public abstract class Globals
 	{
-		public Globals ()
-		{
-		}
+		// the windows width and height
+		public static int WindowWidth = 640, WindowHeight = 480;
+
+
 	}
 }
 
