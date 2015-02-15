@@ -12,6 +12,8 @@ namespace DungeonShambles
 		// object reference to pass between OnLoad and OnRenderFrame
 		MainCharacter mainChar;
 
+		Room firstRoom;
+
 		// setup the window width and height
 		public Game() : base(Globals.WindowWidth, Globals.WindowHeight) {}
 
@@ -32,7 +34,7 @@ namespace DungeonShambles
 
 			GL.LoadIdentity ();
 			// setup the view port
-			GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
+			GL.Ortho (100, 100, 100, 100, 0, 1);
 			// enable textures to be rendered
 			GL.Enable(EnableCap.Texture2D);
 		}
@@ -48,6 +50,10 @@ namespace DungeonShambles
 			GL.ClearColor(Color.FromArgb (204, 159, 213));
 			// create the main character
 			mainChar = new MainCharacter ();
+
+			firstRoom = new Room ("tempTile.png", 1);
+
+			firstRoom.generateRoom (10, 10);
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -57,25 +63,27 @@ namespace DungeonShambles
 			// left key is pressed
 			if (keyboard [OpenTK.Input.Key.A])
 				// increase the main characters x position
-				mainChar.increaseX (-0.01f);
+				mainChar.increaseX (-1 * mainChar.getSpeed());
 			// right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D])
 				// decrease the main characters x position
-				mainChar.increaseX (0.01f);
+				mainChar.increaseX (mainChar.getSpeed());
 			// up key is pressed
 			if (keyboard [OpenTK.Input.Key.W])
 				// increase the main characters y position
-				mainChar.increaseY (0.01f);
+				mainChar.increaseY (mainChar.getSpeed());
 			// down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S])
 				// decrease the main characters x position
-				mainChar.increaseY (-0.01f);
+				mainChar.increaseY (-1 * mainChar.getSpeed());
 		}
 
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
 			// clear the screen
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+			firstRoom.renderRoom ();
 
 			// render the main character
 			mainChar.renderCharacter ();
