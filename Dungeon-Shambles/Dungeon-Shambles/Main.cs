@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
+using DungeonShambles.UI;
 
 namespace DungeonShambles
 {
@@ -11,6 +11,10 @@ namespace DungeonShambles
     {
         // object reference to pass between OnLoad and OnRenderFrame
         MainCharacter mainChar;
+        MainMenu mainMenu;
+        Stats statsMenu;
+        bool displayMenu = false;
+        bool displayStats = false;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -20,7 +24,7 @@ namespace DungeonShambles
             using (Game game = new Game())
             {
                 // run the game at 30 frames per second
-                game.Run(30);
+                game.Run(30, 30);
             }
         }
 
@@ -49,6 +53,9 @@ namespace DungeonShambles
             GL.ClearColor(Color.FromArgb(204, 159, 213));
             // create the main character
             mainChar = new MainCharacter();
+            mainMenu = new MainMenu();
+            statsMenu = new Stats();
+
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -71,6 +78,26 @@ namespace DungeonShambles
             else if (keyboard[OpenTK.Input.Key.S])
                 // decrease the main characters x position
                 mainChar.increaseY(-0.01f);
+            // if e key is pressed, opens menu; escape to close
+            if(keyboard[OpenTK.Input.Key.E]) displayMenu = true;
+            if(keyboard[OpenTK.Input.Key.Escape]) displayMenu = false;
+            
+            // if tab key is held down, status menu opens and dissappears when release
+            this.KeyDown += (sender, button) =>
+            {
+                if (button.Key == Key.Tab)
+                {
+                    displayStats = true;
+                }
+            };
+            this.KeyUp += (sender, button) =>
+            {
+                if (button.Key == Key.Tab)
+                {
+                    displayStats = false;
+                }
+            };
+
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -80,6 +107,10 @@ namespace DungeonShambles
 
             // render the main character
             mainChar.renderCharacter();
+
+            // render menus
+            if (displayMenu == true) mainMenu.RenderMenu();
+            if (displayStats == true) statsMenu.RenderMenu();
 
             // switch between the 2 buffers
             SwapBuffers();

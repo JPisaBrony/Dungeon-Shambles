@@ -80,6 +80,10 @@
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="StaticMethodDump.cs" />
+    <Compile Include="UI\Inventory.cs" />
+    <Compile Include="UI\MainMenu.cs" />
+    <Compile Include="UI\Stats.cs" />
+    <Compile Include="UI\UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Character\NonPlayerCharacters\" />
