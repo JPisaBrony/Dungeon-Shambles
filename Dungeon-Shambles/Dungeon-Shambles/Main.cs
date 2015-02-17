@@ -9,9 +9,8 @@ namespace DungeonShambles
 {
 	class Game: GameWindow
 	{
-		// object reference to pass between OnLoad and OnRenderFrame
+		// object references to pass between OnLoad and OnRenderFrame
 		MainCharacter mainChar;
-
 		Room firstRoom;
 
 		// setup the window width and height
@@ -61,21 +60,33 @@ namespace DungeonShambles
 			// variable for checking keyboard input
 			var keyboard = OpenTK.Input.Keyboard.GetState();
 			// left key is pressed
-			if (keyboard [OpenTK.Input.Key.A])
+			if (keyboard [OpenTK.Input.Key.A]) {
 				// increase the main characters x position
-				mainChar.increaseX (-1 * mainChar.getSpeed());
+				mainChar.increaseX (-1 * mainChar.getSpeed ());
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed (), 0, 0);
+			}
 			// right key is pressed
-			else if (keyboard [OpenTK.Input.Key.D])
+			else if (keyboard [OpenTK.Input.Key.D]) {
 				// decrease the main characters x position
-				mainChar.increaseX (mainChar.getSpeed());
+				mainChar.increaseX (mainChar.getSpeed ());
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed() * -1, 0, 0);
+			}
 			// up key is pressed
-			if (keyboard [OpenTK.Input.Key.W])
+			if (keyboard [OpenTK.Input.Key.W]) {
 				// increase the main characters y position
-				mainChar.increaseY (mainChar.getSpeed());
+				mainChar.increaseY (mainChar.getSpeed ());
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed () * -1, 0);
+			}
 			// down key is pressed
-			else if (keyboard [OpenTK.Input.Key.S])
+			else if (keyboard [OpenTK.Input.Key.S]) {
 				// decrease the main characters x position
-				mainChar.increaseY (-1 * mainChar.getSpeed());
+				mainChar.increaseY (-1 * mainChar.getSpeed ());
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed (), 0);
+			}
 		}
 
 		protected override void OnRenderFrame(FrameEventArgs e)
