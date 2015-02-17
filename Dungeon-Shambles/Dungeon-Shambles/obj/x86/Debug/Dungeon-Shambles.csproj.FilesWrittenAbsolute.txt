@@ -1,5 +1,0 @@
-/mnt/D/Copy/Programing/GitHub/Dungeon-Shambles/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/mnt/D/Copy/Programing/GitHub/Dungeon-Shambles/Dungeon-Shambles/Dungeon-Shambles/bin/Debug/Dungeon-Shambles.exe.mdb
-/mnt/D/Copy/Programing/GitHub/Dungeon-Shambles/Dungeon-Shambles/Dungeon-Shambles/bin/Debug/Dungeon-Shambles.exe
-/mnt/D/Copy/Programing/GitHub/Dungeon-Shambles/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/Dungeon-Shambles.exe
-/mnt/D/Copy/Programing/GitHub/Dungeon-Shambles/Dungeon-Shambles/Dungeon-Shambles/obj/x86/Debug/Dungeon-Shambles.exe.mdb
