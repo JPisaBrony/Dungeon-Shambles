@@ -1,4 +1,4 @@
-Dungeon-Shambles/Dungeon-Shambles/bin/*.exe
-Dungeon-Shambles/Dungeon-Shambles/bin/*.mdb
+*.exe
+*.mdb
 Dungeon-Shambles/Dungeon-Shambles/obj/
 ./*.suo
