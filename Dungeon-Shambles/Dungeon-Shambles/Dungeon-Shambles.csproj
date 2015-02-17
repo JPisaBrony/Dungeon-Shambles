@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,12 +42,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character\CharacterStatus.cs" />
+    <Compile Include="Character\PlayerCharacter\Player.cs" />
+    <Compile Include="Cranting\CraftingStatMods\IncreaseDamage.cs" />
+    <Compile Include="Cranting\CraftingStatMods\IncreaseDefence.cs" />
+    <Compile Include="Cranting\CraftingStatMods\IncreaseHitChance.cs" />
+    <Compile Include="Cranting\CraftingStatMods\NoStatMod.cs" />
+    <Compile Include="Cranting\CraftingStatMods\RangeHit.cs" />
+    <Compile Include="Cranting\CraftingStatMods\ReflectPhysicalDamage.cs" />
+    <Compile Include="Cranting\CraftingStatMods\StatMod.cs" />
+    <Compile Include="Cranting\Enchantments\AbsorbMagic.cs" />
+    <Compile Include="Cranting\Enchantments\AreaDamage.cs" />
+    <Compile Include="Cranting\Enchantments\DamageOverTime.cs" />
+    <Compile Include="Cranting\Enchantments\Enchantment.cs" />
+    <Compile Include="Cranting\Enchantments\FloatOrb.cs" />
+    <Compile Include="Cranting\Enchantments\LifeSteal.cs" />
+    <Compile Include="Cranting\Enchantments\MagicShield.cs" />
+    <Compile Include="Cranting\Enchantments\NoEnchant.cs" />
+    <Compile Include="Cranting\Enchantments\ReflectMagicDamage.cs" />
+    <Compile Include="Cranting\PhysicalAttribute.cs" />
+    <Compile Include="Cranting\MagicAttribute.cs" />
+    <Compile Include="Items\Armor\Armor.cs" />
+    <Compile Include="Items\Armor\Boots.cs" />
+    <Compile Include="Items\Armor\Chest.cs" />
+    <Compile Include="Items\Armor\Gloves.cs" />
+    <Compile Include="Items\Armor\Helm.cs" />
+    <Compile Include="Items\Armor\Item.cs" />
+    <Compile Include="Items\Armor\Legs.cs" />
+    <Compile Include="Items\Weapon\MagicWeapon.cs" />
+    <Compile Include="Items\Armor\OffHand.cs" />
+    <Compile Include="Items\Weapon\PhysicalWeapon.cs" />
+    <Compile Include="Items\Weapon\Weapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModelImporter.cs" />
     <Compile Include="TextureImporter.cs" />
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="StaticMethodDump.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Character\NonPlayerCharacters\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
