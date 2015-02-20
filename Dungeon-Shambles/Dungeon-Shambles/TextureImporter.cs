@@ -10,11 +10,18 @@ namespace DungeonShambles
 		// a reference to the texture to pass between the methods
 		private int texture;
 
+		private Graphics gfx;
+
+		private Bitmap tex;
+
 		public TextureImporter () {}
 
 		public void importTexture(String name) {
-			Bitmap tex = new Bitmap (name);
+			tex = new Bitmap (name);
+			this.genTexture ();
+		}
 
+		private void genTexture() {
 			GL.GenTextures(1, out texture);
 			GL.BindTexture(TextureTarget.Texture2D, texture);
 			GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
@@ -42,6 +49,13 @@ namespace DungeonShambles
 			GL.TexCoord2(0.0f, 0.0f); GL.Vertex2(x + size * -1, y + size);
 
 			GL.End();
+		}
+
+		public void drawText() {
+			tex = new Bitmap (Globals.WindowWidth, Globals.WindowHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+			gfx = Graphics.FromImage (tex);
+			gfx.DrawString ("Twilight Sparkle", new Font (FontFamily.GenericSerif, 24), Brushes.White, PointF.Empty);
+			genTexture ();
 		}
 
 	}

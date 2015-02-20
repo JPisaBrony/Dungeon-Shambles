@@ -12,6 +12,8 @@ namespace DungeonShambles
         // object reference to pass between OnLoad and OnRenderFrame
         MainCharacter mainChar;
 
+		TextureImporter text;
+
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
 
@@ -49,6 +51,9 @@ namespace DungeonShambles
             GL.ClearColor(Color.FromArgb(204, 159, 213));
             // create the main character
             mainChar = new MainCharacter();
+
+			text = new TextureImporter ();
+			text.drawText ();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -73,6 +78,8 @@ namespace DungeonShambles
                 mainChar.increaseY(-0.01f);
         }
 
+		int ass = 0;
+
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             // clear the screen
@@ -80,6 +87,10 @@ namespace DungeonShambles
 
             // render the main character
             mainChar.renderCharacter();
+
+			if (ass < 100)
+				text.renderTexture (1f, 0, 0);
+			ass++;
 
             // switch between the 2 buffers
             SwapBuffers();
