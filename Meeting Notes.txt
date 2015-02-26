@@ -1,4 +1,46 @@
 ---------------------------------------------------------------------------------
+2/19/15
+---------------------------------------------------------------------------------
+Don't change gitignore anymore!
+Don't make changes to all branches, just your own
+
+Folders are nice 
+	keep classes organized
+
+Erick decided to stay with group
+	Role
+		- game objective
+		- puzzles
+		- story
+		- bosses
+
+Possibly an overworld when the time comes
+
+Enemies
+	- have magic and physical type
+	- 3 enemies per level
+		barbarians, snake: can spam things
+
+Cole: make sound & tile texture
+
+Implementing puzzle:
+	will collect objects
+	make some set of rooms specifically for puzzles
+		can be prebuild
+	all doors to room are acessible except one that need keys to unlock
+	so doors have their own puzzles
+	no blocked hallways
+
+Possibly a minimap?
+	special spawning of enemies that drop specific items in spawning blocks
+
+Enemies generation
+	can spawn at random but closet coordinate to character
+	blocks have a percentage that spawn enmies wen you walk in a range
+	don't need to populate the whole map
+		if walked out of room, enemies is destroyed and room resets
+
+---------------------------------------------------------------------------------
 2/11/15
 ---------------------------------------------------------------------------------
 Discussions 
