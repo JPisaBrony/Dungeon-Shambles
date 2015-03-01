@@ -9,9 +9,9 @@ namespace DungeonShambles
 	{
 		// a reference to the texture to pass between the methods
 		private int texture;
-
+		// used for text rendering
 		private Graphics gfx;
-
+		// a bitmap for the texture
 		private Bitmap tex;
 
 		public TextureImporter () {}
@@ -51,10 +51,11 @@ namespace DungeonShambles
 			GL.End();
 		}
 
-		public void drawText() {
+		public void drawText(String text, Font font, Brush color) {
 			tex = new Bitmap (Globals.WindowWidth, Globals.WindowHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 			gfx = Graphics.FromImage (tex);
-			gfx.DrawString ("Twilight Sparkle", new Font (FontFamily.GenericSerif, 24), Brushes.White, PointF.Empty);
+			gfx.Clear (Color.Transparent);
+			gfx.DrawString (text, font, color, PointF.Empty);
 			genTexture ();
 		}
 

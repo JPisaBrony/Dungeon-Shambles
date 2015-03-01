@@ -11,8 +11,10 @@ namespace DungeonShambles
     {
         // object reference to pass between OnLoad and OnRenderFrame
         MainCharacter mainChar;
-
+		// texture object reference
 		TextureImporter text;
+		// timmer for displaying text
+		int textTimer = 0;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -38,6 +40,8 @@ namespace DungeonShambles
             GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
             // enable textures to be rendered
             GL.Enable(EnableCap.Texture2D);
+			// enable alpha blending
+			GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -51,9 +55,10 @@ namespace DungeonShambles
             GL.ClearColor(Color.FromArgb(204, 159, 213));
             // create the main character
             mainChar = new MainCharacter();
-
+			// create text object
 			text = new TextureImporter ();
-			text.drawText ();
+			// draw the text
+			text.drawText ("Twilight Sparkle", new Font (FontFamily.GenericSerif, 24), Brushes.White);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -78,8 +83,6 @@ namespace DungeonShambles
                 mainChar.increaseY(-0.01f);
         }
 
-		int ass = 0;
-
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             // clear the screen
@@ -88,9 +91,20 @@ namespace DungeonShambles
             // render the main character
             mainChar.renderCharacter();
 
-			if (ass < 100)
-				text.renderTexture (1f, 0, 0);
-			ass++;
+			// check if the timer has timed out
+			if (textTimer < 100) {
+				// enable alpha blending
+				// so that the background of the text is transparent
+				GL.Enable (EnableCap.Blend);
+				// render text
+				text.renderTexture (1f, 0.5f, -0.3f);
+				// disble alpha blending
+				// this step is VERY important, if alpha blending is not disabled,
+				// the rest of the images will get distorted
+				GL.Disable (EnableCap.Blend);
+			}
+			// increament timer
+			textTimer++;
 
             // switch between the 2 buffers
             SwapBuffers();
