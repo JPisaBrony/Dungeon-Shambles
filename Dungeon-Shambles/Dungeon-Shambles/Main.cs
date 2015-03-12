@@ -11,6 +11,7 @@ namespace DungeonShambles
     {
         // object reference to pass between OnLoad and OnRenderFrame
         MainCharacter mainChar;
+<<<<<<< HEAD
         // texture object reference
         TextureImporter text;
         // timmer for displaying text
@@ -21,6 +22,12 @@ namespace DungeonShambles
         Stats statsMenu;
         bool displayMenu = false;
         bool displayStats = false;
+=======
+		// texture object reference
+		TextureImporter text;
+		// timmer for displaying text
+		int textTimer = 0;
+>>>>>>> f321ec3cbab46e5314b193787b5042e561502526
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -46,8 +53,13 @@ namespace DungeonShambles
             GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
             // enable textures to be rendered
             GL.Enable(EnableCap.Texture2D);
+<<<<<<< HEAD
             // enable alpha blending
             GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
+=======
+			// enable alpha blending
+			GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
+>>>>>>> f321ec3cbab46e5314b193787b5042e561502526
         }
 
         protected override void OnLoad(EventArgs e)
@@ -61,6 +73,7 @@ namespace DungeonShambles
             GL.ClearColor(Color.FromArgb(204, 159, 213));
             // create the main character
             mainChar = new MainCharacter();
+<<<<<<< HEAD
             // create text object
             text = new TextureImporter();
             // draw the text
@@ -70,6 +83,12 @@ namespace DungeonShambles
             mainMenu = new MainMenu();
             statsMenu = new Stats();
 
+=======
+			// create text object
+			text = new TextureImporter ();
+			// draw the text
+			text.drawText ("Twilight Sparkle", new Font (FontFamily.GenericSerif, 24), Brushes.White);
+>>>>>>> f321ec3cbab46e5314b193787b5042e561502526
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -132,8 +151,11 @@ namespace DungeonShambles
 
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f321ec3cbab46e5314b193787b5042e561502526
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             // clear the screen
@@ -142,6 +164,7 @@ namespace DungeonShambles
             // render the main character
             if(displayMenu == false && displayStats == false) mainChar.renderCharacter();
 
+<<<<<<< HEAD
             // check if the timer has timed out
             if (textTimer < 100)
             {
@@ -167,6 +190,22 @@ namespace DungeonShambles
             if (displayStats == true) 
                 statsMenu.RenderMenu();
 
+=======
+			// check if the timer has timed out
+			if (textTimer < 100) {
+				// enable alpha blending
+				// so that the background of the text is transparent
+				GL.Enable (EnableCap.Blend);
+				// render text
+				text.renderTexture (1f, 0.5f, -0.3f);
+				// disble alpha blending
+				// this step is VERY important, if alpha blending is not disabled,
+				// the rest of the images will get distorted
+				GL.Disable (EnableCap.Blend);
+			}
+			// increament timer
+			textTimer++;
+>>>>>>> f321ec3cbab46e5314b193787b5042e561502526
 
             // switch between the 2 buffers
             SwapBuffers();
