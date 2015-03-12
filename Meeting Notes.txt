@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------
+3/5/15
+---------------------------------------------------------------------------------
+Sprites: attack - draws out swords
+	 ghost vs human sprites
+	 ghost - can't hit things
+
+Note: need to match hit boxes
+
+Load/Save game
+	save status using text files
+	have a set spawning point
+	save at specific points, but don't kick player out
+	each level will have a save point
+	if there is an overworld: don't want to save the dungeon
+
+Main character: STEVE
+
+---------------------------------------------------------------------------------
 2/19/15
 ---------------------------------------------------------------------------------
 Don't change gitignore anymore!

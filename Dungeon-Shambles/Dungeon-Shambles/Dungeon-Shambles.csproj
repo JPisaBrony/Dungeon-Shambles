@@ -40,6 +40,7 @@
     <Reference Include="AssimpNet">
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\CharacterStatus.cs" />
@@ -80,6 +81,10 @@
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="StaticMethodDump.cs" />
+    <Compile Include="UI\Inventory.cs" />
+    <Compile Include="UI\MainMenu.cs" />
+    <Compile Include="UI\Stats.cs" />
+    <Compile Include="UI\UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Character\NonPlayerCharacters\" />
