@@ -1,4 +1,34 @@
 ---------------------------------------------------------------------------------
+3/26/15
+---------------------------------------------------------------------------------
+Cole 
+	- textures for main dungeons on git
+     	- includes doors, corners, walls
+     	- need items: things for solving puzzles
+
+JP 
+	- has previous items made
+   	- have sound effects
+
+Overlay menu
+   	- can have two windows, only one focus at a time so wont be clicking on other
+
+Combat system
+	JOSH: melee - mouse is relative to character, having a sweeping arc	
+	    : character has a 4 location/image grid so that movement would b smoother
+
+	COLE: only wasd directions
+	    : projectile - by calculating trajectory to enemy
+	    : have to face enemies to hit
+
+2nd Mechanics
+	JOSH: hit calculation, does it hit? if yes, then animation so that no projectile
+	COLE: projectile spawn in one direction in front of you. To attack: point mouse at that direction
+	JOSH: distance between you and enemy determines the range of attack (hard - enemy path finding in a grid)
+	COLE: straight line grid? draws if there's an enemy
+	JOSH: attack for non-grid base - just rotate enemy
+
+---------------------------------------------------------------------------------
 3/5/15
 ---------------------------------------------------------------------------------
 Sprites: attack - draws out swords
