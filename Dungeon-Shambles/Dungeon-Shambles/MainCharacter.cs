@@ -11,8 +11,7 @@ namespace DungeonShambles
 		// character movement speed
 		float speed = 0.1f;
 
-		public MainCharacter ()
-		{
+		public MainCharacter () {
 			character.importTexture ("twi.jpg");
 			x = 0.0f;
 			y = 0.0f;
