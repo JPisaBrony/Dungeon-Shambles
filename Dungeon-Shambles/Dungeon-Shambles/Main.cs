@@ -21,7 +21,7 @@ namespace DungeonShambles
 			using (Game game = new Game())
 			{
 				// run the game at 30 frames per second
-				game.Run(30);
+				game.Run(30, 30);
 			}
 		}
 
@@ -65,6 +65,11 @@ namespace DungeonShambles
 				mainChar.increaseX (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
+
+                //Collision detection
+                if(mainChar.getX() > )
+
+
 			}
 			// right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {

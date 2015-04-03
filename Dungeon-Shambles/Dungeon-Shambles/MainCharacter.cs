@@ -4,6 +4,12 @@ namespace DungeonShambles
 {
 	public class MainCharacter
 	{
+        //Dimension for rectangular collision box
+        //Center of character is coordinate 0,0
+        float collisionOffset = Globals.TextureSize / 2;
+
+
+
 		// create a texture for the character
 		TextureImporter character = new TextureImporter ();
 		// character x and y position
@@ -16,6 +22,8 @@ namespace DungeonShambles
 			character.importTexture ("twi.jpg");
 			x = 0.0f;
 			y = 0.0f;
+
+            
 		}
 
 		public void renderCharacter() {
@@ -33,6 +41,16 @@ namespace DungeonShambles
 		public float getSpeed() {
 			return speed;
 		}
+
+        public float getX()
+        {
+            return x;
+        }
+
+        public float getY()
+        {
+            return y;
+        }
 
 	}
 }
