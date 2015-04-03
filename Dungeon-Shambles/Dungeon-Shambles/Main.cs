@@ -20,7 +20,7 @@ namespace DungeonShambles
 		{
 			using (Game game = new Game())
 			{
-				// run the game at 30 frames per second
+				// run update and game at 30 frames per second
 				game.Run(30, 30);
 			}
 		}
@@ -50,7 +50,7 @@ namespace DungeonShambles
 			// create the main character
 			mainChar = new MainCharacter ();
 
-			firstRoom = new Room ("tempTile.png", 1);
+			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
 
 			firstRoom.generateRoom (10, 10);
 		}
