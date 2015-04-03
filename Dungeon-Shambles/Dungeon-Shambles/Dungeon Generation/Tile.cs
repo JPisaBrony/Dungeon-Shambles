@@ -8,12 +8,14 @@ namespace DungeonShambles
 		private TextureImporter tile = new TextureImporter ();
 		// tile width and height
 		private int width, height;
+		// if the tile is a wall
+		private Boolean isWall;
 
-		public Tile (string tileName, int w, int h)
-		{
+		public Tile (string tileName, int w, int h, Boolean wall) {
 			tile.importTexture(tileName);
 			width = w;
 			height = h;
+			isWall = wall;
 		}
 
 		public void renderTile(float size, float xPos, float yPos) {
@@ -26,6 +28,10 @@ namespace DungeonShambles
 
 		public int getHeight() {
 			return height;
+		}
+
+		public Boolean getIsWall() {
+			return isWall;
 		}
 	}
 }
