@@ -1,6 +1,6 @@
 *.exe
 *.mdb
 Dungeon-Shambles/Dungeon-Shambles/obj/
-./*.suo
 *.pdb
 *.manifest
+*.suo
