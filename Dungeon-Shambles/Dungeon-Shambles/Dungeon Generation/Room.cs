@@ -20,15 +20,18 @@ namespace DungeonShambles
 			tiles = new Tile[w, h];
 			roomWidth = w;
 			roomHeight = h;
+
+            //Loop changed to place "walls" on outermost squares of map
 			for (int i = 0; i < w; i++) {
 				for (int j = 0; j < h; j++) {
-					if(i == 0 || j == 0 || i == w || j == h)
+					if(i == 0 || j == 0 || i == (w - 1)|| j == (h - 1))
 						tiles[i,j] = new Tile (wallName, tileSize, tileSize, true);
+                    else
 					tiles[i,j] = new Tile (tileName, tileSize, tileSize, false);
 				}
 			}
 		}
-
+        
 		public void renderRoom() {
 			for (int i = 0; i < roomWidth; i++) {
 				for (int j = 0; j < roomHeight; j++) {

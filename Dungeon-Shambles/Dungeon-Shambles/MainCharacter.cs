@@ -19,7 +19,7 @@ namespace DungeonShambles
 
 		public MainCharacter () {
 			character.importTexture ("twi.jpg");
-			x = 0.0f;
+			x = 0.2f;
 			y = 0.0f;
 
             

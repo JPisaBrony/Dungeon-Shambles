@@ -52,7 +52,7 @@ namespace DungeonShambles
 
 			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
 
-			firstRoom.generateRoom (10, 10);
+			firstRoom.generateRoom (4, 4);
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -61,15 +61,18 @@ namespace DungeonShambles
 			var keyboard = OpenTK.Input.Keyboard.GetState();
 			// left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
+
 				// increase the main characters x position
 				mainChar.increaseX (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
 
-                //Collision detection
-                if(mainChar.getX() > )
-
-
+                if(collisionTests.wallCollisionLeft(firstRoom, mainChar.getX(), mainChar.getY()))
+                {
+                    mainChar.increaseX(mainChar.getSpeed());
+                    GL.Translate(mainChar.getSpeed() * -1, 0, 0);
+                }
+                
 			}
 			// right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
@@ -77,6 +80,13 @@ namespace DungeonShambles
 				mainChar.increaseX (mainChar.getSpeed ());
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed() * -1, 0, 0);
+
+               if (collisionTests.wallCollisionRight(firstRoom, mainChar.getX(), mainChar.getY()))
+                {
+                    mainChar.increaseX(mainChar.getSpeed() * -1);
+                    GL.Translate(mainChar.getSpeed(), 0, 0);
+                }
+
 			}
 			// up key is pressed
 			if (keyboard [OpenTK.Input.Key.W]) {
@@ -84,6 +94,12 @@ namespace DungeonShambles
 				mainChar.increaseY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
+
+                if (collisionTests.wallCollisionUp(firstRoom, mainChar.getX(), mainChar.getY()))
+                {
+                    mainChar.increaseY(mainChar.getSpeed() * -1);
+                    GL.Translate(0, mainChar.getSpeed(), 0);
+                }
 			}
 			// down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
@@ -91,6 +107,12 @@ namespace DungeonShambles
 				mainChar.increaseY (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed (), 0);
+
+                if (collisionTests.wallCollisionDown(firstRoom, mainChar.getX(), mainChar.getY()))
+                {
+                    mainChar.increaseY(mainChar.getSpeed());
+                    GL.Translate(0, mainChar.getSpeed() * -1, 0);
+                }
 			}
 		}
 
