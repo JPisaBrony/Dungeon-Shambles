@@ -8,6 +8,19 @@ namespace DungeonShambles
 {
     public class collisionTests
     { 
+
+        public static Boolean enemyCollision(MainCharacter main, Ghost ghost)
+        {
+            if ((Math.Abs(main.getX() - ghost.getX()) < 0.1f) && 
+                (Math.Abs(main.getY() - ghost.getY()) < 0.1f))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+
         /* Everytime a move key is pressed, character portrait moves 0.1 units.  Tiles and portrait
          * are 0.2 wide and 0.2 tall.  Therefore, you only cross into another tile when you are at
          * an odd decimal (0.1, 0.3, etc).  Easiest way to solve this issue is multiply by 10 and

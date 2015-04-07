@@ -15,20 +15,19 @@ namespace DungeonShambles
 		// character x and y position
 		float x, y;
 		// character movement speed
-		float speed = 0.1f;
+		float speed = 0.02f;
 
 		public MainCharacter () {
 			character.importTexture ("twi.jpg");
 			x = 0.2f;
-			y = 0.0f;
-
-            
+			y = 0.2f;
 		}
 
 		public void renderCharacter() {
 			character.renderTexture (Globals.TextureSize, x, y);
 		}
 
+        
 		public void increaseX(float theX) {
 			x += theX;
 		}

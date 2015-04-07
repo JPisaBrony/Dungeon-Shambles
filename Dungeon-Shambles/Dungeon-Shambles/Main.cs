@@ -11,6 +11,7 @@ namespace DungeonShambles
 	{
 		// object references to pass between OnLoad and OnRenderFrame
 		MainCharacter mainChar;
+        Ghost ghost;
 		Room firstRoom;
 
 		// setup the window width and height
@@ -50,9 +51,11 @@ namespace DungeonShambles
 			// create the main character
 			mainChar = new MainCharacter ();
 
+            ghost = new Ghost();
+
 			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
 
-			firstRoom.generateRoom (4, 4);
+			firstRoom.generateRoom (10, 10);
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -114,6 +117,10 @@ namespace DungeonShambles
                     GL.Translate(0, mainChar.getSpeed() * -1, 0);
                 }
 			}
+
+            ghost.chase(mainChar);
+            if (collisionTests.enemyCollision(mainChar, ghost) == true)
+                this.Close();
 		}
 
 		protected override void OnRenderFrame(FrameEventArgs e)
@@ -125,6 +132,8 @@ namespace DungeonShambles
 
 			// render the main character
 			mainChar.renderCharacter ();
+
+            ghost.renderCharacter();
 
 			// switch between the 2 buffers
 			SwapBuffers();
