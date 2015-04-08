@@ -12,7 +12,7 @@ namespace DungeonShambles
 		float speed = 0.1f;
 
 		public MainCharacter () {
-			character.importTexture ("twi.jpg");
+			character.importTexture ("meshes/SteveFront.png");
 			x = 0.0f;
 			y = 0.0f;
 		}
