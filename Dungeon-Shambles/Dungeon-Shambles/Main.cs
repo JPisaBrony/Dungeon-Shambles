@@ -37,6 +37,8 @@ namespace DungeonShambles
 			GL.Ortho (100, 100, 100, 100, 0, 1);
 			// enable textures to be rendered
 			GL.Enable(EnableCap.Texture2D);
+
+			GL.BlendFunc (BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
 		}
 
 		protected override void OnLoad(EventArgs e)
@@ -46,8 +48,8 @@ namespace DungeonShambles
 			init ();
 			// set the windows title
 			Title = "Dungeon Shambles";
-			// clear the color of the window to twilight sparkle's magenta
-			GL.ClearColor(Color.FromArgb (204, 159, 213));
+			// clear the color of the window to black
+			GL.ClearColor(Color.Black);
 			// create the main character
 			mainChar = new MainCharacter ();
 
@@ -97,8 +99,10 @@ namespace DungeonShambles
 
 			dungeon.renderDungeon ();
 
+			GL.Enable (EnableCap.Blend);
 			// render the main character
 			mainChar.renderCharacter ();
+			GL.Disable (EnableCap.Blend);
 
 			// switch between the 2 buffers
 			SwapBuffers();
