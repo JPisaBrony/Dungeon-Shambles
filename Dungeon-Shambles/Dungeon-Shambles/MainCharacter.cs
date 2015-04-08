@@ -33,6 +33,13 @@ namespace DungeonShambles
 			return speed;
 		}
 
+		public float getX() {
+			return x;
+		}
+
+		public float getY() {
+			return y;
+		}
 	}
 }
 

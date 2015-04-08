@@ -2,7 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Main.cs">
     <Files>
-      <File FileName="Dungeon-Shambles/Main.cs" Line="10" Column="10" />
+      <File FileName="Dungeon-Shambles/Main.cs" Line="5" Column="5" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Room.cs" Line="4" Column="4" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="4" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

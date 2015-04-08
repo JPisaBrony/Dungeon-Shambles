@@ -11,7 +11,8 @@ namespace DungeonShambles
 	{
 		// object references to pass between OnLoad and OnRenderFrame
 		MainCharacter mainChar;
-		Room firstRoom;
+		Dungeon dungeon;
+
 
 		// setup the window width and height
 		public Game() : base(Globals.WindowWidth, Globals.WindowHeight) {}
@@ -50,9 +51,9 @@ namespace DungeonShambles
 			// create the main character
 			mainChar = new MainCharacter ();
 
-			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
+			dungeon = new Dungeon (9);
 
-			firstRoom.generateRoom (10, 10);
+			dungeon.generateDungeon ();
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -94,7 +95,7 @@ namespace DungeonShambles
 			// clear the screen
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-			firstRoom.renderRoom ();
+			dungeon.renderDungeon ();
 
 			// render the main character
 			mainChar.renderCharacter ();
