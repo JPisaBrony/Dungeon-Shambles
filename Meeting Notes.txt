@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------
+4/02/15
+---------------------------------------------------------------------------------
+Estimated 200 hours total left on the project
+	40 hours per person
+
+Not possible with switching language
+
+Base work
+	1. dungeon generating
+	2. character
+	3. enemies
+	4. puzzles
+Others
+	5. area to explore
+	6. buttons
+	7. leveling up
+
+---------------------------------------------------------------------------------
 3/26/15
 ---------------------------------------------------------------------------------
 Cole 
