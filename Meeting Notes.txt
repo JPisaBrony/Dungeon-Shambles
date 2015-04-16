@@ -1,4 +1,61 @@
 ---------------------------------------------------------------------------------
+4/09/15
+---------------------------------------------------------------------------------
+Problem with rotating character
+	- different direction require different sprites, can't rotate
+	- have set directions instead
+	- have weapon animation coming using cursor
+
+So have button: when press, character does not turn, just slashing
+	- try being minimalistic -> mouse click, draw straight line, hit direction
+		+ attack in certain direction
+		+ if attack with sword at enemy, have different image so that no arm is necessary
+
+Door generation
+	- RNG to decide where to place it?
+	- shading and lighting, more texture problem
+
+No hallways yet.
+Ideas: to get enemy sqawn, check if block is available
+	- can incorporate blank room, when stepped in, it illuminates. so player becomes room object
+		 which corresponds to enemy spawning
+
+HALLWAYS DEBATE:
+	- long rooms?
+	- sync doors to hallway?
+	- hallway objects -> opened and closed ended. If door there, then spawn room
+	- Why doors? have walls in between?
+	- rooms are objects, have an overlap dungeon(floor map)
+	- shift room to end of hallway
+	- CK: SO.... have doors be linked to each other (linked rooms)
+	- for puzzles: pull level there -> unlocks door there, get keys
+	- Josh: method that allows changing room through out he dungeon
+			check size, see if its adequate
+			list pieces of puzzles that are used
+			then modifcation will be done
+	- ER: puzzle: interative with room, see pattern to solve it, so must have pre-made rooms
+	- Josh: all rooms are an instance
+	- ER : rooms have to fit together, so there's limitation
+	- Josh : method to check for rooms that are way
+	- ER : there's not enough time for it
+	- Josh: one ver big room, have elements that separates the room
+		puzzles spread outs differently in rooms (in programming it is one big room)
+	- Priority: dungeon generation and work with collision detection, spawning enemies
+	- CK: big continuous dungeon or separate rooms that links to other
+		if linking, door to door or blocks?
+	- ER : want on continous map -> to make blocks
+	- CK : blocks with lots of room and enemies
+		so it will be disjoint with other blocks -> whole different layout by joining door to door
+		will still have RDG, by block instead of dungeon
+	- ER: entire dungeon is compose of hallways and rooms though
+	- CK: render on eroom at a time. have a super room, which is composed of little rooms.
+		hallways are implied
+		goes into one door -> load a super room -> load one at subroom at a time
+
+Textures
+	- edges tiles are gettng shrunk
+
+---------------------------------------------------------------------------------
 4/02/15
 ---------------------------------------------------------------------------------
 Estimated 200 hours total left on the project
