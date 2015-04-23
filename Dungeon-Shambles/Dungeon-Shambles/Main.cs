@@ -4,16 +4,20 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DungeonShambles.UI;
+using DungeonShambles.Entities;
+using System.Collections.Generic;
 
 namespace DungeonShambles
 {
     class Game : GameWindow
     {
 		// object references to pass between OnLoad and OnRenderFrame
-        MainCharacter mainChar;
-        MainMenu mainMenu;
-        Stats statsMenu;
-        Ghost ghost;
+		MainMenu mainMenu;
+		Stats statsMenu;
+        GameEntities mainChar;
+		GameEntities ghost;
+		GameEntities shot;
+		bool fired;
 		Room firstRoom;
         bool displayMenu = false;
         bool displayStats = false;
@@ -54,12 +58,13 @@ namespace DungeonShambles
             // clear the color of the window to twilight sparkle's magenta
             GL.ClearColor(Color.FromArgb(204, 159, 213));
             // create the main character
-            mainChar = new MainCharacter();
-
-            ghost = new Ghost();
+            mainChar = new Player();
+			ghost = new Ghost(0.9f, 0.9f);
             mainMenu = new MainMenu();
             statsMenu = new Stats();
-
+			//number in brackets will be max number of projectiles on screen
+			shot = new Projectile.Projectile(mainChar);
+			fired = false;
 			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
 
 			firstRoom.generateRoom (10, 10);
@@ -67,74 +72,80 @@ namespace DungeonShambles
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
+			ghost.chase(mainChar);
+			if (collisionTests.collision (mainChar, ghost) == true)
+				this.Close();
             // variable for checking keyboard input
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
-
-                // increase the main characters x position
-				mainChar.increaseX (-1 * mainChar.getSpeed ());
-				// move the scene around the character in the x position
-				GL.Translate (mainChar.getSpeed (), 0, 0);
-
-                if(collisionTests.wallCollisionLeft(firstRoom, mainChar.getX(), mainChar.getY()))
-                {
-                    mainChar.increaseX(mainChar.getSpeed());
-                    GL.Translate(mainChar.getSpeed() * -1, 0, 0);
-                }
-                
+				if (!collisionTests.wallCollision (
+					firstRoom, mainChar.getX () - Globals.TextureSize*2 - mainChar.getSpeed()/2, mainChar.getY ())) {
+					// change the main characters x position
+					mainChar.changeX (-1 * mainChar.getSpeed ());
+					// move the scene around the character in the x position
+					GL.Translate (mainChar.getSpeed (), 0, 0);
+				}
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
-                // decrease the main characters x position
-				mainChar.increaseX (mainChar.getSpeed ());
-				// move the scene around the character in the x position
-				GL.Translate (mainChar.getSpeed() * -1, 0, 0);
-
-               if (collisionTests.wallCollisionRight(firstRoom, mainChar.getX(), mainChar.getY()))
-                {
-                    mainChar.increaseX(mainChar.getSpeed() * -1);
-                    GL.Translate(mainChar.getSpeed(), 0, 0);
-                }
-
+				if (!collisionTests.wallCollision (
+					firstRoom, mainChar.getX () + mainChar.getSpeed(), mainChar.getY ())) {
+					// decrease the main characters x position
+					mainChar.changeX (mainChar.getSpeed ());
+					// move the scene around the character in the x position
+					GL.Translate (mainChar.getSpeed () * -1, 0, 0);
+				}
 			}
             // up key is pressed
 			if (keyboard [OpenTK.Input.Key.W]) {
-                // increase the main characters y position
-				mainChar.increaseY (mainChar.getSpeed ());
-				// move the scene around the character in the y position
-				GL.Translate (0, mainChar.getSpeed () * -1, 0);
-
-                if (collisionTests.wallCollisionUp(firstRoom, mainChar.getX(), mainChar.getY()))
-                {
-                    mainChar.increaseY(mainChar.getSpeed() * -1);
-                    GL.Translate(0, mainChar.getSpeed(), 0);
-                }
+				if (!collisionTests.wallCollision (firstRoom, mainChar.getX (), mainChar.getY () + mainChar.getSpeed())) {
+					// change the main characters y position
+					mainChar.changeY (mainChar.getSpeed ());
+					// move the scene around the character in the y position
+					GL.Translate (0, mainChar.getSpeed () * -1, 0);
+				}
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
-                // decrease the main characters x position
-				mainChar.increaseY (-1 * mainChar.getSpeed ());
-				// move the scene around the character in the y position
-				GL.Translate (0, mainChar.getSpeed (), 0);
-
-                if (collisionTests.wallCollisionDown(firstRoom, mainChar.getX(), mainChar.getY()))
-                {
-                    mainChar.increaseY(mainChar.getSpeed());
-                    GL.Translate(0, mainChar.getSpeed() * -1, 0);
-                }
+				if (!collisionTests.wallCollision (
+					firstRoom, mainChar.getX (), mainChar.getY () - Globals.TextureSize*2 - mainChar.getSpeed()/2)) {
+					// decrease the main characters x position
+					mainChar.changeY (-1 * mainChar.getSpeed ());
+					// move the scene around the character in the y position
+					GL.Translate (0, mainChar.getSpeed (), 0);
+				}
 			}
 
-            ghost.chase(mainChar);
-            if (collisionTests.enemyCollision(mainChar, ghost) == true)
-                this.Close();
-            {
-                if (button.Key == Key.Tab)
-                {
-                    displayStats = false;
-                }
-            };
+			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
+				fired = true;
+			};
+			if (fired)
+				shot.chase (ghost);
+			else
+				shot.setX (mainChar.getX ());
+			if (collisionTests.collision (shot, ghost) == true) {
+				fired = false;
+			}
+			
+			if(keyboard[OpenTK.Input.Key.E]) displayMenu = true;
+			if(keyboard[OpenTK.Input.Key.Escape]) displayMenu = false;
 
+			// if tab key is held down, status menu opens and dissappears when release
+			this.KeyDown += (sender, button) =>
+			{
+				if (button.Key == Key.Tab)
+				{
+					displayStats = true;
+				}
+			};
+			this.KeyUp += (sender, button) =>
+			{
+				if (button.Key == Key.Tab)
+				{
+					displayStats = false;
+				}
+			};
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -148,6 +159,9 @@ namespace DungeonShambles
             mainChar.renderCharacter();
 
             ghost.renderCharacter();
+
+			if (fired)
+				shot.renderCharacter ();
 
             // render menus
             if (displayMenu == true) mainMenu.RenderMenu();

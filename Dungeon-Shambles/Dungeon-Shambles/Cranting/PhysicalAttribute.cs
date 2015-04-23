@@ -9,7 +9,7 @@ namespace DungeonShambles.Cranting
 {
     class PhysicalAttribute
     {
-        StatMod mod;
+		StatMod mod;
 
         public PhysicalAttribute()
         {

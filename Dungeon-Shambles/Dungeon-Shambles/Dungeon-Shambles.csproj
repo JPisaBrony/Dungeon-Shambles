@@ -33,9 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <Package>opentk</Package>
-    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4" />
     <Reference Include="System.Drawing" />
     <Reference Include="AssimpNet">
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
@@ -43,9 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collision Detection\collisionTests.cs" />
-    <Compile Include="Enemies\Ghost.cs" />
-    <Compile Include="Character\CharacterStatus.cs" />
-    <Compile Include="Character\PlayerCharacter\Player.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDamage.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDefence.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseHitChance.cs" />
@@ -79,21 +74,29 @@
     <Compile Include="Main.cs" />
     <Compile Include="ModelImporter.cs" />
     <Compile Include="TextureImporter.cs" />
-    <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Dungeon Generation\Tile.cs" />
     <Compile Include="Dungeon Generation\Room.cs" />
     <Compile Include="Dungeon Generation\Hallway.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
-    <Compile Include="StaticMethodDump.cs" />
     <Compile Include="UI\Inventory.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="UI\Stats.cs" />
     <Compile Include="UI\UI.cs" />
+    <Compile Include="StaticMethodDump.cs" />
+    <Compile Include="Entities\GameEntities.cs" />
+    <Compile Include="Entities\PlayerCharacter\Player.cs" />
+    <Compile Include="Entities\NonPlayerCharacters\Ghost.cs" />
+    <Compile Include="Entities\Projectile\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Character\NonPlayerCharacters\" />
+    <Folder Include="Entities\NonPlayerCharacters\" />
+    <Folder Include="Entities\Projectile\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Entities\Projectile\Magic.cs" />
+    <None Include="Entities\Projectile\Melee.cs" />
+  </ItemGroup>
 </Project>
