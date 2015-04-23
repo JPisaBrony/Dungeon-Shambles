@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModelImporter.cs" />
+    <Compile Include="Puzzles\Door.cs" />
+    <Compile Include="Puzzles\Lever\Lever.cs" />
+    <Compile Include="Puzzles\Lever\Levers.cs" />
+    <Compile Include="Puzzles\Rock\Rock.cs" />
+    <Compile Include="Puzzles\Rock\RockCollision.cs" />
+    <Compile Include="Puzzles\Target\TargetTest.cs" />
+    <Compile Include="Puzzles\Target\Target.cs" />
     <Compile Include="TextureImporter.cs" />
     <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
@@ -54,7 +61,5 @@
     <Compile Include="Dungeon Generation\Dungeon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Dungeon Generation\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
