@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles\Main.cs">
@@ -23,19 +22,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-=======
-﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Main.cs">
-    <Files>
-      <File FileName="Dungeon-Shambles/Main.cs" Line="5" Column="5" />
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Room.cs" Line="4" Column="4" />
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="4" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
->>>>>>> origin/dungeon-generation
 </Properties>
