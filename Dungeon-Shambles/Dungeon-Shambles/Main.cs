@@ -5,7 +5,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DungeonShambles.UI;
 using DungeonShambles.Entities;
-using System.Collections.Generic;
 
 namespace DungeonShambles
 {
@@ -62,9 +61,10 @@ namespace DungeonShambles
 			ghost = new Ghost(0.9f, 0.9f);
             mainMenu = new MainMenu();
             statsMenu = new Stats();
-			//number in brackets will be max number of projectiles on screen
+			//projectiles
 			shot = new Projectile.Projectile(mainChar);
 			fired = false;
+			//a room
 			firstRoom = new Room ("tempTile.png", "tempTile.png", 1);
 
 			firstRoom.generateRoom (10, 10);
@@ -116,10 +116,11 @@ namespace DungeonShambles
 					GL.Translate (0, mainChar.getSpeed (), 0);
 				}
 			}
-
+			//Mouse events
 			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
 				fired = true;
 			};
+
 			if (fired)
 				shot.chase (ghost);
 			else
