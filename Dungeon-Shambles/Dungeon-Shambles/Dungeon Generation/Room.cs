@@ -9,18 +9,18 @@ namespace DungeonShambles
 		private string[] tileNames;
 		private int tileSize;
 		private int numberOfDoors;
+        private float coordinateOffsetX;
+        private float coordinateOffsetY;
 
 		public Room (string[] tNames, int tSize) {
 			tileSize = tSize;
 			tileNames = tNames;
 		}
 
-		public void generateRoom(int w, int h, int doors) {
+		public void generateRoom(int w, int h) {
 			tiles = new Tile[w, h];
 			roomWidth = w;
 			roomHeight = h;
-			numberOfDoors = doors;
-			int doorsPlaced = 0;
 			for (int i = 0; i < w; i++) {
 				for (int j = 0; j < h; j++) {
 					if (i == 0 && j == 0) {
@@ -33,16 +33,12 @@ namespace DungeonShambles
 						tiles [i, j] = new Tile (tileNames [8], tileSize, tileSize, true);
 					} else if (i == 0) {
 						tiles [i, j] = new Tile (tileNames [1], tileSize, tileSize, true);
-						placeDoor (ref doorsPlaced, i, j);
 					} else if (j == h - 1) {
 						tiles [i, j] = new Tile (tileNames [2], tileSize, tileSize, true);
-						placeDoor (ref doorsPlaced, i, j);
 					} else if (i == w - 1) {
 						tiles [i, j] = new Tile (tileNames [3], tileSize, tileSize, true);
-						placeDoor (ref doorsPlaced, i, j);
 					} else if (j == 0) {
 						tiles [i, j] = new Tile (tileNames [4], tileSize, tileSize, true);
-						placeDoor (ref doorsPlaced, i, j);
 					} else {
 						tiles [i, j] = new Tile (tileNames [0], tileSize, tileSize, false);
 					}
@@ -50,17 +46,26 @@ namespace DungeonShambles
 			}
 		}
 
-		private void placeDoor(ref int doorsPlaced, int i, int j) {
-			Random rng = new Random ();
-			if(rng.Next(0, 5) == 0) {
-				if (doorsPlaced < numberOfDoors) {
-					tiles [i, j] = new Tile (tileNames [0], tileSize, tileSize, false);
-					doorsPlaced++;
-				}
-			}
-		}
+        public void setDoor(int side, int offset) {
+            switch (side) {
+                case 0:
+                    setTileAtLocation(offset, 0, true);
+                    break;
+                case 1:
+                    setTileAtLocation(0, offset, true);
+                    break;
+                case 2:
+                    setTileAtLocation(offset, roomHeight - 1, true);
+                    break;
+                case 3:
+                    setTileAtLocation(roomWidth - 1, offset, true);
+                    break;
+            }
+        }
 
 		public void renderRoom(float offsetX, float offsetY) {
+            coordinateOffsetX = offsetX;
+            coordinateOffsetY = offsetY;
 			for (int i = 0; i < roomWidth; i++) {
 				for (int j = 0; j < roomHeight; j++) {
 					tiles [i,j].renderTile (Globals.TextureSize, i * Globals.TextureSize * 2 + offsetX, j * Globals.TextureSize * 2 + offsetY);
@@ -68,9 +73,17 @@ namespace DungeonShambles
 			}
 		}
 
+        private void setTileAtLocation(int x, int y, Boolean wall) {
+            tiles[x, y] = new Tile (tileNames [0], tileSize, tileSize, wall);
+        }
+
 		public Tile getTileAtLocation(int x, int y) {
 			return tiles [x, y];
 		}
+
+        public void setAboveTileAtLocation(int x, int y, TextureImporter t) {
+            t.renderTexture(Globals.TextureSize, x * Globals.TextureSize * 2  + coordinateOffsetX, y * Globals.TextureSize * 2 + coordinateOffsetY);
+        }
 
 		public int getRoomWidth() {
 			return roomWidth;
