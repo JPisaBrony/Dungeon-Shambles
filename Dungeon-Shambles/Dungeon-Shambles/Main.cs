@@ -11,13 +11,6 @@ namespace DungeonShambles
     class Game : GameWindow
     {
 		// object references to pass between OnLoad and OnRenderFrame
-
-        // texture object reference
-        TextureImporter text;
-        // timmer for displaying text
-        int textTimer = 0;
-
-        
 		MainMenu mainMenu;
 		Stats statsMenu;
         GameEntities mainChar;
@@ -181,21 +174,17 @@ namespace DungeonShambles
 
             Vector2 pos = new Vector2(0.6f, -0.2f);
 
-
-
             if (mouse[OpenTK.Input.MouseButton.Button1])
             {
                 displayMenu = false;
             }
             if (mouse[OpenTK.Input.MouseButton.Right])
             {
-                //******TO DO********* probably want to save game before exit
+                //TODO probably want to save game before exit
                 Dispose();
             }
 
         }
-
-
 
         protected override void OnRenderFrame(FrameEventArgs e)
         {
@@ -209,54 +198,19 @@ namespace DungeonShambles
             if(displayMenu == false && displayStats == false) mainChar.renderCharacter();
 			GL.Disable (EnableCap.Blend);
 
-            // check if the timer has timed out
-            if (textTimer < 100)
-            {
-                // enable alpha blending
-                // so that the background of the text is transparent
-                GL.Enable(EnableCap.Blend);
-                // render text
-                text.renderTexture(1f, 0.5f, -0.3f);
-                // disble alpha blending
-                // this step is VERY important, if alpha blending is not disabled,
-                // the rest of the images will get distorted
-                GL.Disable(EnableCap.Blend);
-            }
-            // increament timer
-            textTimer++;
-
-
             //TODO fix ghost
             //ghost.renderCharacter();
-
 
 			if (fired)
 				shot.renderCharacter ();
 			GL.Disable (EnableCap.Blend);
+
             // render menus
-            
             if (displayMenu == true) 
                 mainMenu.RenderMenu();
                
             if (displayStats == true) 
                 statsMenu.RenderMenu();
-
-
-			// check if the timer has timed out
-			if (textTimer < 100) {
-				// enable alpha blending
-				// so that the background of the text is transparent
-				GL.Enable (EnableCap.Blend);
-				// render text
-				text.renderTexture (1f, 0.5f, -0.3f);
-				// disble alpha blending
-				// this step is VERY important, if alpha blending is not disabled,
-				// the rest of the images will get distorted
-				GL.Disable (EnableCap.Blend);
-			}
-			// increament timer
-			textTimer++;
-
 
             // switch between the 2 buffers
             SwapBuffers();
