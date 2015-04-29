@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DungeonShambles.Character;
+using DungeonShambles.Entities;
 using DungeonShambles.Cranting;
 
 namespace DungeonShambles.Items
