@@ -60,7 +60,7 @@ namespace DungeonShambles
 			}
 		}
 
-		public void renderRoom(int offsetX, int offsetY) {
+		public void renderRoom(float offsetX, float offsetY) {
 			for (int i = 0; i < roomWidth; i++) {
 				for (int j = 0; j < roomHeight; j++) {
 					tiles [i,j].renderTile (Globals.TextureSize, i * Globals.TextureSize * 2 + offsetX, j * Globals.TextureSize * 2 + offsetY);
@@ -70,6 +70,14 @@ namespace DungeonShambles
 
 		public Tile getTileAtLocation(int x, int y) {
 			return tiles [x, y];
+		}
+
+		public int getRoomWidth() {
+			return roomWidth;
+		}
+
+		public int getRoomHeight() {
+			return roomHeight;
 		}
 
 		public int getRoomWidth() {

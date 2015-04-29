@@ -7,10 +7,6 @@ namespace DungeonShambles
 		private Room[] rooms;
 		private int numberOfRooms;
 
-		// temporary hallways
-		private Tile[,] Hallways = new Tile[30, 30];
-		private int HallwaysSize = 30;
-
 		string[] Tilenames = new string[] {
 			"meshes/D1Tiles/D1Floor.png",
 			"meshes/D1Tiles/D1WestWall.png",
@@ -35,31 +31,52 @@ namespace DungeonShambles
 				newRoom.generateRoom (rng.Next(4, 10), rng.Next(4, 10), 2);
 				rooms [i] = newRoom;
 			}
-			// temporary hallways
-			for (int i = 0; i < HallwaysSize; i++) {
-				for (int j = 0; j < HallwaysSize; j++) {
-					Hallways[i, j] = new Tile (Tilenames[0], 1, 1, false);
-				}
-			}
+			// re-generate the first room with the max size of the room
+			rooms [0].generateRoom (10, 10, 4);
 		}
 
 		public void renderDungeon() {
-			// temporary hallways
-			for (int i = 0; i < HallwaysSize; i++) {
-				for (int j = 0; j < HallwaysSize; j++) {
-					Hallways [i, j].renderTile (Globals.TextureSize, i * Globals.TextureSize * 2, j * Globals.TextureSize * 2); 
-				}
-			}
-
-			int generationWidth = 0;
-			int generationHeight = 0;
+			float generationWidth = 0;
+			float generationHeight = 0;
+			int currentRoom = -1;
+			int roomSwitching = 0;
+			int roomSubtraction = 2;
 			for (int i = 0; i < rooms.Length; i++) {
-				rooms [i].renderRoom (generationWidth, generationHeight);
-				generationWidth += 2;
-				if (generationWidth % 3 == 0) {
-					generationHeight += 2;
-					generationWidth = 0;
+				switch (currentRoom % 5) {
+					case -1:
+						rooms [i].renderRoom (generationWidth, generationHeight);
+						break;
+					case 0:
+						rooms [i].renderRoom (-1 * ((rooms [i].getRoomWidth () * Globals.TextureSize * 2) + generationWidth), generationHeight);
+						break;
+					case 1:
+						if (roomSwitching == 1) {
+							currentRoom++;
+                            generationWidth = generationWidth * -1;
+						}
+						rooms [i].renderRoom (generationWidth, rooms [i-roomSubtraction].getRoomHeight () * Globals.TextureSize * 2);
+						break;
+                    case 2:
+                        rooms [i].renderRoom ((rooms [i-(roomSubtraction+1)].getRoomWidth () * Globals.TextureSize * 2) + generationWidth, generationHeight);
+						break;
+					case 3:
+                        rooms [i].renderRoom (generationWidth, -1 * (rooms [i].getRoomHeight () * Globals.TextureSize * 2) + generationHeight);
+						break;
+                    case 4:
+                        i--;
+                        if (roomSwitching == 0)
+                            generationWidth = rooms[1].getRoomWidth() * Globals.TextureSize * 2;
+                        else if (roomSwitching == 1) {
+                            generationWidth = rooms[0].getRoomWidth() * Globals.TextureSize * 2;
+                            currentRoom++;
+                        }
+						roomSubtraction = 5;
+						roomSwitching++;
+						break;
 				}
+				if (currentRoom >= 13)
+					break;
+				currentRoom++;
 			}
 		}
 
