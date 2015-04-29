@@ -23,9 +23,9 @@ namespace DungeonShambles
 		public static Boolean wallCollision (Room current, float x, float y)
 		{
 			//Check if tile character is moving into is a wall
-			if (current.getTileAtLocation((int)(x*5+1), (int)(y*5+1)).getIsWall())
-				return true;
-			else
+			//if (current.getTileAtLocation((int)(x*5+1), (int)(y*5+1)).getIsWall())
+				//return true;
+			//else
 				return false;
 		}
     }

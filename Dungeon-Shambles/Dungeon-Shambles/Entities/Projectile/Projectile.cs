@@ -14,20 +14,6 @@ namespace DungeonShambles.Projectile
 		base (image, shooter.getX(), shooter.getY())
 		{
 		}
-
-		public void track ()
-		{
-			if (getX() > x)
-				changeX(speed);
-			if (getX() < x)
-				changeX(speed*-1);
-			if (getY() > y)
-				changeY(speed);
-			if (getY() < y)
-				changeY(speed*-1);
-		}
-
-
 	}
 }
 

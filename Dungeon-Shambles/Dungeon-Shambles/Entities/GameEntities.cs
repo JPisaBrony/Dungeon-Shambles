@@ -59,12 +59,12 @@ namespace DungeonShambles.Entities
             magicModifier = aMod;
         }
 
-		public void chase(GameEntities target)
+		public void chase(GameEntities target, Room room)
 		{
 			if (target.getX() > x)
-				changeX(speed);
+				changeX(speed, room);
 			if (target.getX() < x)
-				changeX(speed*-1);
+				changeX(speed*-1, room);
 			if (target.getY() > y)
 				changeY(speed);
 			if (target.getY() < y)
@@ -77,14 +77,15 @@ namespace DungeonShambles.Entities
 		}
 
 
-		public void changeX(float theX) 
+		public void changeX(float theSpeed, Room room) 
 		{
-			x += theX;
+			if (!collisionTests.wallCollision (room, x - Globals.TextureSize * 2 - speed / 2, y))
+				x += theSpeed;
 		}
 
-		public void changeY(float theY) 
+		public void changeY(float theSpeed) 
 		{
-			y += theY;
+			y += theSpeed;
 		}
 
 		public float getSpeed() 
