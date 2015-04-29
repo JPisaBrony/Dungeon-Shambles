@@ -79,13 +79,5 @@ namespace DungeonShambles
 		public int getRoomHeight() {
 			return roomHeight;
 		}
-
-		public int getRoomWidth() {
-			return roomWidth;
-		}
-
-		public int getRoomHeight() {
-			return roomHeight;
-		}
 	}
 }

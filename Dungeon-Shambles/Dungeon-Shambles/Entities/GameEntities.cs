@@ -83,9 +83,12 @@ namespace DungeonShambles.Entities
 				x += theSpeed;
 		}
 
-		public void changeY(float theSpeed) 
-		{
-			y += theSpeed;
+        public void changeX(float speed) {
+            x += speed;
+        }
+
+		public void changeY(float speed) {
+			y += speed;
 		}
 
 		public float getSpeed() 
