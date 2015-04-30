@@ -23,6 +23,7 @@ namespace DungeonShambles
 
         // Menus
         PauseMenu pauseMenu;
+        Menu mmenu;
         //Inventory invMenu;
         //Stats statsMenu;
 
@@ -58,10 +59,6 @@ namespace DungeonShambles
             GL.Enable(EnableCap.Texture2D);
             // enable alpha blending
             GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
-
-			// enable alpha blending
-			GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
-
         }
 
         protected override void OnLoad(EventArgs e)
@@ -84,20 +81,19 @@ namespace DungeonShambles
 			fired = false;
 			// create a new dungeon object
 			dungeon = new Dungeon (11);
+            // generate a new dungeon
+            dungeon.generateDungeon();
 
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
             mainChar.changeY(0.9f);
             GL.Translate(-0.9, -0.9, 0);
-
             
             pauseMenu = new PauseMenu();
-            /*
+            mmenu = new Menu();            /*
             invMenu = new Inventory();
             statsMenu = new Stats();
             */
-			// generate a new dungeon
-			dungeon.generateDungeon ();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -166,8 +162,8 @@ namespace DungeonShambles
 			//	fired = false;
 			//}
 			
-			if(keyboard[OpenTK.Input.Key.E]) displayMenu = true;
-			if(keyboard[OpenTK.Input.Key.Escape]) displayMenu = false;
+			if(keyboard[OpenTK.Input.Key.E]) displayDungeon = true;
+			if(keyboard[OpenTK.Input.Key.Escape]) displayDungeon = false;
 
 			// if tab key is held down, status menu opens and dissappears when release
 			this.KeyDown += (sender, button) =>
@@ -209,29 +205,33 @@ namespace DungeonShambles
         {
             // clear the screen
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            // the view of the window
-            Matrix4 modelview = Matrix4.LookAt(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY);
-            GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref modelview);
 
-            
-            dungeon.renderDungeon();
-            GL.Enable(EnableCap.Blend);
-            GL.Enable(EnableCap.Blend);
-            // render the main character
-            if (displayMenu == false && displayStats == false) mainChar.renderCharacter();
-            GL.Disable(EnableCap.Blend);
-
+            if (displayDungeon == true)
+            {
+                dungeon.renderDungeon();
+                // render the main character
+                if (displayMenu == false && displayStats == false)
+                {
+                    GL.Enable(EnableCap.Blend);
+                    mainChar.renderCharacter();
+                    GL.Disable(EnableCap.Blend);
+                }
+            }
+            else
+            {
+                mmenu.RenderMenu();
+            }
             //TODO fix ghost
             //ghost.renderCharacter();
 
             if (fired)
                 shot.renderCharacter();
-            GL.Disable(EnableCap.Blend);
+            //GL.Disable(EnableCap.Blend);
             
             
 
              // render menus
+            //if (displayMenu == true) 
             //if (displayStats == true) 
             //    statsMenu.RenderMenu();
             if (displayPause == true)

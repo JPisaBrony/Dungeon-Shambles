@@ -115,11 +115,6 @@ namespace DungeonShambles.UI
             // clear the screen
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            // the view of the window
-            Matrix4 modelview = Matrix4.LookAt(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY);
-            GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref modelview);
-
             switch (currentPage)
             {
                 // first page
@@ -128,8 +123,6 @@ namespace DungeonShambles.UI
                         float yOffset = 20;
                         float noOffset = 0;
                         int count = 0;
-
-                        //GL.ClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 
                         //******* DOES NOTHING START REGION, FOR SOME REASON, ALLOWS BKGROUND PIC TO BE RENDERED?
                         QFont.Begin();
@@ -174,7 +167,6 @@ namespace DungeonShambles.UI
                         }
 
                         QFont.End();
-                        //text.renderTexture(1.0f, 0f, 0f);
 
                         GL.Disable(EnableCap.Texture2D);
 
