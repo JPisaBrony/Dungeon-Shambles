@@ -33,12 +33,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4" />
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <Package>opentk</Package>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="AssimpNet">
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="QuickFont">
+      <HintPath>bin\Debug\QuickFont.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collision Detection\collisionTests.cs" />
@@ -78,14 +83,12 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Dungeon Generation\Tile.cs" />
     <Compile Include="Dungeon Generation\Room.cs" />
-    <Compile Include="Dungeon Generation\Hallway.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
     <Compile Include="UI\Inventory.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Stats.cs" />
-    <Compile Include="UI\UI.cs" />
     <Compile Include="StaticMethodDump.cs" />
     <Compile Include="Entities\GameEntities.cs" />
     <Compile Include="Entities\PlayerCharacter\Player.cs" />
@@ -93,19 +96,10 @@
     <Compile Include="Entities\Projectile\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\800x60.jpg" />
-    <Content Include="Images\dungeon2_fixed.jpg" />
-    <Content Include="Images\dungeon3_fixed.jpg" />
     <Content Include="UI\Fonts\myRock.png" />
     <Content Include="UI\Fonts\woodenFont.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Downloads\QuickFont_1.0.2_0\QuickFont\QuickFont\QuickFont.csproj">
-      <Project>{bbece6fc-ef63-40f8-a734-a500d1dfc1af}</Project>
-      <Name>QuickFont</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <None Include="Entities\Projectile\Magic.cs" />
     <None Include="Entities\Projectile\Melee.cs" />

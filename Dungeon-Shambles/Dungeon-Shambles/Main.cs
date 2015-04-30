@@ -15,11 +15,7 @@ namespace DungeonShambles
     {
 		// object references to pass between OnLoad and OnRenderFrame
 		GameEntities mainChar;
-		GameEntities ghost;
-		GameEntities shot;
-		bool fired;
 		Dungeon dungeon;
-
 
         // Menus
         PauseMenu pauseMenu;
@@ -72,13 +68,7 @@ namespace DungeonShambles
 			GL.ClearColor(Color.Black);
             // create the main character
             mainChar = new Player();
-			//TODO fix ghost
-            //ghost = new Ghost(0.9f, 0.9f);
-            //TODO Fix mainmenu and stats menu
-            
-			//projectiles
-			shot = new Projectile.Projectile(mainChar);
-			fired = false;
+
 			// create a new dungeon object
 			dungeon = new Dungeon (11);
             // generate a new dungeon
@@ -90,7 +80,8 @@ namespace DungeonShambles
             GL.Translate(-0.9, -0.9, 0);
             
             pauseMenu = new PauseMenu();
-            mmenu = new Menu();            /*
+            mmenu = new Menu();
+			/*
             invMenu = new Inventory();
             statsMenu = new Stats();
             */
@@ -98,11 +89,6 @@ namespace DungeonShambles
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-			//room = dungeon.getRooms ().;
-			//ghost.chase(mainChar, room);
-			//if (collisionTests.collision (mainChar, ghost))
-			//	this.Close();
-            // variable for checking keyboard input
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
@@ -149,19 +135,9 @@ namespace DungeonShambles
 			}
 			//Mouse events
 			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
-				fired = true;
+
 			};
 
-            //TODO fix firing
-			//if (fired);
-				//shot.chase (ghost);
-			//else
-				//shot.setX (mainChar.getX ());
-            //TODO fix collisions
-			//if (collisionTests.collision (shot, ghost) == true) {
-			//	fired = false;
-			//}
-			
 			if(keyboard[OpenTK.Input.Key.E]) displayDungeon = true;
 			if(keyboard[OpenTK.Input.Key.Escape]) displayDungeon = false;
 
@@ -195,10 +171,7 @@ namespace DungeonShambles
             {
                 //TODO probably want to save game before exit
                 Dispose();
-            }
-             */
-
-            
+            }*/
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -208,29 +181,22 @@ namespace DungeonShambles
 
             if (displayDungeon == true)
             {
+				// render the dungeon
                 dungeon.renderDungeon();
-                // render the main character
                 if (displayMenu == false && displayStats == false)
                 {
-                    GL.Enable(EnableCap.Blend);
+                    //GL.Enable(EnableCap.Blend);
+					// render the main character
                     mainChar.renderCharacter();
-                    GL.Disable(EnableCap.Blend);
+                    //GL.Disable(EnableCap.Blend);
                 }
             }
             else
             {
                 mmenu.RenderMenu();
             }
-            //TODO fix ghost
-            //ghost.renderCharacter();
 
-            if (fired)
-                shot.renderCharacter();
-            //GL.Disable(EnableCap.Blend);
-            
-            
-
-             // render menus
+            // render menus
             //if (displayMenu == true) 
             //if (displayStats == true) 
             //    statsMenu.RenderMenu();

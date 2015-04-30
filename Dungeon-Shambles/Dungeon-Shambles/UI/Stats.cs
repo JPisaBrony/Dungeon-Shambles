@@ -15,9 +15,7 @@ namespace DungeonShambles.UI
         QFont header, testText;
         String testString;
         string title = "Your Stats";
-
         TextureImporter text1;
-
 
         public Stats()
         {
@@ -32,33 +30,14 @@ namespace DungeonShambles.UI
 
         public void RenderMenu()
         {
-            // clear color and depth buffer
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-            Matrix4 modelview = Matrix4.LookAt(Vector3.Zero, Vector3.UnitZ, Vector3.UnitY);
-            GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref modelview);
-            GL.LoadIdentity();
-
-            GL.ClearColor(0.0f, 0.0f, 0.0f, 0f);
-
             float yOffset = 20;
 
             text1.renderTexture(1.0f, 0f, 0f);
 
             QFont.Begin();
-                // push current matrix stack
-                GL.PushMatrix();
-                GL.Translate(Globals.WindowWidth * 0.4f, yOffset, 0f);
-                header.Print(title, QFontAlignment.Right);
-                GL.PopMatrix();
-
-                yOffset += 100;
-
+			header.Print(title, QFontAlignment.Right);
+			yOffset += 100;
             QFont.End();
-
-            GL.Disable(EnableCap.Texture2D);
-
         }
     }
 }
