@@ -11,21 +11,11 @@ namespace DungeonShambles
 	class Game: GameWindow
 	{
 		// object references to pass between OnLoad and OnRenderFrame
+        Puzzles puzzles;
 		MainCharacter mainChar;
 		Dungeon dungeon;
         Room room;
-        Rock rock1;
-        Rock rock2;
-        Target target1;
-        Target target2;
-        Door door;
-        Door leverDoor;
-
-        Lever lever1;
-        Lever lever2;
-        Lever lever3;
-        bool solved = false;
-        bool leverSolved = false;
+        
         string[] Tilenames = new string[] {
 			"meshes/D1Tiles/D1Floor.png",
 			"meshes/D1Tiles/D1WestWall.png",
@@ -84,40 +74,12 @@ namespace DungeonShambles
             room = new Room(Tilenames, 1);
             room.generateRoom(10,10, 2);
 
-            rock1 = new Rock(.7f, .7f);
-            rock2 = new Rock(.5f, .5f);
+            puzzles = new Puzzles(mainChar);
 
-            target1 = new Target(.2f, .7f);
-            target2 = new Target(.5f, .9f);
-
-            RockCollision.addRock(rock1);
-            RockCollision.addRock(rock2);
-
-            TargetTest.addTarget(target1);
-            TargetTest.addTarget(target2);
-
-            door = new Door(.4f, 1.8f);
-            leverDoor = new Door(1.6f, 1.8f);
-
-            lever1 = new Lever(.8f, 1.8f);
-            lever2 = new Lever(1f, 1.8f);
-            lever3 = new Lever(1.2f, 1.8f);
-
-            Levers.addLever(0, lever1);
-            Levers.addLever(1, lever2);
-            Levers.addLever(2, lever3);
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
 		{
-            if (TargetTest.pressTest(RockCollision.getRocks()))
-            {
-                Console.WriteLine("Solved");
-                solved = true;
-            }
-
-            
-
 			// variable for checking keyboard input
 			var keyboard = OpenTK.Input.Keyboard.GetState();
 			// left key is pressed
@@ -165,14 +127,9 @@ namespace DungeonShambles
             if (keyboard [OpenTK.Input.Key.Space])
             {
                 Thread.Sleep(100);
-                Levers.flipLever(mainChar);
+                puzzles.puzzleActions();
             }
 
-            if (Levers.checkSolved())
-            {
-                Console.WriteLine("Got it");
-                leverSolved = true;
-            }
 		}
 
 		protected override void OnRenderFrame(FrameEventArgs e)
@@ -182,26 +139,10 @@ namespace DungeonShambles
 
 			//dungeon.renderDungeon ();
             room.renderRoom(0,0);
+            puzzles.renderPuzzles();
 
-            target1.renderTarget();
-            target2.renderTarget();
-
-            rock1.renderRock();
-            rock2.renderRock();
-
-            lever1.renderLever();
-            lever2.renderLever();
-            lever3.renderLever();
-
-            if (solved == true)
-            {
-                door.renderDoor();
-            }
             
-            if(leverSolved == true)
-            {
-                leverDoor.renderDoor();
-            }
+
 			GL.Enable (EnableCap.Blend);
 			// render the main character
 			mainChar.renderCharacter ();

@@ -46,8 +46,11 @@
     <Compile Include="Main.cs" />
     <Compile Include="ModelImporter.cs" />
     <Compile Include="Puzzles\Door.cs" />
+    <Compile Include="Puzzles\Key\Key.cs" />
+    <Compile Include="Puzzles\Key\Keys.cs" />
     <Compile Include="Puzzles\Lever\Lever.cs" />
     <Compile Include="Puzzles\Lever\Levers.cs" />
+    <Compile Include="Puzzles\Puzzles.cs" />
     <Compile Include="Puzzles\Rock\Rock.cs" />
     <Compile Include="Puzzles\Rock\RockCollision.cs" />
     <Compile Include="Puzzles\Target\TargetTest.cs" />

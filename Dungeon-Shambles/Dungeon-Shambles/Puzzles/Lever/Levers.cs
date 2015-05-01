@@ -9,7 +9,23 @@ namespace DungeonShambles
 {
     public class Levers
     {
+        Lever lever1;
+        Lever lever2;
+        Lever lever3;
+        static bool solved;
+        static Door door;
         private static Lever[] levers = new Lever[3];
+        public Levers()
+        {
+            lever1 = new Lever(.8f, 1.8f);
+            lever2 = new Lever(1f, 1.8f);
+            lever3 = new Lever(1.2f, 1.8f);
+            addLever(0, lever1);
+            addLever(1, lever2);
+            addLever(2, lever3);
+            solved = false;
+            door = new Door(1.6f, 1.8f);
+        }
 
         public static void addLever(int index, Lever lever)
         {
@@ -29,6 +45,7 @@ namespace DungeonShambles
                         lever.setFlippedT();
                 }
             }
+            setSolved();
         }
 
         public static bool checkSolved()
@@ -47,6 +64,26 @@ namespace DungeonShambles
                 
 
             return solved;
+        }
+
+        public static void setSolved()
+        {
+            if(checkSolved())
+            {
+                solved = true;
+            }
+        }
+
+        public static void renderLevers()
+        {
+            if (solved)
+            {
+                door.renderDoor();
+            }
+            foreach (Lever lever in levers)
+            {
+                lever.renderLever();
+            }
         }
     }
 }

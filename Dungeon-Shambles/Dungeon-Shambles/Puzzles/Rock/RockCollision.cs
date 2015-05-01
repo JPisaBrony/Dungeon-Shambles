@@ -9,7 +9,19 @@ namespace DungeonShambles
 {
     class RockCollision
     {
+        Rock rock1;
+        Rock rock2;
+        
         private static ArrayList rocks = new ArrayList();
+
+        public RockCollision()
+        {
+            rock1 = new Rock(.7f, .7f);
+            rock2 = new Rock(.5f, .5f);
+            addRock(rock1);
+            addRock(rock2);
+            
+        }
 
         public static void addRock(Rock rock)
         {
@@ -52,6 +64,15 @@ namespace DungeonShambles
         public static ArrayList getRocks()
         {
             return rocks;
+        }
+
+        public static void renderRocks()
+        {
+            
+            foreach (Rock rock in rocks)
+            {
+                rock.renderRock();
+            }
         }
     }
 }
