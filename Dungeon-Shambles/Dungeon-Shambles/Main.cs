@@ -11,10 +11,9 @@ namespace DungeonShambles
 	class Game: GameWindow
 	{
 		// object references to pass between OnLoad and OnRenderFrame
-        Puzzles puzzles;
-		MainCharacter mainChar;
 		Dungeon dungeon;
-        Room room;
+        MainCharacter mainChar;
+        Puzzles puzzles;
         
         string[] Tilenames = new string[] {
 			"meshes/D1Tiles/D1Floor.png",
@@ -36,7 +35,7 @@ namespace DungeonShambles
 			using (Game game = new Game())
 			{
 				// run update and game at 30 frames per second
-				game.Run(20, 30);
+				game.Run(30, 30);
 			}
 		}
 
@@ -67,18 +66,18 @@ namespace DungeonShambles
 			// create the main character
 			mainChar = new MainCharacter ();
 
+            // create a new dungeon object
+            dungeon = new Dungeon (11);
+            // generate a new dungeon
+            dungeon.generateDungeon();
+
 			// set the main character to the center of the dungeon
 			mainChar.increaseX (0.9f);
 			mainChar.increaseY (0.9f);
 			GL.Translate (-0.9f, -0.9f, 0);
 
-			// create a new dungeon object
-			dungeon = new Dungeon (11);
-
-			// generate a new dungeon
-
+            // create a new puzzle object
             puzzles = new Puzzles(mainChar);
-
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -140,11 +139,8 @@ namespace DungeonShambles
 			// clear the screen
 			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-			//dungeon.renderDungeon ();
-            room.renderRoom(0,0);
+			dungeon.renderDungeon ();
             puzzles.renderPuzzles();
-
-            
 
 			GL.Enable (EnableCap.Blend);
 			// render the main character
