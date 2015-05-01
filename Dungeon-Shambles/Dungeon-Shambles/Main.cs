@@ -77,12 +77,15 @@ namespace DungeonShambles
 			// create the main character
 			mainChar = new MainCharacter ();
 
-			//dungeon = new Dungeon (9);
+			// set the main character to the center of the dungeon
+			mainChar.increaseX (0.9f);
+			mainChar.increaseY (0.9f);
+			GL.Translate (-0.9f, -0.9f, 0);
 
-			//dungeon.generateDungeon ();
+			// create a new dungeon object
+			dungeon = new Dungeon (11);
 
-            room = new Room(Tilenames, 1);
-            room.generateRoom(10,10, 2);
+			// generate a new dungeon
 
             rock1 = new Rock(.7f, .7f);
             rock2 = new Rock(.5f, .5f);
