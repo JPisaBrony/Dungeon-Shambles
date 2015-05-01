@@ -19,16 +19,12 @@ namespace DungeonShambles.UI
 
         OpenTK.Input.KeyboardKeyEventArgs oldState;
 
-        #region strings
         string steve = "He is a hot, sexy, valiant young man who is ready for anything the world throws at him." + Environment.NewLine + Environment.NewLine +
                         "Steve is also a professional gamer, and one of the top players in the game “Dungeon Crawler 2015”.  Because of his fame, Steve regularly sponsors energy drink and snack companies." + Environment.NewLine + Environment.NewLine +
                         "As fate would have it, Steve’s favorite energy drink company, “Brawndo”, decided to hold a promotional gaming marathon for “dungeon Crawler 2015”, with Steve livestreaming a marathon where he attempts to stay awake as long as possible to set a world record score." + Environment.NewLine + Environment.NewLine +
                         "After nearly 3 days of constant play, Steve’s resolve ran out and he fell asleep at the computer." + Environment.NewLine + Environment.NewLine +
                         "Upon awakening, Steve finds himself in the starting level of “Dungeon Crawler 2015”.";
-
         string aboutUs = "Heck Yes!! WE GET A PAGE!";
-        #endregion
-
         int currentPage = 1;
         int lastPage = 3;
 		int currentButton = 0;
