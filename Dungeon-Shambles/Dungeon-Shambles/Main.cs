@@ -16,18 +16,7 @@ namespace DungeonShambles
 		// object references to pass between OnLoad and OnRenderFrame
 		GameEntities mainChar;
 		Dungeon dungeon;
-
-        // Menus
-        PauseMenu pauseMenu;
-        Menu mmenu;
-        //Inventory invMenu;
-        //Stats statsMenu;
-
-        bool displayMenu = true;
-        bool displayStats = false;
-        bool displayDungeon = false;
-        bool displayPause = false;
-        //bool displayInv = false;
+		Menu MainMenu;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -79,12 +68,8 @@ namespace DungeonShambles
             mainChar.changeY(0.9f);
             GL.Translate(-0.9, -0.9, 0);
             
-            pauseMenu = new PauseMenu();
-            mmenu = new Menu();
-			/*
-            invMenu = new Inventory();
-            statsMenu = new Stats();
-            */
+			// create main menu
+			MainMenu = new Menu();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -92,86 +77,39 @@ namespace DungeonShambles
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
-                //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-					//room, mainChar.getX () - Globals.TextureSize*2 - mainChar.getSpeed()/2, mainChar.getY ())) {
-					// change the main characters x position
-					mainChar.changeX (-1 * mainChar.getSpeed ());
-					// move the scene around the character in the x position
-					GL.Translate (mainChar.getSpeed (), 0, 0);
-				//}
+				// change the main characters x position
+				mainChar.changeX (-1 * mainChar.getSpeed ());
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed (), 0, 0);
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
-                //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-					//room, mainChar.getX () + mainChar.getSpeed(), mainChar.getY ())) {
-					// decrease the main characters x position
-					mainChar.changeX (mainChar.getSpeed ());
-					// move the scene around the character in the x position
-					GL.Translate (mainChar.getSpeed () * -1, 0, 0);
-				//}
+				// decrease the main characters x position
+				mainChar.changeX (mainChar.getSpeed ());
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
 			}
             // up key is pressed
 			if (keyboard [OpenTK.Input.Key.W]) {
-                //TODO fix collisions
-				//if (!collisionTests.wallCollision (room, mainChar.getX (), mainChar.getY () + mainChar.getSpeed())) {
-					// change the main characters y position
-					mainChar.changeY (mainChar.getSpeed ());
-					// move the scene around the character in the y position
-					GL.Translate (0, mainChar.getSpeed () * -1, 0);
-				//}
+				// change the main characters y position
+				mainChar.changeY (mainChar.getSpeed ());
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
-                //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-				//	room, mainChar.getX (), mainChar.getY () - Globals.TextureSize*2 - mainChar.getSpeed()/2)) {
-					// decrease the main characters x position
-					mainChar.changeY (-1 * mainChar.getSpeed ());
-					// move the scene around the character in the y position
-					GL.Translate (0, mainChar.getSpeed (), 0);
-				//}
+				// decrease the main characters x position
+				mainChar.changeY (-1 * mainChar.getSpeed ());
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed (), 0);
+			// temporary key presses
+			// e key is pressed
+			} else if (keyboard [OpenTK.Input.Key.E]) {
+				Globals.displayMainMenu = false;
+			// esc key is pressed
+			} else if (keyboard [OpenTK.Input.Key.Escape]) {
+				Globals.displayMainMenu = true;
 			}
-			//Mouse events
-			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
-
-			};
-
-			if(keyboard[OpenTK.Input.Key.E]) displayDungeon = true;
-			if(keyboard[OpenTK.Input.Key.Escape]) displayDungeon = false;
-
-			// if tab key is held down, status menu opens and dissappears when release
-			this.KeyDown += (sender, button) =>
-			{
-				if (button.Key == Key.Tab)
-				{
-					displayStats = true;
-				}
-			};
-			this.KeyUp += (sender, button) =>
-			{
-				if (button.Key == Key.Tab)
-				{
-					displayStats = false;
-				}
-			};
-
-            // variable for checking mouse input
-            var mouse = OpenTK.Input.Mouse.GetState();
-
-            Vector2 pos = new Vector2(0.6f, -0.2f);
-
-            /*
-            if (mouse[OpenTK.Input.MouseButton.Button1])
-            {
-                displayMenu = false;
-            }
-            if (mouse[OpenTK.Input.MouseButton.Right])
-            {
-                //TODO probably want to save game before exit
-                Dispose();
-            }*/
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -179,32 +117,20 @@ namespace DungeonShambles
             // clear the screen
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            if (displayDungeon == true)
-            {
-				// render the dungeon
-                dungeon.renderDungeon();
-                if (displayMenu == false && displayStats == false)
-                {
-                    //GL.Enable(EnableCap.Blend);
-					// render the main character
-                    mainChar.renderCharacter();
-                    //GL.Disable(EnableCap.Blend);
-                }
+			// check to see if the menu should be rendered
+			if (Globals.displayMainMenu) {
+				// display the main menu
+				MainMenu.RenderMenu();
             }
-            else
-            {
-                mmenu.RenderMenu();
+            else {
+				// render the dungeon
+				dungeon.renderDungeon();
+				// render the main character
+				GL.Enable(EnableCap.Blend);
+				mainChar.renderCharacter();
+				GL.Disable(EnableCap.Blend);
             }
 
-            // render menus
-            //if (displayMenu == true) 
-            //if (displayStats == true) 
-            //    statsMenu.RenderMenu();
-            if (displayPause == true)
-                pauseMenu.RenderMenu();
-            //if (displayInv == true)
-            //    invMenu.RenderMenu();
-           
             // switch between the two buffer
             SwapBuffers();
         }
