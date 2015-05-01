@@ -28,11 +28,11 @@ namespace DungeonShambles
 			Random rng = new Random ();
 			for (int i = 0; i < numberOfRooms; i++) {
 				Room newRoom = new Room (Tilenames, 1);
-				newRoom.generateRoom (rng.Next(4, 10), rng.Next(4, 10), 2);
+				newRoom.generateRoom (rng.Next(4, 10), rng.Next(4, 10));
 				rooms [i] = newRoom;
 			}
 			// re-generate the first room with the max size of the room
-			rooms [0].generateRoom (10, 10, 4);
+			rooms [0].generateRoom (10, 10);
 		}
 
 		public void renderDungeon() {

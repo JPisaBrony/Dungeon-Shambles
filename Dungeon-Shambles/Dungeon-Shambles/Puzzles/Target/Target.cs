@@ -18,8 +18,9 @@ namespace DungeonShambles
             y = yPos;
         }
 
-        public void renderTarget()
-        { target.renderTexture(Globals.TextureSize, x, y); }
+        public void renderTarget() { 
+            target.renderTexture(Globals.TextureSize, x, y);
+        }
 
         public float getX()
         {
