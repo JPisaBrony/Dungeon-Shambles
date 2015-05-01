@@ -16,7 +16,7 @@ namespace DungeonShambles
 		// object references to pass between OnLoad and OnRenderFrame
 		GameEntities mainChar;
 		Dungeon dungeon;
-		Menu MainMenu;
+		NewMainMenu MainMenu;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -63,41 +63,41 @@ namespace DungeonShambles
             // generate a new dungeon
             dungeon.generateDungeon();
 
+			// create main menu
+			MainMenu = new NewMainMenu (mainChar);
+
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
             mainChar.changeY(0.9f);
             GL.Translate(-0.9, -0.9, 0);
-            
-			// create main menu
-			MainMenu = new Menu();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
-			if (keyboard [OpenTK.Input.Key.A]) {
+			if (keyboard [OpenTK.Input.Key.A] && !Globals.displayMainMenu) {
 				// change the main characters x position
 				mainChar.changeX (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
 			}
             // right key is pressed
-			else if (keyboard [OpenTK.Input.Key.D]) {
+			else if (keyboard [OpenTK.Input.Key.D] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
 				mainChar.changeX (mainChar.getSpeed ());
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
 			}
             // up key is pressed
-			if (keyboard [OpenTK.Input.Key.W]) {
+			if (keyboard [OpenTK.Input.Key.W] && !Globals.displayMainMenu) {
 				// change the main characters y position
 				mainChar.changeY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
             // down key is pressed
-			else if (keyboard [OpenTK.Input.Key.S]) {
+			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
 				mainChar.changeY (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the y position
@@ -120,7 +120,7 @@ namespace DungeonShambles
 			// check to see if the menu should be rendered
 			if (Globals.displayMainMenu) {
 				// display the main menu
-				MainMenu.RenderMenu();
+				MainMenu.renderMenu();
             }
             else {
 				// render the dungeon
@@ -134,7 +134,6 @@ namespace DungeonShambles
             // switch between the two buffer
             SwapBuffers();
         }
-
 
         protected override void OnResize(EventArgs e) { }
     }

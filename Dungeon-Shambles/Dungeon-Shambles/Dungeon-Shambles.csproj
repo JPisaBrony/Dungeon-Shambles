@@ -84,7 +84,6 @@
     <Compile Include="Dungeon Generation\Tile.cs" />
     <Compile Include="Dungeon Generation\Room.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
-    <Compile Include="UI\Inventory.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\PauseMenu.cs" />
@@ -94,6 +93,8 @@
     <Compile Include="Entities\PlayerCharacter\Player.cs" />
     <Compile Include="Entities\NonPlayerCharacters\Ghost.cs" />
     <Compile Include="Entities\Projectile\Projectile.cs" />
+    <Compile Include="UI\NewMainMenu.cs" />
+    <Compile Include="UI\Inventory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="UI\Fonts\myRock.png" />
