@@ -14,15 +14,16 @@ namespace DungeonShambles
         static Door door;
         static bool solved;
         private static ArrayList targets = new ArrayList();
-
-        public TargetTest()
+        static Room currentRoom;
+        public TargetTest(Room r)
         {
-            target1 = new Target(.1f, .1f);
-            target2 = new Target(.5f, .9f);
+            target1 = new Target(4, 5);
+            target2 = new Target(2, 5);
             addTarget(target1);
             addTarget(target2);
             door = new Door(.2f, .2f);
             solved = false;
+            currentRoom = r;
         }
 
         public static void addTarget(Target target)
@@ -30,7 +31,7 @@ namespace DungeonShambles
             targets.Add(target);
         }
 
-        public static Boolean pressTest(ArrayList rocks)
+        public Boolean pressTest(ArrayList rocks)
         {
             int count1 = 0;
             int count2 = 0;
@@ -50,13 +51,13 @@ namespace DungeonShambles
             {
                 solved = true;
                 return true;
-                
+
             }
             else
                 return false;
         }
 
-        public static void renderTargets()
+        public void renderTargets()
         {
             if (solved == true)
             {
@@ -64,7 +65,7 @@ namespace DungeonShambles
             }
             foreach (Target target in targets)
             {
-                target.renderTarget();
+                currentRoom.setAboveTileAtLocation(target.getX(), target.getY(), target.getTexture());
             }
         }
     }

@@ -42,5 +42,10 @@ namespace DungeonShambles
         {
             return pickedUp;
         }
+
+        public TextureImporter getTexture()
+        {
+            return key;
+        }
     }
 }

@@ -11,16 +11,16 @@ namespace DungeonShambles
     {
         Rock rock1;
         Rock rock2;
-        
+        static Room currentRoom;
         private static ArrayList rocks = new ArrayList();
 
-        public RockCollision()
+        public RockCollision(Room r)
         {
-            rock1 = new Rock(.7f, .7f);
-            rock2 = new Rock(.5f, .5f);
+            rock1 = new Rock(1, 1);
+            rock2 = new Rock(5, 5);
             addRock(rock1);
             addRock(rock2);
-            
+            currentRoom = r;
         }
 
         public static void addRock(Rock rock)
@@ -31,31 +31,35 @@ namespace DungeonShambles
         {
             foreach (Rock rock in rocks)
             {
-
+                float offset = .7f;
                 switch (direction)
                 {
                     case 1:
-                        if (Math.Abs(main.getX() - rock.getX()) < .19 && Math.Abs(main.getY() - rock.getY()) < .19)
+                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX())*5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseX(-1 * rock.getSpeed());
+                            rock.increaseX(- .5f);
                         }
                         break;
                     case 2:
-                        if (Math.Abs(main.getX() - rock.getX()) < .19 && Math.Abs(main.getY() - rock.getY()) < .19)
+                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseX(1 * rock.getSpeed());
+                            rock.increaseX(.5f);
                         }
                         break;
                     case 3:
-                        if (Math.Abs(main.getX() - rock.getX()) < .19 && Math.Abs(main.getY() - rock.getY()) < .19)
+                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseY(1 * rock.getSpeed());
+                            rock.increaseY(.5f);
                         }
                         break;
                     case 4:
-                        if (Math.Abs(main.getX() - rock.getX()) < .19 && Math.Abs(main.getY() - rock.getY()) < .19)
+                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseY(-1 * rock.getSpeed());
+                            rock.increaseY(-.5f);
                         }
                         break;
                 }
@@ -66,12 +70,12 @@ namespace DungeonShambles
             return rocks;
         }
 
-        public static void renderRocks()
+        public void renderRocks()
         {
             
             foreach (Rock rock in rocks)
             {
-                rock.renderRock();
+                currentRoom.setAboveTileAtLocation(rock.getX(), rock.getY(), rock.getTexture());
             }
         }
     }

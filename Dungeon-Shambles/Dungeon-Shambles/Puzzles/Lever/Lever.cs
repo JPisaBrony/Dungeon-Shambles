@@ -12,28 +12,16 @@ namespace DungeonShambles
         private TextureImporter leftLever = new TextureImporter();
         private TextureImporter rightLever = new TextureImporter();
 
+        private TextureImporter current = new TextureImporter();
         private float x, y;
 
         public Lever(float xPos, float yPos)
         {
             leftLever.importTexture("meshes/LeftLever.png");
             rightLever.importTexture("meshes/RightLever.png");
+            current = leftLever;
             x = xPos;
             y = yPos;
-        }
-
-        public void renderLever()
-        {
-            if (flipped == false)
-            {
-                leftLever.renderTexture(Globals.TextureSize, x, y);
-                
-            }
-            if (flipped == true)
-            {
-                rightLever.renderTexture(Globals.TextureSize, x, y);
-                
-            }
         }
 
         public float getX()
@@ -49,16 +37,23 @@ namespace DungeonShambles
         public void setFlippedF()
         {
             flipped = false;
+            current = leftLever;
         }
 
         public void setFlippedT()
         {
             flipped = true;
+            current = rightLever;
         }
 
         public bool getFlipped()
         {
             return flipped;
+        }
+
+        public TextureImporter getCurrentTexture()
+        {
+            return current;
         }
     }
 }

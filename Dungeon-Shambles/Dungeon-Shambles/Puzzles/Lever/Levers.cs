@@ -14,17 +14,19 @@ namespace DungeonShambles
         Lever lever3;
         static bool solved;
         static Door door;
+        static Room currentRoom;
         private static Lever[] levers = new Lever[3];
-        public Levers()
+        public Levers(Room r)
         {
-            lever1 = new Lever(.8f, 1.8f);
-            lever2 = new Lever(1f, 1.8f);
-            lever3 = new Lever(1.2f, 1.8f);
+            lever1 = new Lever(0, 0);
+            lever2 = new Lever(3, 1);
+            lever3 = new Lever(0, 3);
             addLever(0, lever1);
             addLever(1, lever2);
             addLever(2, lever3);
             solved = false;
             door = new Door(1.6f, 1.8f);
+            currentRoom = r;
         }
 
         public static void addLever(int index, Lever lever)
@@ -32,17 +34,23 @@ namespace DungeonShambles
             levers[index] = lever;
         }
 
-        public static void flipLever(MainCharacter main)
+        public void flipLever(MainCharacter main)
         {
             foreach (Lever lever in levers)
             {
-                if (Math.Abs((lever.getX() - main.getX())) < .05 &&
-                    Math.Abs(lever.getY() - main.getY()) < .05)
+                if (Math.Abs(((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - lever.getX())) < .05 &&
+                    Math.Abs(((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY())) < .05)
                 {
                     if (lever.getFlipped() == true)
+                    {
                         lever.setFlippedF();
-                    else if(lever.getFlipped() == false)
+                        
+                    }
+                    else if (lever.getFlipped() == false)
+                    {
                         lever.setFlippedT();
+
+                    }
                 }
             }
             setSolved();
@@ -74,7 +82,7 @@ namespace DungeonShambles
             }
         }
 
-        public static void renderLevers()
+        public void renderLevers()
         {
             if (solved)
             {
@@ -82,7 +90,7 @@ namespace DungeonShambles
             }
             foreach (Lever lever in levers)
             {
-                lever.renderLever();
+                currentRoom.setAboveTileAtLocation(lever.getX(), lever.getY(), lever.getCurrentTexture());
             }
         }
     }

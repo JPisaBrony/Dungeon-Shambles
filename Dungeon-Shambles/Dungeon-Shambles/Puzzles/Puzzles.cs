@@ -13,28 +13,29 @@ namespace DungeonShambles
         Levers levers;
         RockCollision rocks;
         TargetTest targets;
-        public Puzzles(MainCharacter init)
+        public Puzzles(MainCharacter init, Dungeon dungeon)
         {
-            keys = new Keys();
-            levers = new Levers();
-            rocks = new RockCollision();
-            targets = new TargetTest();
+            Room[] rooms = dungeon.getRooms();
+            keys = new Keys(rooms[1]);
+            levers = new Levers(rooms[3]);
+            rocks = new RockCollision(rooms[2]);
+            targets = new TargetTest(rooms[2]);
             main = init;
         }
 
         public void renderPuzzles()
         {
-            Keys.renderKeys();
-            Levers.renderLevers();
-            TargetTest.renderTargets();
-            RockCollision.renderRocks();
-            TargetTest.pressTest(RockCollision.getRocks());
+            keys.renderKeys();
+            levers.renderLevers();
+            targets.renderTargets();
+            rocks.renderRocks();
+            targets.pressTest(RockCollision.getRocks());
         }
 
         public void puzzleActions()
         {
-            Levers.flipLever(main);
-            Keys.pickUpKey(main);
+            levers.flipLever(main);
+            keys.pickUpKey(main);
         }
     }
 }

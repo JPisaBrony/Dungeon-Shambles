@@ -31,5 +31,10 @@ namespace DungeonShambles
         {
             return y;
         }
+
+        public TextureImporter getTexture()
+        {
+            return target;
+        }
     }
 }

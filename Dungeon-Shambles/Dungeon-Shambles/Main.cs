@@ -14,6 +14,7 @@ namespace DungeonShambles
 		Dungeon dungeon;
         MainCharacter mainChar;
         Puzzles puzzles;
+        Room test;
         
         string[] Tilenames = new string[] {
 			"meshes/D1Tiles/D1Floor.png",
@@ -77,7 +78,9 @@ namespace DungeonShambles
 			GL.Translate (-0.9f, -0.9f, 0);
 
             // create a new puzzle object
-            puzzles = new Puzzles(mainChar);
+            puzzles = new Puzzles(mainChar, dungeon);
+            Room[] rooms = dungeon.getRooms();
+            test = rooms[0];
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -149,6 +152,8 @@ namespace DungeonShambles
 
 			// switch between the 2 buffers
 			SwapBuffers();
+
+            Console.WriteLine(mainChar.getX() - test.getcoordinateOffsetX() + ", " + mainChar.getY());
 		}
 
 		protected override void OnResize(EventArgs e) {}

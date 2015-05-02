@@ -11,7 +11,7 @@ namespace DungeonShambles
         private TextureImporter rock = new TextureImporter();
         private float x, y;
         float speed = 0.1f;
-        public Rock(float xPos, float yPos)
+        public Rock(int xPos, int yPos)
         {
             rock.importTexture("meshes/rock.png");
             x = xPos;
@@ -35,5 +35,10 @@ namespace DungeonShambles
 
         public float getY()
         {return y;}
+
+        public TextureImporter getTexture()
+        {
+            return rock;
+        }
     }
 }

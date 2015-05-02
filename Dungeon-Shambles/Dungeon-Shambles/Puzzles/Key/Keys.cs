@@ -10,16 +10,18 @@ namespace DungeonShambles
     
     public class Keys
     {
-        static Key k;
+        static Key key;
         static Door door;
         static bool solved;
+        static Room currentRoom;
         private static ArrayList keys = new ArrayList();
-        public Keys()
+        public Keys(Room r)
         {
             solved = false;
             door = new Door(1.8f, 1.2f);
-            k = new Key(0.4f, 0.4f);
-            keys.Add(k);
+            key = new Key(1, 1);
+            keys.Add(key);
+            currentRoom = r;
         }
 
         public static void addKey(Key key)
@@ -27,12 +29,12 @@ namespace DungeonShambles
             keys.Add(key);
         }
 
-        public static void pickUpKey(MainCharacter main)
+        public void pickUpKey(MainCharacter main)
         {
             foreach (Key key in keys)
 
-                if (Math.Abs((key.getX() - main.getX())) < .05 &&
-                    Math.Abs(key.getY() - main.getY()) < .05)
+                if (Math.Abs(((main.getX() -currentRoom.getcoordinateOffsetX())*5 - key.getX())) < .05 &&
+                    Math.Abs(((main.getY() -currentRoom.getcoordinateOffsetY())*5 - key.getY())) < .05)
                 {
                     key.pickUp();
                     checkSolved();
@@ -41,20 +43,20 @@ namespace DungeonShambles
         
         public static Key getKey()
         {
-            return k;
+            return key;
         }
 
-        public static void renderKeys()
+        public void renderKeys()
         {
             if (solved == false)
-                k.renderKey();
+                currentRoom.setAboveTileAtLocation(key.getX(), key.getY(), key.getTexture());
             if(solved == true)
                 door.renderDoor();
         }
 
         public static bool checkSolved()
         {
-            if (k.getPickedUp() == true)
+            if (key.getPickedUp() == true)
             {
                 solved = true;
                 return solved;

@@ -81,7 +81,7 @@ namespace DungeonShambles
 			return tiles [x, y];
 		}
 
-        public void setAboveTileAtLocation(int x, int y, TextureImporter t) {
+        public void setAboveTileAtLocation(float x, float y, TextureImporter t) {
             t.renderTexture(Globals.TextureSize, x * Globals.TextureSize * 2  + coordinateOffsetX, y * Globals.TextureSize * 2 + coordinateOffsetY);
         }
 
@@ -92,6 +92,14 @@ namespace DungeonShambles
 		public int getRoomHeight() {
 			return roomHeight;
 		}
+
+        public float getcoordinateOffsetX() {
+            return coordinateOffsetX;
+        }
+
+        public float getcoordinateOffsetY() {
+            return coordinateOffsetY;
+        }
 	}
 }
 
