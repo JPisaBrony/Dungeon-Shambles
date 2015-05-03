@@ -11,7 +11,7 @@ namespace DungeonShambles
 		// if the tile is a wall
 		private Boolean isWall;
 
-		public Tile (string tileName, int w, int h, Boolean wall) {
+        public Tile (string tileName, int w, int h, Boolean wall) {
 			tile.importTexture(tileName);
 			width = w;
 			height = h;

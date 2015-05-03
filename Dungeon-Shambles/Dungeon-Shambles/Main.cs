@@ -59,7 +59,7 @@ namespace DungeonShambles
 			GL.Translate (-0.9f, -0.9f, 0);
 
 			// create a new dungeon object
-			dungeon = new Dungeon (11);
+			dungeon = new Dungeon (11, 4, 10);
 
 			// generate a new dungeon
 			dungeon.generateDungeon ();

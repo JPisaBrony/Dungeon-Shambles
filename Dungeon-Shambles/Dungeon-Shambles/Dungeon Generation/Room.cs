@@ -8,7 +8,6 @@ namespace DungeonShambles
 		private int roomWidth, roomHeight;
 		private string[] tileNames;
 		private int tileSize;
-		private int numberOfDoors;
         private float coordinateOffsetX;
         private float coordinateOffsetY;
 

@@ -50,7 +50,6 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Dungeon Generation\Tile.cs" />
     <Compile Include="Dungeon Generation\Room.cs" />
-    <Compile Include="Dungeon Generation\Hallway.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
