@@ -72,8 +72,8 @@ namespace DungeonShambles
 			dungeon = new Dungeon (11);
 
             // set the main character to the center of the dungeon
-            mainChar.changeX(0.9f);
-            mainChar.changeY(0.9f);
+            mainChar.setX(0.9f);
+            mainChar.setY(0.9f);
             GL.Translate(-0.9, -0.9, 0);
 
 			// generate a new dungeon
@@ -82,6 +82,12 @@ namespace DungeonShambles
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
+            Room room = null;
+            foreach (Room a in dungeon.getRooms())
+            {
+                room = a;
+                break;
+            }
 			//room = dungeon.getRooms ().;
 			//ghost.chase(mainChar, room);
 			//if (collisionTests.collision (mainChar, ghost))
@@ -91,45 +97,49 @@ namespace DungeonShambles
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
                 //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-					//room, mainChar.getX () - Globals.TextureSize*2 - mainChar.getSpeed()/2, mainChar.getY ())) {
-					// change the main characters x position
-					mainChar.changeX (-1 * mainChar.getSpeed ());
-					// move the scene around the character in the x position
-					GL.Translate (mainChar.getSpeed (), 0, 0);
-				//}
+                if (!collisionTests.wallCollision(
+                    room, mainChar.getX() - Globals.TextureSize * 2 - mainChar.getSpeed() / 2, mainChar.getY()))
+                {
+                    // change the main characters x position
+                    mainChar.changeX(-1);
+                    // move the scene around the character in the x position
+                    GL.Translate(mainChar.getSpeed(), 0, 0);
+                }
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
                 //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-					//room, mainChar.getX () + mainChar.getSpeed(), mainChar.getY ())) {
-					// decrease the main characters x position
-					mainChar.changeX (mainChar.getSpeed ());
-					// move the scene around the character in the x position
-					GL.Translate (mainChar.getSpeed () * -1, 0, 0);
-				//}
+                if (!collisionTests.wallCollision(
+                        room, mainChar.getX() + mainChar.getSpeed(), mainChar.getY()))
+                {
+                    // decrease the main characters x position
+                    mainChar.changeX(1);
+                    // move the scene around the character in the x position
+                    GL.Translate(mainChar.getSpeed() * -1, 0, 0);
+                }
 			}
             // up key is pressed
 			if (keyboard [OpenTK.Input.Key.W]) {
                 //TODO fix collisions
-				//if (!collisionTests.wallCollision (room, mainChar.getX (), mainChar.getY () + mainChar.getSpeed())) {
-					// change the main characters y position
-					mainChar.changeY (mainChar.getSpeed ());
-					// move the scene around the character in the y position
-					GL.Translate (0, mainChar.getSpeed () * -1, 0);
-				//}
+                if (!collisionTests.wallCollision(room, mainChar.getX(), mainChar.getY() + mainChar.getSpeed()))
+                {
+                    // change the main characters y position
+                    mainChar.changeY(1);
+                    // move the scene around the character in the y position
+                    GL.Translate(0, mainChar.getSpeed() * -1, 0);
+                }
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
                 //TODO fix collisions
-				//if (!collisionTests.wallCollision (
-				//	room, mainChar.getX (), mainChar.getY () - Globals.TextureSize*2 - mainChar.getSpeed()/2)) {
-					// decrease the main characters x position
-					mainChar.changeY (-1 * mainChar.getSpeed ());
-					// move the scene around the character in the y position
-					GL.Translate (0, mainChar.getSpeed (), 0);
-				//}
+                if (!collisionTests.wallCollision(
+                    room, mainChar.getX(), mainChar.getY() - Globals.TextureSize * 2 - mainChar.getSpeed() / 2))
+                {
+                    // decrease the main characters x position
+                    mainChar.changeY(-1);
+                    // move the scene around the character in the y position
+                    GL.Translate(0, mainChar.getSpeed(), 0);
+                }
 			}
 			//Mouse events
 			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
