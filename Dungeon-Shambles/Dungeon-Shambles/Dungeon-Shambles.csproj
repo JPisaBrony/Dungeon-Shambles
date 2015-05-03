@@ -95,6 +95,7 @@
     <Compile Include="Entities\Projectile\Projectile.cs" />
     <Compile Include="UI\NewMainMenu.cs" />
     <Compile Include="UI\Inventory.cs" />
+    <Compile Include="UI\StoryMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="UI\Fonts\myRock.png" />

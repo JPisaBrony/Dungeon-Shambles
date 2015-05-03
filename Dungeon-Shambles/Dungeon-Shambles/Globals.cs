@@ -9,7 +9,17 @@ namespace DungeonShambles
 		// size of all textures
 		public static float TextureSize = 0.1f;
 		// boolean for checking if the main menu should be displayed
-		public static bool displayMainMenu = true;
+        public static bool displayMainMenu = true;
+        // boolean for checking if the story menu should be displayed
+        public static bool displayStoryMenu = false;
+        // boolean for checking if the pause menu should be displayed
+        public static bool displayPauseMenu = false;
+        // current button for menu
+        public static int currentButton = 0;
+        public static int countButton = 0;
+        // current page of menu
+        public static int currentPage = 1;
+        public static int lastPage = 2;
 	}
 }
 

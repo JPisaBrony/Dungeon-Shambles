@@ -17,6 +17,8 @@ namespace DungeonShambles
 		GameEntities mainChar;
 		Dungeon dungeon;
 		NewMainMenu MainMenu;
+        PauseMenu pauseMenu;
+        StoryMenu storyMenu;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -65,6 +67,8 @@ namespace DungeonShambles
 
 			// create main menu
 			MainMenu = new NewMainMenu (mainChar);
+            pauseMenu = new PauseMenu(mainChar);
+            storyMenu = new StoryMenu(mainChar);
 
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
@@ -104,12 +108,47 @@ namespace DungeonShambles
 				GL.Translate (0, mainChar.getSpeed (), 0);
 			// temporary key presses
 			// e key is pressed
-			} else if (keyboard [OpenTK.Input.Key.E]) {
-				Globals.displayMainMenu = false;
+			} else if (keyboard [OpenTK.Input.Key.Enter]) {
+                if (Globals.currentPage == 1)
+                {
+                    if (Globals.countButton == 0) Globals.displayMainMenu = false;
+                    if (Globals.countButton == 1) Exit();
+                }
 			// esc key is pressed
 			} else if (keyboard [OpenTK.Input.Key.Escape]) {
-				Globals.displayMainMenu = true;
-			}
+				//Globals.displayMainMenu = true;
+                Globals.displayPauseMenu = false;
+            // p key is pressed
+            } else if (keyboard[OpenTK.Input.Key.P]) {
+                Globals.displayPauseMenu = true;
+            // enter key is pressed
+            } else if (keyboard[OpenTK.Input.Key.C]) {
+                Globals.displayPauseMenu = false;
+            }
+            // down key if pressed
+            else if (keyboard[OpenTK.Input.Key.Down])
+            {
+                if (Globals.currentPage == 1) Globals.countButton = 1;
+            }// up key if pressed
+            else if (keyboard[OpenTK.Input.Key.Up])
+            {
+                if (Globals.currentPage == 1) Globals.countButton = 0;
+            }
+            // right key is pressed
+            else if (keyboard[OpenTK.Input.Key.Right])
+            {
+                Globals.currentPage++;
+            }// left key is pressed
+            else if (keyboard[OpenTK.Input.Key.Left])
+            {
+                Globals.currentPage--;
+            }
+
+            if (Globals.currentPage > Globals.lastPage)
+                Globals.currentPage = Globals.lastPage;
+
+            if (Globals.currentPage < 1)
+                Globals.currentPage = 1;            
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -119,8 +158,16 @@ namespace DungeonShambles
 
 			// check to see if the menu should be rendered
 			if (Globals.displayMainMenu) {
-				// display the main menu
-				MainMenu.renderMenu();
+				// display menus
+                switch (Globals.currentPage)
+                {
+                    case 1:
+                        MainMenu.renderMenu();
+                        break;
+                    case 2:
+                        storyMenu.renderMenu();
+                        break;
+                }
             }
             else {
 				// render the dungeon
@@ -129,6 +176,8 @@ namespace DungeonShambles
 				GL.Enable(EnableCap.Blend);
 				mainChar.renderCharacter();
 				GL.Disable(EnableCap.Blend);
+                if (Globals.displayPauseMenu == true)
+                    pauseMenu.renderMenu();
             }
 
             // switch between the two buffer
