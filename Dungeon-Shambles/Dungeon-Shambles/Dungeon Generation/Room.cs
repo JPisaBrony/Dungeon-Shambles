@@ -23,23 +23,23 @@ namespace DungeonShambles
 			for (int i = 0; i < w; i++) {
 				for (int j = 0; j < h; j++) {
 					if (i == 0 && j == 0) {
-						tiles [i, j] = new Tile (tileNames [5], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [5], tileSize, tileSize, true, false);
 					} else if (i == 0 && j == h - 1) {
-						tiles [i, j] = new Tile (tileNames [6], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [6], tileSize, tileSize, true, false);
 					} else if (i == w - 1 && j == h - 1) {
-						tiles [i, j] = new Tile (tileNames [7], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [7], tileSize, tileSize, true, false);
 					} else if (i == w - 1 && j == 0) {
-						tiles [i, j] = new Tile (tileNames [8], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [8], tileSize, tileSize, true, false);
 					} else if (i == 0) {
-						tiles [i, j] = new Tile (tileNames [1], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [1], tileSize, tileSize, true, false);
 					} else if (j == h - 1) {
-						tiles [i, j] = new Tile (tileNames [2], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [2], tileSize, tileSize, true, false);
 					} else if (i == w - 1) {
-						tiles [i, j] = new Tile (tileNames [3], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [3], tileSize, tileSize, true, false);
 					} else if (j == 0) {
-						tiles [i, j] = new Tile (tileNames [4], tileSize, tileSize, true);
+						tiles [i, j] = new Tile (tileNames [4], tileSize, tileSize, true, false);
 					} else {
-						tiles [i, j] = new Tile (tileNames [0], tileSize, tileSize, false);
+						tiles [i, j] = new Tile (tileNames [0], tileSize, tileSize, false, false);
 					}
 				}
 			}
@@ -48,16 +48,16 @@ namespace DungeonShambles
         public void setDoor(int side, int offset) {
             switch (side) {
                 case 0:
-                    setTileAtLocation(offset, 0, true);
+                    setTileAtLocation(offset, 0, true, true);
                     break;
                 case 1:
-                    setTileAtLocation(0, offset, true);
+                    setTileAtLocation(0, offset, true, true);
                     break;
                 case 2:
-                    setTileAtLocation(offset, roomHeight - 1, true);
+                    setTileAtLocation(offset, roomHeight - 1, true, true);
                     break;
                 case 3:
-                    setTileAtLocation(roomWidth - 1, offset, true);
+                    setTileAtLocation(roomWidth - 1, offset, true, true);
                     break;
             }
         }
@@ -72,8 +72,8 @@ namespace DungeonShambles
 			}
 		}
 
-        private void setTileAtLocation(int x, int y, Boolean wall) {
-            tiles[x, y] = new Tile (tileNames [0], tileSize, tileSize, wall);
+        private void setTileAtLocation(int x, int y, Boolean wall, Boolean door) {
+            tiles[x, y] = new Tile (tileNames [0], tileSize, tileSize, wall, door);
         }
 
 		public Tile getTileAtLocation(int x, int y) {

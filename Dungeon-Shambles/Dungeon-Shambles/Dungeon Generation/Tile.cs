@@ -10,12 +10,16 @@ namespace DungeonShambles
 		private int width, height;
 		// if the tile is a wall
 		private Boolean isWall;
+        // if the tile is a door
+        private Boolean isDoor;
 
-        public Tile (string tileName, int w, int h, Boolean wall) {
+
+        public Tile (string tileName, int w, int h, Boolean wall, Boolean door) {
 			tile.importTexture(tileName);
 			width = w;
 			height = h;
 			isWall = wall;
+            isDoor = door;
 		}
 
 		public void renderTile(float size, float xPos, float yPos) {
@@ -33,6 +37,10 @@ namespace DungeonShambles
 		public Boolean getIsWall() {
 			return isWall;
 		}
+
+        public Boolean getIsDoor() {
+            return isDoor;
+        }
 	}
 }
 
