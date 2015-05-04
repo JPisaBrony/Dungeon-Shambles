@@ -11,14 +11,14 @@ namespace DungeonShambles
     {
         Target target1;
         Target target2;
-        static Door door;
-        static bool solved;
-        private static ArrayList targets = new ArrayList();
+        Door door;
+        bool solved;
+        private ArrayList targets = new ArrayList();
         static Room currentRoom;
         public TargetTest(Room r)
         {
-            target1 = new Target(4, 5);
-            target2 = new Target(2, 5);
+            target1 = new Target(5, 5);
+            target2 = new Target(3, 6);
             addTarget(target1);
             addTarget(target2);
             door = new Door(.2f, .2f);
@@ -26,7 +26,7 @@ namespace DungeonShambles
             currentRoom = r;
         }
 
-        public static void addTarget(Target target)
+        public void addTarget(Target target)
         {
             targets.Add(target);
         }

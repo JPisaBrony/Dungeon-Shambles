@@ -11,23 +11,23 @@ namespace DungeonShambles
     {
         Rock rock1;
         Rock rock2;
-        static Room currentRoom;
-        private static ArrayList rocks = new ArrayList();
+        Room currentRoom;
+        private ArrayList rocks = new ArrayList();
 
         public RockCollision(Room r)
         {
-            rock1 = new Rock(1, 1);
-            rock2 = new Rock(5, 5);
+            rock1 = new Rock(2, 2);
+            rock2 = new Rock(4, 2);
             addRock(rock1);
             addRock(rock2);
             currentRoom = r;
         }
 
-        public static void addRock(Rock rock)
+        public void addRock(Rock rock)
         {
             rocks.Add(rock);
         }
-        public static void collisionTest(MainCharacter main, int direction)
+        public void collisionTest(MainCharacter main, int direction)
         {
             foreach (Rock rock in rocks)
             {
@@ -65,7 +65,7 @@ namespace DungeonShambles
                 }
             }
         }
-        public static ArrayList getRocks()
+        public ArrayList getRocks()
         {
             return rocks;
         }

@@ -12,15 +12,15 @@ namespace DungeonShambles
         Lever lever1;
         Lever lever2;
         Lever lever3;
-        static bool solved;
-        static Door door;
-        static Room currentRoom;
+        bool solved;
+        Door door;
+        Room currentRoom;
         private static Lever[] levers = new Lever[3];
         public Levers(Room r)
         {
-            lever1 = new Lever(0, 0);
-            lever2 = new Lever(3, 1);
-            lever3 = new Lever(0, 3);
+            lever1 = new Lever(1, 1);
+            lever2 = new Lever(2, 1);
+            lever3 = new Lever(3, 1);
             addLever(0, lever1);
             addLever(1, lever2);
             addLever(2, lever3);
@@ -74,7 +74,7 @@ namespace DungeonShambles
             return solved;
         }
 
-        public static void setSolved()
+        public void setSolved()
         {
             if(checkSolved())
             {

@@ -92,7 +92,7 @@ namespace DungeonShambles
 				// increase the main characters x position
 				mainChar.increaseX (-1 * mainChar.getSpeed ());
 
-                RockCollision.collisionTest(mainChar, 1);
+                puzzles.getRockCollision().collisionTest(mainChar, 1);
 
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
@@ -104,7 +104,7 @@ namespace DungeonShambles
 				mainChar.increaseX (mainChar.getSpeed ());
 				// move the scene around the character in the x position
 
-                RockCollision.collisionTest(mainChar, 2);
+                puzzles.getRockCollision().collisionTest(mainChar, 2);
 
                 GL.Translate (mainChar.getSpeed() * -1, 0, 0); 
 			}
@@ -114,7 +114,7 @@ namespace DungeonShambles
 				mainChar.increaseY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 
-                RockCollision.collisionTest(mainChar, 3);
+                puzzles.getRockCollision().collisionTest(mainChar, 3);
                 
                 GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
@@ -124,7 +124,7 @@ namespace DungeonShambles
 				mainChar.increaseY (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the y position
 
-                RockCollision.collisionTest(mainChar, 4);
+                puzzles.getRockCollision().collisionTest(mainChar, 4);
 
                 GL.Translate (0, mainChar.getSpeed (), 0);
 			}
@@ -153,7 +153,7 @@ namespace DungeonShambles
 			// switch between the 2 buffers
 			SwapBuffers();
 
-            Console.WriteLine(mainChar.getX() - test.getcoordinateOffsetX() + ", " + mainChar.getY());
+            
 		}
 
 		protected override void OnResize(EventArgs e) {}

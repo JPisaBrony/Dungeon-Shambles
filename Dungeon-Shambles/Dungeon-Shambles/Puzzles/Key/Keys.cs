@@ -10,10 +10,10 @@ namespace DungeonShambles
     
     public class Keys
     {
-        static Key key;
-        static Door door;
-        static bool solved;
-        static Room currentRoom;
+        Key key;
+        Door door;
+        bool solved;
+        Room currentRoom;
         private static ArrayList keys = new ArrayList();
         public Keys(Room r)
         {
@@ -41,7 +41,7 @@ namespace DungeonShambles
                 }
         }
         
-        public static Key getKey()
+        public Key getKey()
         {
             return key;
         }
@@ -54,7 +54,7 @@ namespace DungeonShambles
                 door.renderDoor();
         }
 
-        public static bool checkSolved()
+        public bool checkSolved()
         {
             if (key.getPickedUp() == true)
             {
