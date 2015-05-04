@@ -67,13 +67,6 @@ namespace DungeonShambles
 			// create main menu
 			MainMenu = new NewMainMenu (mainChar);
 
-			String[] s = {
-				"meshes/SteveFront.png",
-				"meshes/SteveBack.png",
-				"meshes/D1Tiles/D1Floor.png"
-			};
-			anim = new Animation (s, 30, true);
-
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
             mainChar.changeY(0.9f);
@@ -103,8 +96,6 @@ namespace DungeonShambles
 				mainChar.changeY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
-
-				anim.setPlaying (true);
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
@@ -112,8 +103,6 @@ namespace DungeonShambles
 				mainChar.changeY (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed (), 0);
-
-				anim.setPlaying (false);
 			// temporary key presses
 			// e key is pressed
 			} else if (keyboard [OpenTK.Input.Key.E]) {
@@ -141,8 +130,6 @@ namespace DungeonShambles
 				//GL.Enable(EnableCap.Blend);
 				mainChar.renderCharacter();
 				//GL.Disable(EnableCap.Blend);
-
-				anim.renderAnimation (Globals.TextureSize, 0, 0);
 
 				// increment the game timer
 				Globals.time++;
