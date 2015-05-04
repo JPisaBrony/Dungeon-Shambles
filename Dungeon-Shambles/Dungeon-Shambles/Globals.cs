@@ -10,6 +10,8 @@ namespace DungeonShambles
 		public static float TextureSize = 0.1f;
 		// boolean for checking if the main menu should be displayed
 		public static bool displayMainMenu = true;
+		// game time variable
+		public static int time = 0;
 	}
 }
 
