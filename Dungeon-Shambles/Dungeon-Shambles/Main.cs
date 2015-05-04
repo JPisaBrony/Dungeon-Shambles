@@ -59,7 +59,7 @@ namespace DungeonShambles
             mainChar = new Player();
 
 			// create a new dungeon object
-			dungeon = new Dungeon (11);
+			dungeon = new Dungeon (11, 4, 10);
             // generate a new dungeon
             dungeon.generateDungeon();
 
