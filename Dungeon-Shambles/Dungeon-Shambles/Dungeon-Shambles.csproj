@@ -95,6 +95,7 @@
     <Compile Include="Entities\Projectile\Projectile.cs" />
     <Compile Include="UI\NewMainMenu.cs" />
     <Compile Include="UI\Inventory.cs" />
+    <Compile Include="Animation\Animation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="UI\Fonts\myRock.png" />
@@ -121,4 +122,7 @@
     <None Include="UI\Fonts\XmasTerpiece.ttf" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Animation\" />
+  </ItemGroup>
 </Project>
