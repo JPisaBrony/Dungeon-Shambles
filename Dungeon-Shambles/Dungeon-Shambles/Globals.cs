@@ -11,6 +11,8 @@ namespace DungeonShambles
 		
         // boolean for checking if the main menu should be displayed
         public static bool displayMainMenu = true;
+        // boolean for checking if the control menu should be displayed
+        //public static bool displayControlMenu = false;
         // boolean for checking if the story menu should be displayed
         public static bool displayStoryMenu = false;
         // boolean for checking if the pause menu should be displayed
@@ -24,6 +26,7 @@ namespace DungeonShambles
         public static int currentPage = 1;
         public static int lastPage = 2;
         public static int pausePage = 0;
+        public static int storyPage = 0;
 	}
 }
 
