@@ -11,7 +11,7 @@ namespace DungeonShambles
         private TextureImporter target = new TextureImporter();
         private float x, y;
 
-        public Target(float xPos, float yPos)
+        public Target(int xPos, int yPos)
         {
             target.importTexture("meshes/target.jpg");
             x = xPos;

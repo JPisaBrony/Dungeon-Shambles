@@ -10,7 +10,7 @@ namespace DungeonShambles
     {
         private TextureImporter rock = new TextureImporter();
         private float x, y;
-        float speed = 0.1f;
+        
         public Rock(int xPos, int yPos)
         {
             rock.importTexture("meshes/rock.png");
@@ -26,9 +26,6 @@ namespace DungeonShambles
 
         public void increaseY(float theY)
         {y += theY;}
-
-        public float getSpeed()
-        {return speed;}
 
         public float getX()
         {return x;}

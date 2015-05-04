@@ -7,20 +7,40 @@ using System.Collections;
 
 namespace DungeonShambles
 {
-    class RockCollision
+    public class RockCollision
     {
-        Rock rock1;
-        Rock rock2;
+        static Random rand = new Random();
         Room currentRoom;
         private ArrayList rocks = new ArrayList();
-
-        public RockCollision(Room r)
+        int[] xValues;
+        int[] yValues;
+        public RockCollision(Room r, int x)
         {
-            rock1 = new Rock(2, 2);
-            rock2 = new Rock(4, 2);
-            addRock(rock1);
-            addRock(rock2);
+            int count = 0;
+            xValues = new int[x];
+            yValues = new int[x];
+            
+            while (count < x)
+            {
+                bool valid = true;
+                Rock rock = new Rock(rand.Next(2, r.getRoomWidth() - 2), rand.Next(2, r.getRoomHeight() - 2));
+
+                foreach (Rock madeRock in rocks)
+                {
+                    if (rock.getX() == madeRock.getX() && rock.getY() == madeRock.getY())
+                        valid = false;
+                }
+                if(valid == true)
+                {
+                    rocks.Add(rock);
+                    xValues[count] = (int)rock.getX();
+                    yValues[count] = (int)rock.getY();
+
+                    count++;
+                }
+            }
             currentRoom = r;
+            
         }
 
         public void addRock(Rock rock)
@@ -78,5 +98,16 @@ namespace DungeonShambles
                 currentRoom.setAboveTileAtLocation(rock.getX(), rock.getY(), rock.getTexture());
             }
         }
+
+        public int[] getXValues()
+        {
+            return xValues;
+        }
+
+        public int[] getYValues()
+        {
+            return yValues;
+        }
+        
     }
 }

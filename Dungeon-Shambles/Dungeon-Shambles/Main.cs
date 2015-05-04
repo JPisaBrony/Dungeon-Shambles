@@ -5,6 +5,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace DungeonShambles
 {
@@ -14,7 +15,7 @@ namespace DungeonShambles
 		Dungeon dungeon;
         MainCharacter mainChar;
         Puzzles puzzles;
-        Room test;
+        List<RockCollision> collisions;
         
         string[] Tilenames = new string[] {
 			"meshes/D1Tiles/D1Floor.png",
@@ -57,6 +58,7 @@ namespace DungeonShambles
 
 		protected override void OnLoad(EventArgs e)
 		{
+            
 			base.OnLoad(e);
 			// base setup
 			init ();
@@ -68,7 +70,7 @@ namespace DungeonShambles
 			mainChar = new MainCharacter ();
 
             // create a new dungeon object
-            dungeon = new Dungeon (11);
+            dungeon = new Dungeon (11, 4, 11);
             // generate a new dungeon
             dungeon.generateDungeon();
 
@@ -77,10 +79,9 @@ namespace DungeonShambles
 			mainChar.increaseY (0.9f);
 			GL.Translate (-0.9f, -0.9f, 0);
 
-            // create a new puzzle object
-			dungeon = new Dungeon (11, 4, 10);
-            Room[] rooms = dungeon.getRooms();
-            test = rooms[0];
+            puzzles = new Puzzles(mainChar, dungeon);
+            collisions = puzzles.getRockCollision();
+            
 		}
 
 		protected override void OnUpdateFrame(FrameEventArgs e)
@@ -92,7 +93,10 @@ namespace DungeonShambles
 				// increase the main characters x position
 				mainChar.increaseX (-1 * mainChar.getSpeed ());
 
-                puzzles.getRockCollision().collisionTest(mainChar, 1);
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 1);
+                }
 
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
@@ -104,7 +108,10 @@ namespace DungeonShambles
 				mainChar.increaseX (mainChar.getSpeed ());
 				// move the scene around the character in the x position
 
-                puzzles.getRockCollision().collisionTest(mainChar, 2);
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 2);
+                }
 
                 GL.Translate (mainChar.getSpeed() * -1, 0, 0); 
 			}
@@ -114,7 +121,10 @@ namespace DungeonShambles
 				mainChar.increaseY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 
-                puzzles.getRockCollision().collisionTest(mainChar, 3);
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 3);
+                }
                 
                 GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
@@ -124,7 +134,10 @@ namespace DungeonShambles
 				mainChar.increaseY (-1 * mainChar.getSpeed ());
 				// move the scene around the character in the y position
 
-                puzzles.getRockCollision().collisionTest(mainChar, 4);
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 4);
+                }
 
                 GL.Translate (0, mainChar.getSpeed (), 0);
 			}

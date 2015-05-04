@@ -9,38 +9,71 @@ namespace DungeonShambles
 {
     public class TargetTest
     {
-        Target target1;
-        Target target2;
-        static Door door;
-        static bool solved;
-        private static ArrayList targets = new ArrayList();
-
-        public TargetTest()
+        static Random rand = new Random(2);
+        bool solved;
+        Room currentRoom;
+        private ArrayList targets = new ArrayList();
+        RockCollision rocks;
+        public TargetTest(Room r, int x, int[] xValues, int[] yValues, RockCollision input)
         {
-            target1 = new Target(.1f, .1f);
-            target2 = new Target(.5f, .9f);
-            addTarget(target1);
-            addTarget(target2);
-            door = new Door(.2f, .2f);
-            solved = false;
+            rocks = input;
+            int count = 0;
+            while (count < x)
+            {
+                bool valid = true;
+                Target target = new Target(rand.Next(2, r.getRoomWidth() - 2), rand.Next(2, r.getRoomHeight() - 2));
+
+                foreach (Target madeTarget in targets)
+                {
+                    if ((int)target.getX() == (int)madeTarget.getX() && (int)target.getY() == (int)madeTarget.getY())
+                        valid = false;
+                }
+
+                for (int i = 0; i < xValues.Length; i++ )
+                {
+                    if(target.getX() == xValues[i] && target.getY() == yValues[i])
+                    {
+                        valid = false;
+                    }
+                }
+
+                if (valid == true)
+                {
+                    targets.Add(target);
+                    count++;
+                }
+            }
+            
+            foreach (Target target in targets)
+                Console.WriteLine(target.getX() + ", " + target.getY());
+
+            Console.WriteLine("BREAK");
+
+            for (int i = 0; i < xValues.Length; i++)
+                Console.WriteLine(xValues[i] + ", " + yValues[i]);
+
+            Console.WriteLine("BREAK");
+                currentRoom = r;
         }
 
-        public static void addTarget(Target target)
+        public void addTarget(Target target)
         {
             targets.Add(target);
         }
 
-        public static Boolean pressTest(ArrayList rocks)
+        public Boolean pressTest()
         {
+            ArrayList test = rocks.getRocks();
             int count1 = 0;
             int count2 = 0;
+            float tolerance = .19f;
             foreach (Target target in targets)
             {
                 count1++;
-                foreach (Rock rock in rocks)
+                foreach (Rock rock in test)
                 {
-                    if((Math.Abs(rock.getX() - target.getX()) < .05 && 
-                        (Math.Abs(rock.getY() - target.getY())) < .05))
+                    if (Math.Abs(target.getX() - rock.getX()) < tolerance &&
+                            (Math.Abs(target.getY() - rock.getY())) < tolerance)
                     {
                         count2++;
                     }
@@ -56,15 +89,11 @@ namespace DungeonShambles
                 return false;
         }
 
-        public static void renderTargets()
+        public void renderTargets()
         {
-            if (solved == true)
-            {
-                door.renderDoor();
-            }
             foreach (Target target in targets)
             {
-                target.renderTarget();
+                currentRoom.setAboveTileAtLocation(target.getX(), target.getY(), target.getTexture());
             }
         }
     }

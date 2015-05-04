@@ -10,24 +10,34 @@ namespace DungeonShambles
     
     public class Keys
     {
-        Key key;
-        Door door;
-        bool solved;
+        static Random rand = new Random();
         Room currentRoom;
-        private static ArrayList keys = new ArrayList();
-        public Keys(Room r)
+        private ArrayList keys = new ArrayList();
+        public Keys(Room r, int x)
         {
-            solved = false;
-            door = new Door(1.8f, 1.2f);
-            key = new Key(1, 1);
-            keys.Add(key);
+            int count = 0;
             currentRoom = r;
+
+            while (count < x)
+            {
+                bool valid = true;
+                Key key = new Key(rand.Next(1, r.getRoomWidth() -1), rand.Next(1, r.getRoomHeight() -1));
+
+                foreach (Key madeKey in keys)
+                {
+                    if (key.getX() == madeKey.getX() && key.getY() == madeKey.getY())
+                    {
+                        valid = false;
+                    }
+                }
+                if (valid == true)
+                {
+                    keys.Add(key);
+                    count++;
+                }
+            }
         }
 
-        public static void addKey(Key key)
-        {
-            keys.Add(key);
-        }
 
         public void pickUpKey(MainCharacter main)
         {
@@ -37,34 +47,16 @@ namespace DungeonShambles
                     Math.Abs(((main.getY() -currentRoom.getcoordinateOffsetY())*5 - key.getY())) < .05)
                 {
                     key.pickUp();
-                    checkSolved();
                 }
         }
         
-        public Key getKey()
-        {
-            return key;
-        }
 
         public void renderKeys()
         {
-            if (solved == false)
+            foreach (Key key in keys)
                 currentRoom.setAboveTileAtLocation(key.getX(), key.getY(), key.getTexture());
-            if(solved == true)
-                door.renderDoor();
         }
 
-        public bool checkSolved()
-        {
-            if (key.getPickedUp() == true)
-            {
-                solved = true;
-                return solved;
-            }
-            else
-            {
-                return solved;
-            }
-        }
+
     }
 }

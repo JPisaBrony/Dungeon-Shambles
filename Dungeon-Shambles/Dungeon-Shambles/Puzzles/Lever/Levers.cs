@@ -9,29 +9,43 @@ namespace DungeonShambles
 {
     public class Levers
     {
-        Lever lever1;
-        Lever lever2;
-        Lever lever3;
-        bool solved;
-        Door door;
+        static Random rand = new Random();
         Room currentRoom;
-        private static Lever[] levers = new Lever[3];
-        public Levers(Room r)
+        private ArrayList levers = new ArrayList();
+        public Levers(Room r, int x)
         {
-            lever1 = new Lever(1, 1);
-            lever2 = new Lever(2, 1);
-            lever3 = new Lever(3, 1);
-            addLever(0, lever1);
-            addLever(1, lever2);
-            addLever(2, lever3);
-            solved = false;
-            door = new Door(1.6f, 1.8f);
+            int count = 0;
             currentRoom = r;
+
+            while(count < x)
+            {
+                bool valid = true;
+                Lever lever = new Lever(rand.Next(2, r.getRoomWidth() - 2), rand.Next(2, r.getRoomHeight() - 2));
+
+                foreach (Lever madeLever in levers)
+                {
+                    if (lever.getX() == madeLever.getX() && (lever.getY() == madeLever.getY() ||
+                        lever.getY() == madeLever.getY() - 1))
+                        valid = false;
+                }
+                if(valid == true)
+                {
+                    levers.Add(lever);
+                    count++;
+                }
+            }
+
+            foreach (Lever target in levers)
+            {
+                Console.WriteLine(target.getX() + ", " + target.getY());
+                Console.WriteLine("BREAK");
+            }
+
         }
 
         public static void addLever(int index, Lever lever)
         {
-            levers[index] = lever;
+            
         }
 
         public void flipLever(MainCharacter main)
@@ -39,7 +53,9 @@ namespace DungeonShambles
             foreach (Lever lever in levers)
             {
                 if (Math.Abs(((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - lever.getX())) < .05 &&
-                    Math.Abs(((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY())) < .05)
+
+                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) > -1.2 &&
+                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) < -.9)
                 {
                     if (lever.getFlipped() == true)
                     {
@@ -53,41 +69,11 @@ namespace DungeonShambles
                     }
                 }
             }
-            setSolved();
-        }
-
-        public static bool checkSolved()
-        {
-            bool solved = true;
-            if (levers[2].getFlipped() == false)
-                foreach (Lever lever in levers)
-                    lever.setFlippedF();
-            else if(levers[0].getFlipped() == false)
-            {
-                levers[1].setFlippedF();
-            }
-            foreach (Lever lever in levers)
-                if (lever.getFlipped() == false)
-                    solved = false;
-                
-
-            return solved;
-        }
-
-        public void setSolved()
-        {
-            if(checkSolved())
-            {
-                solved = true;
-            }
+            //setSolved();
         }
 
         public void renderLevers()
         {
-            if (solved)
-            {
-                door.renderDoor();
-            }
             foreach (Lever lever in levers)
             {
                 currentRoom.setAboveTileAtLocation(lever.getX(), lever.getY(), lever.getCurrentTexture());
