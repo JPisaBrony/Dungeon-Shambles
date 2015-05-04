@@ -38,6 +38,11 @@ namespace DungeonShambles
 			// re-generate the first room with the max size of the room
             rooms [0].generateRoom (maxRoomSize, maxRoomSize);
 
+			regenerateRoom (1, 6);
+			regenerateRoom (1, 7);
+			regenerateRoom (3, 8);
+			regenerateRoom (3, 10);
+
             int currentRandomNumber = 0;
             Room smallerRoom;
 
@@ -112,6 +117,12 @@ namespace DungeonShambles
                 }
             }
         }
+
+		private void regenerateRoom(int first, int second) {
+			if (rooms [first].getRoomWidth () < rooms [second].getRoomWidth ()) {
+				rooms [second].generateRoom (rooms[first].getRoomWidth(), rooms[second].getRoomHeight());
+			}
+		}
 
 		public void renderDungeon() {
 			float generationWidth = 0;
