@@ -72,7 +72,7 @@ namespace DungeonShambles
 				"meshes/SteveBack.png",
 				"meshes/D1Tiles/D1Floor.png"
 			};
-			anim = new Animation (s, 30);
+			anim = new Animation (s, 30, true);
 
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
