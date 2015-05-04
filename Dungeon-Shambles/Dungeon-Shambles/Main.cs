@@ -126,9 +126,9 @@ namespace DungeonShambles
 				// render the dungeon
 				dungeon.renderDungeon();
 				// render the main character
-				GL.Enable(EnableCap.Blend);
+				//GL.Enable(EnableCap.Blend);
 				mainChar.renderCharacter();
-				GL.Disable(EnableCap.Blend);
+				//GL.Disable(EnableCap.Blend);
             }
 
             // switch between the two buffer

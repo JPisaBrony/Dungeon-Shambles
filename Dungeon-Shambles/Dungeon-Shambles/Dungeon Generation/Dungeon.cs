@@ -10,15 +10,15 @@ namespace DungeonShambles
         private int minRoomSize;
 
 		string[] Tilenames = new string[] {
-			"meshes/D1Tiles/D1Floor.png",
-			"meshes/D1Tiles/D1WestWall.png",
-			"meshes/D1Tiles/D1NorthWall.png",
-			"meshes/D1Tiles/D1EastWall.png",
-			"meshes/D1Tiles/D1SouthWall.png",
-			"meshes/D1Tiles/SWCorner.png",
-			"meshes/D1Tiles/NWCorner.png",
-			"meshes/D1Tiles/NECorner.png",
-			"meshes/D1Tiles/SECorner.png"
+			"meshes/Tiles/Floor.png",
+			"meshes/Tiles/WestWall.png",
+			"meshes/Tiles/NorthWall.png",
+			"meshes/Tiles/EastWall.png",
+			"meshes/Tiles/SouthWall.png",
+			"meshes/Tiles/SWCorner.png",
+			"meshes/Tiles/NWCorner.png",
+			"meshes/Tiles/NECorner.png",
+			"meshes/Tiles/SECorner.png"
 		};
 
         public Dungeon (int r, int minSize, int maxSize) {

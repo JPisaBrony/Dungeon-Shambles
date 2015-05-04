@@ -1,8 +1,11 @@
 ﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Dungeon Generation/Dungeon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/TextureImporter.cs">
     <Files>
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="13" Column="13" />
+      <File FileName="Dungeon-Shambles/Main.cs" Line="7" Column="7" />
+      <File FileName="Dungeon-Shambles/Entities/PlayerCharacter/Player.cs" Line="56" Column="56" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="20" Column="20" />
+      <File FileName="Dungeon-Shambles/TextureImporter.cs" Line="40" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
