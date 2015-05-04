@@ -41,7 +41,6 @@ namespace DungeonShambles.Entities
 			y = 0f;
 			speed = 0.015f;
 			health = 1;
-			mana = 0;
 			meleeModifier = 0;
 			magicModifier = 0;
 		}

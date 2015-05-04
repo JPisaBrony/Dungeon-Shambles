@@ -15,12 +15,15 @@ namespace DungeonShambles
     {
         // object references to pass between OnLoad and OnRenderFrame
         GameEntities mainChar;
+        Enemy enemy;
         Dungeon dungeon;
         NewMainMenu MainMenu;
         PauseMenu pauseMenu;
         StoryMenu storyMenu;
         ControlsMenu controlMenu;
         HUD hud;
+
+        string enemyPath = "Images/ghost.png";
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -61,6 +64,7 @@ namespace DungeonShambles
             GL.ClearColor(Color.Black);
             // create the main character
             mainChar = new Player();
+            enemy = new Enemy(enemyPath, mainChar.getX() + 1.5f, mainChar.getY() + 1.5f);
 
             // create a new dungeon object
             dungeon = new Dungeon(11);
@@ -178,6 +182,8 @@ namespace DungeonShambles
 
             if (Globals.currentPage < 1)
                 Globals.currentPage = 1;
+
+            enemy.chase(mainChar);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -215,9 +221,11 @@ namespace DungeonShambles
                     // render the main character
                     GL.Enable(EnableCap.Blend);
                     mainChar.renderCharacter();
+                    enemy.renderEnemy();
                     GL.Disable(EnableCap.Blend);
                     if (Globals.displayPauseMenu == true)
                         pauseMenu.renderMenu();
+                    
                     
                     hud.drawHUD(0);
                 }

@@ -65,6 +65,7 @@
     <Compile Include="Cranting\Enchantments\ReflectMagicDamage.cs" />
     <Compile Include="Cranting\PhysicalAttribute.cs" />
     <Compile Include="Cranting\MagicAttribute.cs" />
+    <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Items\Armor\Armor.cs" />
     <Compile Include="Items\Armor\Boots.cs" />
     <Compile Include="Items\Armor\Chest.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Dungeon Generation\Room.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
     <Compile Include="UI\ControlsMenu.cs" />
+    <Compile Include="UI\EndScreen.cs" />
     <Compile Include="UI\HUD.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="UI\Menu.cs" />
