@@ -78,7 +78,7 @@ namespace DungeonShambles
 			GL.Translate (-0.9f, -0.9f, 0);
 
             // create a new puzzle object
-            puzzles = new Puzzles(mainChar, dungeon);
+			dungeon = new Dungeon (11, 4, 10);
             Room[] rooms = dungeon.getRooms();
             test = rooms[0];
 		}
