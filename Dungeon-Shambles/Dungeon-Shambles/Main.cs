@@ -18,6 +18,9 @@ namespace DungeonShambles
 		GameEntities shot;
 		bool fired;
 		Dungeon dungeon;
+        Room currentRoom;
+        float offsetX;
+        float offsetY;
         bool displayMenu = false;
         bool displayStats = false;
 
@@ -59,35 +62,33 @@ namespace DungeonShambles
 			// clear the color of the window to black
 			GL.ClearColor(Color.Black);
             // create the main character
-            mainChar = new Player();
+
 			//TODO fix ghost
             //ghost = new Ghost(0.9f, 0.9f);
             //TODO Fix mainmenu and stats menu
             //mainMenu = new MainMenu();
             //statsMenu = new Stats();
 			//projectiles
-			shot = new Projectile.Projectile(mainChar);
-			fired = false;
+			//shot = new Projectile.Projectile(mainChar);
+			//fired = false;
 			// create a new dungeon object
 			dungeon = new Dungeon (11, 4, 10);
 
-            // set the main character to the center of the dungeon
-            mainChar.setX(0.9f);
-            mainChar.setY(0.9f);
-            GL.Translate(-0.9, -0.9, 0);
-
 			// generate a new dungeon
 			dungeon.generateDungeon ();
+            currentRoom = (Room)dungeon.getRooms().GetValue(0);
+            mainChar = new Player(currentRoom);
+
+            // set the main character to the center of the dungeon
+            mainChar.setX(0.9f);
+            offsetX = 0;
+            mainChar.setY(0.9f);
+            offsetY = 0;
+            GL.Translate(-0.9, -0.9, 0);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            Room room = null;
-            foreach (Room a in dungeon.getRooms())
-            {
-                room = a;
-                break;
-            }
 			//room = dungeon.getRooms ().;
 			//ghost.chase(mainChar, room);
 			//if (collisionTests.collision (mainChar, ghost))
@@ -96,50 +97,31 @@ namespace DungeonShambles
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
-                //TODO fix collisions
-                if (!collisionTests.wallCollision(
-                    room, mainChar.getX() - Globals.TextureSize * 2 - mainChar.getSpeed() / 2, mainChar.getY()))
-                {
-                    // change the main characters x position
-                    mainChar.changeX(-1);
+                // change the main characters x position
+                if(mainChar.changeX(-1))
                     // move the scene around the character in the x position
-                    GL.Translate(mainChar.getSpeed(), 0, 0);
-                }
+                    GL.Translate(mainChar.getSpeed(), 0, 0); 
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
-                //TODO fix collisions
-                if (!collisionTests.wallCollision(
-                        room, mainChar.getX() + mainChar.getSpeed(), mainChar.getY()))
-                {
-                    // decrease the main characters x position
-                    mainChar.changeX(1);
+                // decrease the main characters x position
+                if(mainChar.changeX(1))
                     // move the scene around the character in the x position
                     GL.Translate(mainChar.getSpeed() * -1, 0, 0);
-                }
 			}
             // up key is pressed
-			if (keyboard [OpenTK.Input.Key.W]) {
-                //TODO fix collisions
-                if (!collisionTests.wallCollision(room, mainChar.getX(), mainChar.getY() + mainChar.getSpeed()))
-                {
-                    // change the main characters y position
-                    mainChar.changeY(1);
+			else if (keyboard [OpenTK.Input.Key.W]) {
+                // change the main characters y position
+                if(mainChar.changeY(1))
                     // move the scene around the character in the y position
                     GL.Translate(0, mainChar.getSpeed() * -1, 0);
-                }
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
-                //TODO fix collisions
-                if (!collisionTests.wallCollision(
-                    room, mainChar.getX(), mainChar.getY() - Globals.TextureSize * 2 - mainChar.getSpeed() / 2))
-                {
-                    // decrease the main characters x position
-                    mainChar.changeY(-1);
+                // decrease the main characters x position
+                if(mainChar.changeY(-1))
                     // move the scene around the character in the y position
                     GL.Translate(0, mainChar.getSpeed(), 0);
-                }
 			}
 			//Mouse events
 			this.MouseDown += (object sender, MouseButtonEventArgs buttonEvent) => {
@@ -182,7 +164,6 @@ namespace DungeonShambles
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 			dungeon.renderDungeon ();
-			GL.Enable (EnableCap.Blend);
 			GL.Enable (EnableCap.Blend);
             // render the main character
             mainChar.renderCharacter();

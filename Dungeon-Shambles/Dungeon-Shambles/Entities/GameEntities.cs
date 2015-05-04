@@ -21,8 +21,9 @@ namespace DungeonShambles.Entities
 		protected float x, y;
 		// character movement speed can only be multiples of 2
 		protected float speed;
+        protected Room currentRoom;
 
-		public GameEntities(String ci)
+        public GameEntities(String ci, Room room)
         {
 			characterImage.importTexture (ci);
 			x = 0f;
@@ -32,6 +33,7 @@ namespace DungeonShambles.Entities
             mana = 100;
             meleeModifier = 0;
             magicModifier = 0;
+            currentRoom = room;
         }
 
 		public GameEntities(String ci, float inputX, float inputY)
@@ -77,14 +79,38 @@ namespace DungeonShambles.Entities
 		}
 
 
-        public void changeX(float delta) 
+        public Boolean changeX(float delta) 
 		{
-            x += delta * speed;
+            float mod = Globals.TextureSize*-1/10;
+            if (delta > 0)
+                mod = Globals.TextureSize * 2;
+
+            if (!collisionTests.wallCollision(currentRoom, x + mod + currentRoom.getOffsetX(), y + currentRoom.getOffsetY()))
+            {
+                x += delta * speed;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 		}
 
-        public void changeY(float delta)
+        public Boolean changeY(float delta)
         {
-            y += delta * speed;
+            float mod = Globals.TextureSize*-1/10;
+            if (delta > 0)
+                mod = Globals.TextureSize * 2;
+            
+            if (!collisionTests.wallCollision(currentRoom, x + currentRoom.getOffsetX(), y + mod + currentRoom.getOffsetY()))
+            {
+                y += delta * speed;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 		}
 
 		public float getSpeed() 

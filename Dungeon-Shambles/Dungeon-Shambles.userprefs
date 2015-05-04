@@ -1,10 +1,6 @@
-﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Dungeon Generation/Dungeon.cs">
-    <Files>
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="13" Column="13" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

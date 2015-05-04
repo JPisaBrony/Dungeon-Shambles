@@ -26,6 +26,6 @@ namespace DungeonShambles
 		{
 			if (max == 0) return max;
 			return r.Next(max);
-		}
+        }
 	}
 }
