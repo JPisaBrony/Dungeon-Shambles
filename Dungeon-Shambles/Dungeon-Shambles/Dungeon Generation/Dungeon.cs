@@ -38,9 +38,6 @@ namespace DungeonShambles
 			// re-generate the first room with the max size of the room
             rooms [0].generateRoom (maxRoomSize, maxRoomSize);
 
-            // aweful code that need to be simplified
-            // and there is a bug with it going out of bounds
-            // because sizes dont match up
             int currentRandomNumber = 0;
             Room smallerRoom;
 
