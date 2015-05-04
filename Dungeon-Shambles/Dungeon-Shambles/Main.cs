@@ -69,7 +69,7 @@ namespace DungeonShambles
 			shot = new Projectile.Projectile(mainChar);
 			fired = false;
 			// create a new dungeon object
-			dungeon = new Dungeon (11);
+			dungeon = new Dungeon (11, 4, 10);
 
             // set the main character to the center of the dungeon
             mainChar.setX(0.9f);
