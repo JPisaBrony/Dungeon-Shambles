@@ -17,7 +17,6 @@ namespace DungeonShambles
 		GameEntities mainChar;
 		Dungeon dungeon;
 		NewMainMenu MainMenu;
-		Animation anim;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -80,6 +79,10 @@ namespace DungeonShambles
 			if (keyboard [OpenTK.Input.Key.A] && !Globals.displayMainMenu) {
 				// change the main characters x position
 				mainChar.changeX (-1 * mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (2);
+				// set the player to be moving
+				mainChar.setMoving (true);
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
 			}
@@ -87,6 +90,10 @@ namespace DungeonShambles
 			else if (keyboard [OpenTK.Input.Key.D] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
 				mainChar.changeX (mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (3);
+				// set the player to be moving
+				mainChar.setMoving (true);
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
 			}
@@ -94,6 +101,10 @@ namespace DungeonShambles
 			if (keyboard [OpenTK.Input.Key.W] && !Globals.displayMainMenu) {
 				// change the main characters y position
 				mainChar.changeY (mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (1);
+				// set the player to be moving
+				mainChar.setMoving (true);
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
@@ -101,6 +112,10 @@ namespace DungeonShambles
 			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
 				mainChar.changeY (-1 * mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (0);
+				// set the player to be moving
+				mainChar.setMoving (true);
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed (), 0);
 			// temporary key presses
@@ -128,7 +143,10 @@ namespace DungeonShambles
 				dungeon.renderDungeon();
 				// render the main character
 				//GL.Enable(EnableCap.Blend);
-				mainChar.renderCharacter();
+				// render the main characters animations
+				mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
+				// set the character to be not moving
+				mainChar.setMoving (false);
 				//GL.Disable(EnableCap.Blend);
 
 				// increment the game timer

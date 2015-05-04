@@ -21,8 +21,8 @@ namespace DungeonShambles
 			}
 		}
 
-		public void renderAnimation(float size, int x, int y) {
-			texs [currentlyRendered].renderTexture (size , x, y);
+		public void renderAnimation(float size, float x, float y) {
+			texs [currentlyRendered].renderTexture (size ,x, y);
 			if (play) {
 				if (Globals.time % delay == 0) {
 					if (currentlyRendered < texs.Length - 1)
@@ -35,6 +35,10 @@ namespace DungeonShambles
 
 		public void setPlaying(Boolean p) {
 			play = p;
+		}
+
+		public void setToFrame(int f) {
+			currentlyRendered = f;
 		}
 	}
 }

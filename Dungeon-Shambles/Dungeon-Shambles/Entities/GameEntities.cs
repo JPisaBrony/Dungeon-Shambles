@@ -21,6 +21,12 @@ namespace DungeonShambles.Entities
 		protected float x, y;
 		// character movement speed can only be multiples of 2
 		protected float speed;
+		// used for creating an animation
+		private Animation[] animiation;
+		// entity rotation
+		private int currentRotation;
+		// if the entity is moving or not
+		private Boolean moving;
 
 		public GameEntities(String ci)
         {
@@ -33,6 +39,28 @@ namespace DungeonShambles.Entities
             meleeModifier = 0;
             magicModifier = 0;
         }
+
+		public GameEntities(String[] anims, int animSetSize, int animSetAmount, int delay) {
+			String[] sets = new String[animSetSize];
+			animiation = new Animation[animSetAmount];
+			int animationToPutInSet = 0;
+			for (int i = 0; i < animSetAmount; i++) {
+				for (int j = 0; j < animSetSize; j++) {
+					sets [j] = anims [animationToPutInSet];
+					animationToPutInSet++;
+				}
+				animiation[i] = new Animation (sets, delay, false);
+			}
+			x = 0f;
+			y = 0f;
+			speed = 0.025f;
+			health = 100;
+			mana = 100;
+			meleeModifier = 0;
+			magicModifier = 0;
+			currentRotation = 0;
+			moving = false;
+		}
 
 		public GameEntities(String ci, float inputX, float inputY)
 		{
@@ -76,6 +104,15 @@ namespace DungeonShambles.Entities
 			characterImage.renderTexture (Globals.TextureSize, x, y);
 		}
 
+		public void renderAnimation(int animSet, float size, float x, float y, Boolean moving) {
+			animiation[animSet].renderAnimation(size, x, y);
+			if (moving)
+				animiation [animSet].setPlaying (true);
+			else {
+				animiation [animSet].setPlaying (false);
+				animiation [animSet].setToFrame (0);
+			}
+		}
 
 		public void changeX(float theSpeed, Room room) 
 		{
@@ -108,6 +145,22 @@ namespace DungeonShambles.Entities
 
 		public void setX(float inputX) {x = inputX;}
 		public void setY(float inputY) {y = inputY;}
+
+		public Boolean getMoving() {
+			return moving;
+		}
+
+		public int getRotation() {
+			return currentRotation;
+		}
+			
+		public void setMoving(Boolean m) {
+			moving = m;
+		}
+
+		public void setRotation(int r) {
+			currentRotation = r;
+		}
 
     }    
 }
