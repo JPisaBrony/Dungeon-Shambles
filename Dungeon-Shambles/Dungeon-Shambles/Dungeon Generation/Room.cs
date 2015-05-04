@@ -48,16 +48,16 @@ namespace DungeonShambles
         public void setDoor(int side, int offset) {
             switch (side) {
                 case 0:
-                    setTileAtLocation(offset, 0, true, true);
+                    setTileAtLocation(offset, 0, false, true);
                     break;
                 case 1:
-                    setTileAtLocation(0, offset, true, true);
+                    setTileAtLocation(0, offset, false, true);
                     break;
                 case 2:
-                    setTileAtLocation(offset, roomHeight - 1, true, true);
+                    setTileAtLocation(offset, roomHeight - 1, false, true);
                     break;
                 case 3:
-                    setTileAtLocation(roomWidth - 1, offset, true, true);
+                    setTileAtLocation(roomWidth - 1, offset, false, true);
                     break;
             }
         }
