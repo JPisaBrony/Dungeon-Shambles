@@ -1,11 +1,13 @@
-﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
+﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/TextureImporter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Dungeon Generation/Room.cs">
     <Files>
-      <File FileName="Dungeon-Shambles/Main.cs" Line="7" Column="7" />
-      <File FileName="Dungeon-Shambles/Entities/PlayerCharacter/Player.cs" Line="56" Column="56" />
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="20" Column="20" />
-      <File FileName="Dungeon-Shambles/TextureImporter.cs" Line="40" Column="40" />
+      <File FileName="Dungeon-Shambles/Main.cs" Line="1" Column="1" />
+      <File FileName="Dungeon-Shambles/Entities/PlayerCharacter/Player.cs" Line="1" Column="1" />
+      <File FileName="Dungeon-Shambles/Collision Detection/collisionTests.cs" Line="1" Column="1" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="28" Column="28" />
+      <File FileName="Dungeon-Shambles/Globals.cs" Line="1" Column="1" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Room.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

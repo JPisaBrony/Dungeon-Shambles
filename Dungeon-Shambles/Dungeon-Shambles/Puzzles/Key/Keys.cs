@@ -43,8 +43,8 @@ namespace DungeonShambles
         {
             foreach (Key key in keys)
 
-                if (Math.Abs(((main.getX() -currentRoom.getcoordinateOffsetX())*5 - key.getX())) < .5 &&
-                    Math.Abs(((main.getY() -currentRoom.getcoordinateOffsetY())*5 - key.getY())) < .5)
+				if (Math.Abs(((main.getX() -currentRoom.getOffsetX())*5 - key.getX())) < .5 &&
+					Math.Abs(((main.getY() -currentRoom.getOffsetY())*5 - key.getY())) < .5)
                 {
                     key.pickUp();
                 }

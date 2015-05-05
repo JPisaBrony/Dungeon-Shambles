@@ -59,26 +59,29 @@ namespace DungeonShambles
 			// clear the color of the window to black
 			GL.ClearColor(Color.Black);
             // create the main character
-
+			mainChar = new Player ();
 
 			// create a new dungeon object
 			dungeon = new Dungeon (11, 4, 10);
             // generate a new dungeon
             dungeon.generateDungeon();
 
+			// set initial room
+			mainChar.setCurrentRoom ((Room)dungeon.getRooms().GetValue(0));
+
 			// create main menu
 			MainMenu = new NewMainMenu (mainChar);
 
             puzzles = new Puzzles(mainChar, dungeon);
             collisions = puzzles.getRockCollision();
-            currentRoom = (Room)dungeon.getRooms().GetValue(0);
-            mainChar = new Player(currentRoom);
+            //currentRoom = (Room)dungeon.getRooms().GetValue(0);
+            //mainChar = new Player(currentRoom);
 
             // set the main character to the center of the dungeon
             mainChar.setX(0.9f);
-            offsetX = 0;
+            //offsetX = 0;
             mainChar.setY(0.9f);
-            offsetY = 0;
+            //offsetY = 0;
             GL.Translate(-0.9, -0.9, 0);
         }
 
@@ -88,73 +91,70 @@ namespace DungeonShambles
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A] && !Globals.displayMainMenu) {
 				// change the main characters x position
-				mainChar.changeX (-1 * mainChar.getSpeed ());
-				// set the rotation of the player
-				mainChar.setRotation (2);
-				// set the player to be moving
-				mainChar.setMoving (true);
+				if (mainChar.changeX (-1, dungeon)) {
+					// set the rotation of the player
+					mainChar.setRotation (2);
+					// set the player to be moving
+					mainChar.setMoving (true);
 
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 1);
-                }
+					foreach (RockCollision test in collisions) {
+						test.collisionTest (mainChar, 1);
+					}
 
-				// move the scene around the character in the x position
-				GL.Translate (mainChar.getSpeed (), 0, 0);
-
-                
+					// move the scene around the character in the x position
+					GL.Translate (mainChar.getSpeed (), 0, 0);
+				}
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
-				mainChar.changeX (mainChar.getSpeed ());
-				// set the rotation of the player
-				mainChar.setRotation (3);
-				// set the player to be moving
-				mainChar.setMoving (true);
+				if (mainChar.changeX (1, dungeon)) {
+					// set the rotation of the player
+					mainChar.setRotation (3);
+					// set the player to be moving
+					mainChar.setMoving (true);
 
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 2);
-                }
+					foreach (RockCollision test in collisions) {
+						test.collisionTest (mainChar, 2);
+					}
 
-				// move the scene around the character in the x position
-				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
+					// move the scene around the character in the x position
+					GL.Translate (mainChar.getSpeed () * -1, 0, 0);
+				}
 			}
             // up key is pressed
 			if (keyboard [OpenTK.Input.Key.W] && !Globals.displayMainMenu) {
 				// change the main characters y position
-				mainChar.changeY (mainChar.getSpeed ());
-				// set the rotation of the player
-				mainChar.setRotation (1);
-				// set the player to be moving
-				mainChar.setMoving (true);
+				if (mainChar.changeY (1, dungeon)) {
+					// set the rotation of the player
+					mainChar.setRotation (1);
+					// set the player to be moving
+					mainChar.setMoving (true);
 
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 3);
-                }
+					foreach (RockCollision test in collisions) {
+						test.collisionTest (mainChar, 3);
+					}
 
-				// move the scene around the character in the y position
-				GL.Translate (0, mainChar.getSpeed () * -1, 0);
-                }
+					// move the scene around the character in the y position
+					GL.Translate (0, mainChar.getSpeed () * -1, 0);
+				}
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
 				// decrease the main characters x position
-				mainChar.changeY (-1 * mainChar.getSpeed ());
-				// set the rotation of the player
-				mainChar.setRotation (0);
-				// set the player to be moving
-				mainChar.setMoving (true);
+				if (mainChar.changeY (-1, dungeon)) {
+					// set the rotation of the player
+					mainChar.setRotation (0);
+					// set the player to be moving
+					mainChar.setMoving (true);
 
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 4);
-                }
+					foreach (RockCollision test in collisions) {
+						test.collisionTest (mainChar, 4);
+					}
 
-				// move the scene around the character in the y position
-				GL.Translate (0, mainChar.getSpeed (), 0);
+					// move the scene around the character in the y position
+					GL.Translate (0, mainChar.getSpeed (), 0);
+				}
 			// temporary key presses
 			// e key is pressed
 			} else if (keyboard [OpenTK.Input.Key.E]) {
@@ -197,6 +197,7 @@ namespace DungeonShambles
             // switch between the two buffer
             SwapBuffers();
         }
-C        protected override void OnResize(EventArgs e) { }
+
+        protected override void OnResize(EventArgs e) { }
     }
 }

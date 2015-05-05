@@ -55,29 +55,29 @@ namespace DungeonShambles
                 switch (direction)
                 {
                     case 1:
-                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX())*5 - rock.getX()) < offset &&
-                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
+                        if (Math.Abs((main.getX() - currentRoom.getOffsetX())*5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getOffsetY()) * 5 - rock.getY()) < offset)
                         {
                             rock.increaseX(- .2f);
                         }
                         break;
                     case 2:
-                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
-                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
+                        if (Math.Abs((main.getX() - currentRoom.getOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getOffsetY()) * 5 - rock.getY()) < offset)
                         {
                             rock.increaseX(.2f);
                         }
                         break;
                     case 3:
-                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
-                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
+                        if (Math.Abs((main.getX() - currentRoom.getOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getOffsetY()) * 5 - rock.getY()) < offset)
                         {
                             rock.increaseY(.2f);
                         }
                         break;
                     case 4:
-                        if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
-                            Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
+                        if (Math.Abs((main.getX() - currentRoom.getOffsetX()) * 5 - rock.getX()) < offset &&
+                            Math.Abs((main.getY() - currentRoom.getOffsetY()) * 5 - rock.getY()) < offset)
                         {
                             rock.increaseY(-.2f);
                         }

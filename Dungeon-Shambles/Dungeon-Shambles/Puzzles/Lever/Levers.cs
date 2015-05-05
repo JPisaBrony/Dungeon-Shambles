@@ -44,10 +44,10 @@ namespace DungeonShambles
         {
             foreach (Lever lever in levers)
             {
-                if (Math.Abs(((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - lever.getX())) < .5 &&
+				if (Math.Abs(((main.getX() - currentRoom.getOffsetX()) * 5 - lever.getX())) < .5 &&
 
-                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) > -1.5 &&
-                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) < -.5)
+					((main.getY() - currentRoom.getOffsetY()) * 5 - lever.getY()) > -1.5 &&
+					((main.getY() - currentRoom.getOffsetY()) * 5 - lever.getY()) < -.5)
                 {
                     if (lever.getFlipped() == false)
                     {

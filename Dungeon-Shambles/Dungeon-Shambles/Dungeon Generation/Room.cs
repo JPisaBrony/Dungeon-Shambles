@@ -91,13 +91,13 @@ namespace DungeonShambles
 		public int getRoomHeight() {
 			return roomHeight;
 		}
+
         public float getOffsetX() {
             return coordinateOffsetX;
         }
+
         public float getOffsetY() {
             return coordinateOffsetY;
-        }
-        }
         }
 	}
 }

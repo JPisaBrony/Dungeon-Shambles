@@ -21,6 +21,7 @@ namespace DungeonShambles.Entities
 		protected float x, y;
 		// character movement speed can only be multiples of 2
 		protected float speed;
+		protected Room currentRoom;
 		// used for creating an animation
 		private Animation[] animiation;
 		// entity rotation
