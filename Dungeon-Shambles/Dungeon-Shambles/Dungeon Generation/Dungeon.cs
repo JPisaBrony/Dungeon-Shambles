@@ -10,15 +10,15 @@ namespace DungeonShambles
         private int minRoomSize;
 
 		string[] Tilenames = new string[] {
-			"meshes/D1Tiles/D1Floor.png",
-			"meshes/D1Tiles/D1WestWall.png",
-			"meshes/D1Tiles/D1NorthWall.png",
-			"meshes/D1Tiles/D1EastWall.png",
-			"meshes/D1Tiles/D1SouthWall.png",
-			"meshes/D1Tiles/SWCorner.png",
-			"meshes/D1Tiles/NWCorner.png",
-			"meshes/D1Tiles/NECorner.png",
-			"meshes/D1Tiles/SECorner.png"
+			"meshes/Tiles/Floor.png",
+			"meshes/Tiles/WestWall.png",
+			"meshes/Tiles/NorthWall.png",
+			"meshes/Tiles/EastWall.png",
+			"meshes/Tiles/SouthWall.png",
+			"meshes/Tiles/SWCorner.png",
+			"meshes/Tiles/NWCorner.png",
+			"meshes/Tiles/NECorner.png",
+			"meshes/Tiles/SECorner.png"
 		};
 
         public Dungeon (int r, int minSize, int maxSize) {
@@ -37,6 +37,11 @@ namespace DungeonShambles
 			}
 			// re-generate the first room with the max size of the room
             rooms [0].generateRoom (maxRoomSize, maxRoomSize);
+
+			regenerateRoom (1, 6);
+			regenerateRoom (1, 7);
+			regenerateRoom (3, 8);
+			regenerateRoom (3, 10);
 
             int currentRandomNumber = 0;
             Room smallerRoom;
@@ -112,6 +117,12 @@ namespace DungeonShambles
                 }
             }
         }
+
+		private void regenerateRoom(int first, int second) {
+			if (rooms [first].getRoomWidth () < rooms [second].getRoomWidth ()) {
+				rooms [second].generateRoom (rooms[first].getRoomWidth(), rooms[second].getRoomHeight());
+			}
+		}
 
 		public void renderDungeon() {
 			float generationWidth = 0;

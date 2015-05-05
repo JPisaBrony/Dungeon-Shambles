@@ -1,7 +1,7 @@
-Dungeon-Shambles/Dungeon-Shambles/bin/*.mdb
-Dungeon-Shambles/Dungeon-Shambles/obj/*.exe
+*.exe
+*.mdb
 Dungeon-Shambles/Dungeon-Shambles/obj/
-./*.suo
 *.pdb
 *.manifest
-*.exe
+*.suo
+*.userprefs

@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
-using System.Threading;
+using DungeonShambles.UI;
+using DungeonShambles.Entities;
+using QuickFont;
 using System.Collections.Generic;
 
 namespace DungeonShambles
 {
     class Game : GameWindow
     {
-        // object references to pass between OnLoad and OnRenderFrame
-        Dungeon dungeon;
-        MainCharacter mainChar;
-        Puzzles puzzles;
-        List<RockCollision> collisions;
-        // texture object reference
-        TextureImporter text;
-        // timmer for displaying text
-        int textTimer = 0;
-
-        bool displayMenu = false;
-        bool displayStats = false;
+		// object references to pass between OnLoad and OnRenderFrame
+		GameEntities mainChar;
+		Dungeon dungeon;
+		NewMainMenu MainMenu;
 
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
@@ -30,8 +25,8 @@ namespace DungeonShambles
         {
             using (Game game = new Game())
             {
-                // run update and game at 30 frames per second
-                game.Run(30, 30);
+				// run update and game at 30 frames per second
+				game.Run(30, 30);
             }
         }
 
@@ -44,97 +39,93 @@ namespace DungeonShambles
 
             GL.LoadIdentity();
             // setup the view port
-            GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
+			GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
             // enable textures to be rendered
             GL.Enable(EnableCap.Texture2D);
-
             // enable alpha blending
             GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
-
         }
 
         protected override void OnLoad(EventArgs e)
         {
-
             base.OnLoad(e);
             // base setup
             init();
             // set the windows title
             Title = "Dungeon Shambles";
-            // clear the color of the window to black
-            GL.ClearColor(Color.Black);
+			// clear the color of the window to black
+			GL.ClearColor(Color.Black);
             // create the main character
-            mainChar = new MainCharacter();
+            mainChar = new Player();
 
-            // create a new dungeon object
-            dungeon = new Dungeon(11, 4, 11);
+			// create a new dungeon object
+			dungeon = new Dungeon (11, 4, 10);
             // generate a new dungeon
             dungeon.generateDungeon();
 
-            // set the main character to the center of the dungeon
-            mainChar.increaseX(0.9f);
-            mainChar.increaseY(0.9f);
-            GL.Translate(-0.9f, -0.9f, 0);
+			// create main menu
+			MainMenu = new NewMainMenu (mainChar);
 
-            puzzles = new Puzzles(mainChar, dungeon);
-            collisions = puzzles.getRockCollision();
+            // set the main character to the center of the dungeon
+            mainChar.changeX(0.9f);
+            mainChar.changeY(0.9f);
+            GL.Translate(-0.9, -0.9, 0);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            // variable for checking keyboard input
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
-            if (keyboard[OpenTK.Input.Key.A])
-            {
-                // increase the main characters x position
-                mainChar.increaseX(-1 * mainChar.getSpeed());
-
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 1);
-                }
-
-                // move the scene around the character in the x position
-                GL.Translate(mainChar.getSpeed(), 0, 0);
-
-            }
+			if (keyboard [OpenTK.Input.Key.A] && !Globals.displayMainMenu) {
+				// change the main characters x position
+				mainChar.changeX (-1 * mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (2);
+				// set the player to be moving
+				mainChar.setMoving (true);
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed (), 0, 0);
+			}
             // right key is pressed
-            else if (keyboard[OpenTK.Input.Key.D])
-            {
-                // decrease the main characters x position
-                mainChar.increaseX(mainChar.getSpeed());
-                // move the scene around the character in the x position
-
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 2);
-                }
-
-                GL.Translate(mainChar.getSpeed() * -1, 0, 0);
-            }
+			else if (keyboard [OpenTK.Input.Key.D] && !Globals.displayMainMenu) {
+				// decrease the main characters x position
+				mainChar.changeX (mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (3);
+				// set the player to be moving
+				mainChar.setMoving (true);
+				// move the scene around the character in the x position
+				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
+			}
             // up key is pressed
-            if (keyboard[OpenTK.Input.Key.W])
-            {
-                // increase the main characters y position
-                mainChar.increaseY(mainChar.getSpeed());
-                // move the scene around the character in the y position
-
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 3);
-                }
-
-                GL.Translate(0, mainChar.getSpeed() * -1, 0);
-            }
+			if (keyboard [OpenTK.Input.Key.W] && !Globals.displayMainMenu) {
+				// change the main characters y position
+				mainChar.changeY (mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (1);
+				// set the player to be moving
+				mainChar.setMoving (true);
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed () * -1, 0);
+			}
             // down key is pressed
-            else if (keyboard[OpenTK.Input.Key.S])
-            {
-                // decrease the main characters x position
-                mainChar.increaseY(-1 * mainChar.getSpeed());
-                displayStats = false;
-            }
-
+			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
+				// decrease the main characters x position
+				mainChar.changeY (-1 * mainChar.getSpeed ());
+				// set the rotation of the player
+				mainChar.setRotation (0);
+				// set the player to be moving
+				mainChar.setMoving (true);
+				// move the scene around the character in the y position
+				GL.Translate (0, mainChar.getSpeed (), 0);
+			// temporary key presses
+			// e key is pressed
+			} else if (keyboard [OpenTK.Input.Key.E]) {
+				Globals.displayMainMenu = false;
+			// esc key is pressed
+			} else if (keyboard [OpenTK.Input.Key.Escape]) {
+				Globals.displayMainMenu = true;
+			}
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -142,38 +133,32 @@ namespace DungeonShambles
             // clear the screen
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            dungeon.renderDungeon();
-            puzzles.renderPuzzles();
+			// check to see if the menu should be rendered
+			if (Globals.displayMainMenu) {
+				// display the main menu
+				MainMenu.renderMenu();
+            }
+            else {
+				// render the dungeon
+				dungeon.renderDungeon();
+				// render the main character
+				//GL.Enable(EnableCap.Blend);
+				// render the main characters animations
+				mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
+				// set the character to be not moving
+				mainChar.setMoving (false);
+				//GL.Disable(EnableCap.Blend);
 
-            GL.Enable(EnableCap.Blend);
-            // render the main character
-            if (displayMenu == false && displayStats == false) mainChar.renderCharacter();
+				// increment the game timer
+				Globals.time++;
+            }
 
-            // enable alpha blending
-            // so that the background of the text is transparent
-            GL.Enable(EnableCap.Blend);
-            // render text
-            text.renderTexture(1f, 0.5f, -0.3f);
-            // disble alpha blending
-            // this step is VERY important, if alpha blending is not disabled,
-            // the rest of the images will get distorted
-            GL.Disable(EnableCap.Blend);
+			//anim.renderNext ();
 
-            // enable alpha blending
-            // so that the background of the text is transparent
-            GL.Enable(EnableCap.Blend);
-            // render text
-            text.renderTexture(1f, 0.5f, -0.3f);
-            // disble alpha blending
-            // this step is VERY important, if alpha blending is not disabled,
-            // the rest of the images will get distorted
-            GL.Disable(EnableCap.Blend);
-
-            // switch between the 2 buffers
+            // switch between the two buffer
             SwapBuffers();
         }
 
         protected override void OnResize(EventArgs e) { }
-
     }
 }

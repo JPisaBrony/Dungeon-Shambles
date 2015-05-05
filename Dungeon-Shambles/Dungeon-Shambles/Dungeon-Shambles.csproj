@@ -18,8 +18,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>full</DebugType>
@@ -41,10 +41,12 @@
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="QuickFont">
+      <HintPath>bin\Debug\QuickFont.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character\CharacterStatus.cs" />
-    <Compile Include="Character\PlayerCharacter\Player.cs" />
+    <Compile Include="Collision Detection\collisionTests.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDamage.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDefence.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseHitChance.cs" />
@@ -77,28 +79,50 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModelImporter.cs" />
-    <Compile Include="Puzzles\Door.cs" />
-    <Compile Include="Puzzles\Key\Key.cs" />
-    <Compile Include="Puzzles\Key\Keys.cs" />
-    <Compile Include="Puzzles\Lever\Lever.cs" />
-    <Compile Include="Puzzles\Lever\Levers.cs" />
-    <Compile Include="Puzzles\Puzzles.cs" />
-    <Compile Include="Puzzles\Rock\Rock.cs" />
-    <Compile Include="Puzzles\Rock\RockCollision.cs" />
-    <Compile Include="Puzzles\Target\TargetTest.cs" />
-    <Compile Include="Puzzles\Target\Target.cs" />
     <Compile Include="TextureImporter.cs" />
-    <Compile Include="MainCharacter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Dungeon Generation\Tile.cs" />
     <Compile Include="Dungeon Generation\Room.cs" />
     <Compile Include="Dungeon Generation\Dungeon.cs" />
+    <Compile Include="UI\MainMenu.cs" />
+    <Compile Include="UI\Menu.cs" />
+    <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Stats.cs" />
-    <Compile Include="UI\UI.cs" />
+    <Compile Include="StaticMethodDump.cs" />
+    <Compile Include="Entities\GameEntities.cs" />
+    <Compile Include="Entities\PlayerCharacter\Player.cs" />
+    <Compile Include="Entities\NonPlayerCharacters\Ghost.cs" />
+    <Compile Include="Entities\Projectile\Projectile.cs" />
+    <Compile Include="UI\NewMainMenu.cs" />
+    <Compile Include="UI\Inventory.cs" />
+    <Compile Include="Animation\Animation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Character\NonPlayerCharacters\" />
+    <Content Include="UI\Fonts\myRock.png" />
+    <Content Include="UI\Fonts\woodenFont.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="Entities\Projectile\Magic.cs" />
+    <None Include="Entities\Projectile\Melee.cs" />
+    <None Include="UI\Fonts\Anonymous.ttf" />
+    <None Include="UI\Fonts\BURNSTOW.TTF" />
+    <None Include="UI\Fonts\Comfortaa-Regular.ttf" />
+    <None Include="UI\Fonts\DeutscheZierschrift.ttf" />
+    <None Include="UI\Fonts\Dungeon.TTF" />
+    <None Include="UI\Fonts\HappySans.ttf" />
+    <None Include="UI\Fonts\ModerneFraktur.ttf" />
+    <None Include="UI\Fonts\myRock.qfont" />
+    <None Include="UI\Fonts\OldNewspaperTypes.ttf" />
+    <None Include="UI\Fonts\Pamela.ttf" />
+    <None Include="UI\Fonts\Rock.TTF" />
+    <None Include="UI\Fonts\Sketch Gothic School.ttf" />
+    <None Include="UI\Fonts\times.ttf" />
+    <None Include="UI\Fonts\woodenFont.qfont" />
+    <None Include="UI\Fonts\XmasTerpiece.ttf" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Animation\" />
+  </ItemGroup>
 </Project>
