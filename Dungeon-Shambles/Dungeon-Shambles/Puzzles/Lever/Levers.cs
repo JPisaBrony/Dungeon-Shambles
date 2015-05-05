@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DungeonShambles
 {
     public class Levers
     {
+
         static Random rand = new Random();
         Room currentRoom;
         private ArrayList levers = new ArrayList();
@@ -24,8 +26,8 @@ namespace DungeonShambles
 
                 foreach (Lever madeLever in levers)
                 {
-                    if (lever.getX() == madeLever.getX() && (lever.getY() == madeLever.getY() ||
-                        lever.getY() == madeLever.getY() - 1))
+                    if ((int)lever.getX() == (int)madeLever.getX() && ((int)lever.getY() == (int)madeLever.getY() ||
+                       ((int)lever.getY() == (int)madeLever.getY() - 1)) || ((int)lever.getY() == (int)madeLever.getY() + 1))
                         valid = false;
                 }
                 if(valid == true)
@@ -35,18 +37,15 @@ namespace DungeonShambles
                 }
             }
 
-            foreach (Lever target in levers)
+            /*HashSet<int> numbers = new HashSet<int>();
+            while (numbers.Count < levers.Count)
             {
-                Console.WriteLine(target.getX() + ", " + target.getY());
-                Console.WriteLine("BREAK");
+                numbers.Add(rand.Next(0, levers.Count));
             }
-
+             */
         }
 
-        public static void addLever(int index, Lever lever)
-        {
-            
-        }
+
 
         public void flipLever(MainCharacter main)
         {
@@ -57,19 +56,72 @@ namespace DungeonShambles
                     ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) > -1.2 &&
                     ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) < -.9)
                 {
-                    if (lever.getFlipped() == true)
-                    {
-                        lever.setFlippedF();
-                        
-                    }
-                    else if (lever.getFlipped() == false)
+                    if (lever.getFlipped() == false)
                     {
                         lever.setFlippedT();
-
+                        checkLeverFlips();
+                    }
+                    if(lever.getFlipped() == true)
+                    {
+                        checkLeverFlips();
+                        lever.setFlippedT();
                     }
                 }
             }
-            //setSolved();
+        }
+
+        public bool checkLeverFlips()
+        {
+            bool solved = false;
+            if (levers.Count == 1)
+            {
+                Lever temp1 = (Lever)levers[0];
+                if (temp1.getFlipped() == true)
+                    solved = true;
+            }
+
+            if(levers.Count == 2)
+            {
+                Lever temp1 = (Lever)levers[0];
+                Lever temp2 = (Lever)levers[1];
+                if (temp1.getFlipped() == false)
+                {
+                    foreach (Lever lever in levers)
+                    {
+                        lever.setFlippedF();
+                    }
+                }
+                else if (temp1.getFlipped() == true && temp2.getFlipped() == true)
+                    solved = true;
+            }
+
+            if(levers.Count == 3)
+            {
+                Lever temp1 = (Lever)levers[0];
+                Lever temp2 = (Lever)levers[1];
+                Lever temp3 = (Lever)levers[2];
+
+                if (temp1.getFlipped() == false)
+                {
+                    foreach (Lever lever in levers)
+                    {
+                        lever.setFlippedF();
+                    }
+                }
+                if (temp1.getFlipped() == true && temp2.getFlipped() == false)
+                {
+                    if (temp3.getFlipped() == true)
+                    {
+                        foreach (Lever lever in levers)
+                        {
+                            lever.setFlippedF();
+                        }
+                    }
+                }
+                if (temp1.getFlipped() == true && temp2.getFlipped() == true && temp3.getFlipped())
+                    solved = true;
+            }
+            return solved;
         }
 
         public void renderLevers()

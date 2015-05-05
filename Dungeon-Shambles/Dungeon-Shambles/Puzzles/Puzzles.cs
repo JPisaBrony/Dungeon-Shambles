@@ -26,7 +26,7 @@ namespace DungeonShambles
 
             List<Room> allRooms = new List<Room>();
 
-            foreach(Room room in rooms)
+            foreach(Room room in rockRooms)
             {
                 allRooms.Add(room);
             }
@@ -36,7 +36,6 @@ namespace DungeonShambles
                 allRooms.Remove(room);
             }
 
-            Console.WriteLine(allRooms.Count);
             used = spawnLevers(allRooms);
 
             foreach (Room room in used)
@@ -72,7 +71,7 @@ namespace DungeonShambles
             int count = 0;
             foreach (Room room in destinations)
             {
-                if (room.getRoomWidth() < 6 || room.getRoomHeight() < 6)
+                if (room.getRoomWidth() < 5 || room.getRoomHeight() < 5)
                 {
                     if (count < leverRooms)
                     {
@@ -82,7 +81,7 @@ namespace DungeonShambles
                         used.Add(room);
                     }
                 }
-                else if (room.getRoomWidth() < 8 || room.getRoomHeight() < 8)
+                else if (room.getRoomWidth() < 7 || room.getRoomHeight() < 7)
                 {
                     if (count < leverRooms)
                     {
@@ -209,8 +208,14 @@ namespace DungeonShambles
 
         public void puzzleActions()
         {
-            //levers.flipLever(main);
-            //keys.pickUpKey(main);
+            foreach (Keys test in keys)
+            {
+                test.pickUpKey(main);
+            }
+            foreach (Levers test in levers)
+            {
+                test.flipLever(main);
+            }
         }
 
         public List<RockCollision> getRockCollision()

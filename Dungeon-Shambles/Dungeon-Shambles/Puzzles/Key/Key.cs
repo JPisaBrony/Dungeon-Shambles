@@ -18,12 +18,6 @@ namespace DungeonShambles
             y = yPos;
         }
 
-        public void renderKey()
-        {
-            if(pickedUp == false)
-                key.renderTexture(Globals.TextureSize, x, y);
-        }
-
         public float getX()
         {
             return x;

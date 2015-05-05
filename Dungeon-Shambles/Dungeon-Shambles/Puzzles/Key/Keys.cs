@@ -54,9 +54,24 @@ namespace DungeonShambles
         public void renderKeys()
         {
             foreach (Key key in keys)
-                currentRoom.setAboveTileAtLocation(key.getX(), key.getY(), key.getTexture());
+            {
+                if (key.getPickedUp() == false)
+                {
+                    currentRoom.setAboveTileAtLocation(key.getX(), key.getY(), key.getTexture());
+                }
+            }
         }
 
 
+        public bool checkKeys()
+        {
+            bool test = true;
+            foreach (Key key in keys)
+            {
+                if (key.getPickedUp() == false)
+                    test = false;
+            }
+            return test;
+        }
     }
 }
