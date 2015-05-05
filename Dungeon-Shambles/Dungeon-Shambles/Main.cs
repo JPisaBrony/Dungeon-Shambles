@@ -283,13 +283,16 @@ namespace DungeonShambles
                     Globals.currentPage = 0;
                     // render the dungeon
                     dungeon.renderDungeon();
-                puzzles.renderPuzzles();
+					// render the puzzles
+                	puzzles.renderPuzzles();
                     // render the main character
-				//GL.Enable(EnableCap.Blend);
-				// render the main characters animations
-				mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
+					//GL.Enable(EnableCap.Blend);
+					// render the main characters animations
+					mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
                     enemy.renderEnemy();
-				// set the character to be not moving
+					// set the character to be not moving
+					mainChar.setMoving (false);
+
                     if (Globals.displayPauseMenu == true)
                         pauseMenu.renderMenu();
                     if (Globals.displayPauseMenu == false)
