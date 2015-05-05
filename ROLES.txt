@@ -1,0 +1,32 @@
+MEMBERS ROLE:
+
+JP
+--------------------------------
+Dungeon Generation
+Input/Ouput
+In game actions
+--------------------------------
+
+COLE
+--------------------------------
+Graphics/Animations
+Monsters & Characters
+--------------------------------
+
+MI
+--------------------------------
+User Interface 
+HUD, Main Menu, Inventory
+--------------------------------
+
+JOSH
+--------------------------------
+Combat system
+Status grid
+--------------------------------
+
+ERICK
+--------------------------------
+Collision Detection
+Puzzles
+--------------------------------

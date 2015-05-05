@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using System.Threading;
@@ -9,8 +8,8 @@ using System.Collections.Generic;
 
 namespace DungeonShambles
 {
-	class Game: GameWindow
-	{
+    class Game : GameWindow
+    {
 		// object references to pass between OnLoad and OnRenderFrame
 		Dungeon dungeon;
         MainCharacter mainChar;
@@ -29,45 +28,59 @@ namespace DungeonShambles
 			"meshes/D1Tiles/SECorner.png"
 		};
 
-		// setup the window width and height
-		public Game() : base(Globals.WindowWidth, Globals.WindowHeight) {}
+        // texture object reference
+        TextureImporter text;
+        // timmer for displaying text
+        int textTimer = 0;
 
-		public static void Main (string[] args)
-		{
-			using (Game game = new Game())
-			{
+        
+        MainMenu mainMenu;
+        Stats statsMenu;
+        bool displayMenu = false;
+        bool displayStats = false;
+
+        // setup the window width and height
+        public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
+
+        public static void Main(string[] args)
+        {
+            using (Game game = new Game())
+            {
 				// run update and game at 30 frames per second
 				game.Run(30, 30);
-			}
-		}
+            }
+        }
 
-		private void init() {
-			// clear the window to white
-			GL.ClearColor (0.0f, 0.0f, 0.0f, 0.0f);
+        private void init()
+        {
+            // clear the window to white
+            GL.ClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-			GL.MatrixMode (MatrixMode.Modelview);
+            GL.MatrixMode(MatrixMode.Modelview);
 
-			GL.LoadIdentity ();
-			// setup the view port
-			GL.Ortho (100, 100, 100, 100, 0, 1);
-			// enable textures to be rendered
-			GL.Enable(EnableCap.Texture2D);
+            GL.LoadIdentity();
+            // setup the view port
+            GL.Ortho(1.0, 1.0, 1.0, 1.0, 0.0, 4.0);
+            // enable textures to be rendered
+            GL.Enable(EnableCap.Texture2D);
 
-			GL.BlendFunc (BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
-		}
+			// enable alpha blending
+			GL.BlendFunc(BlendingFactorSrc.One, BlendingFactorDest.DstAlpha);
 
-		protected override void OnLoad(EventArgs e)
-		{
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
             
-			base.OnLoad(e);
-			// base setup
-			init ();
-			// set the windows title
-			Title = "Dungeon Shambles";
+            base.OnLoad(e);
+            // base setup
+            init();
+            // set the windows title
+            Title = "Dungeon Shambles";
 			// clear the color of the window to black
 			GL.ClearColor(Color.Black);
-			// create the main character
-			mainChar = new MainCharacter ();
+            // create the main character
+            mainChar = new MainCharacter();
 
             // create a new dungeon object
             dungeon = new Dungeon (11, 4, 11);
@@ -82,15 +95,15 @@ namespace DungeonShambles
             puzzles = new Puzzles(mainChar, dungeon);
             collisions = puzzles.getRockCollision();
             
-		}
+        }
 
-		protected override void OnUpdateFrame(FrameEventArgs e)
-		{
-			// variable for checking keyboard input
-			var keyboard = OpenTK.Input.Keyboard.GetState();
-			// left key is pressed
+        protected override void OnUpdateFrame(FrameEventArgs e)
+        {
+            // variable for checking keyboard input
+            var keyboard = OpenTK.Input.Keyboard.GetState();
+            // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
-				// increase the main characters x position
+                // increase the main characters x position
 				mainChar.increaseX (-1 * mainChar.getSpeed ());
 
                 foreach (RockCollision test in collisions)
@@ -102,9 +115,9 @@ namespace DungeonShambles
 				GL.Translate (mainChar.getSpeed (), 0, 0);
                 
 			}
-			// right key is pressed
+            // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
-				// decrease the main characters x position
+                // decrease the main characters x position
 				mainChar.increaseX (mainChar.getSpeed ());
 				// move the scene around the character in the x position
 
@@ -115,9 +128,9 @@ namespace DungeonShambles
 
                 GL.Translate (mainChar.getSpeed() * -1, 0, 0); 
 			}
-			// up key is pressed
+            // up key is pressed
 			if (keyboard [OpenTK.Input.Key.W]) {
-				// increase the main characters y position
+                // increase the main characters y position
 				mainChar.increaseY (mainChar.getSpeed ());
 				// move the scene around the character in the y position
 
@@ -128,47 +141,96 @@ namespace DungeonShambles
                 
                 GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
-			// down key is pressed
+            // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S]) {
-				// decrease the main characters x position
+                // decrease the main characters x position
 				mainChar.increaseY (-1 * mainChar.getSpeed ());
-				// move the scene around the character in the y position
-
-                foreach (RockCollision test in collisions)
-                {
-                    test.collisionTest(mainChar, 4);
+                    displayStats = false;
                 }
+            };
 
-                GL.Translate (0, mainChar.getSpeed (), 0);
-			}
-            
-            if (keyboard [OpenTK.Input.Key.Space])
+
+            // variable for checking mouse input
+            var mouse = OpenTK.Input.Mouse.GetState();
+
+            Vector2 pos = new Vector2(0.6f, -0.2f);
+
+
+
+            if (mouse[OpenTK.Input.MouseButton.Button1])
             {
-                Thread.Sleep(100);
-                puzzles.puzzleActions();
+                displayMenu = false;
+            }
+            if (mouse[OpenTK.Input.MouseButton.Right])
+            {
+                //******TO DO********* probably want to save game before exit
+                Dispose();
             }
 
-		}
+        }
 
-		protected override void OnRenderFrame(FrameEventArgs e)
-		{
-			// clear the screen
-			GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+
+        protected override void OnRenderFrame(FrameEventArgs e)
+        {
+            // clear the screen
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 			dungeon.renderDungeon ();
             puzzles.renderPuzzles();
 
 			GL.Enable (EnableCap.Blend);
-			// render the main character
-			mainChar.renderCharacter ();
-			GL.Disable (EnableCap.Blend);
+            // render the main character
+            if(displayMenu == false && displayStats == false) mainChar.renderCharacter();
 
-			// switch between the 2 buffers
-			SwapBuffers();
+            // check if the timer has timed out
+            if (textTimer < 100)
+            {
+                // enable alpha blending
+                // so that the background of the text is transparent
+                GL.Enable(EnableCap.Blend);
+                // render text
+                text.renderTexture(1f, 0.5f, -0.3f);
+                // disble alpha blending
+                // this step is VERY important, if alpha blending is not disabled,
+                // the rest of the images will get distorted
+                GL.Disable(EnableCap.Blend);
+            }
+            // increament timer
+            textTimer++;
+
+
+            // render menus
+            
+            if (displayMenu == true) 
+                mainMenu.RenderMenu();
+               
+            if (displayStats == true) 
+                statsMenu.RenderMenu();
+
+
+			// check if the timer has timed out
+			if (textTimer < 100) {
+				// enable alpha blending
+				// so that the background of the text is transparent
+				GL.Enable (EnableCap.Blend);
+				// render text
+				text.renderTexture (1f, 0.5f, -0.3f);
+				// disble alpha blending
+				// this step is VERY important, if alpha blending is not disabled,
+				// the rest of the images will get distorted
+				GL.Disable (EnableCap.Blend);
+			}
+			// increament timer
+			textTimer++;
+
+
+            // switch between the 2 buffers
+            SwapBuffers();
 
             
-		}
+        }
 
-		protected override void OnResize(EventArgs e) {}
-	}
+        protected override void OnResize(EventArgs e) { }
+    }
 }
