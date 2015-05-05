@@ -24,8 +24,7 @@ namespace DungeonShambles
             Console.WriteLine("Done with rocks");
 
             List<Room> allRooms = new List<Room>();
-
-            foreach(Room room in rockRooms)
+            foreach (Room room in rooms)
             {
                 allRooms.Add(room);
             }
@@ -58,6 +57,7 @@ namespace DungeonShambles
                 {
                     Keys temp = new Keys(room, 1);
                     keys.Add(temp);
+                    count++;
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace DungeonShambles
         public List<Room> spawnLevers(List<Room> destinations)
         {
             List<Room> used = new List<Room>();
-            int leverRooms = destinations.Count() /2;
+            int leverRooms = destinations.Count() /2 -1;
             
             int count = 0;
             foreach (Room room in destinations)
@@ -104,6 +104,7 @@ namespace DungeonShambles
             return used;
         }
 
+        //Gets all rooms of size 6*6 or greater
         public List<Room> getRockPuzzleRooms(Dungeon dungeon)
         {
             Room[] rooms = dungeon.getRooms(); 
@@ -123,13 +124,13 @@ namespace DungeonShambles
         public List<Room> spawnRocks(List<Room> destinations)
         {
             //Adjust divisor to control room frequency
-            int x = destinations.Count() / 3;
+            int x = destinations.Count() / 2;
             int count = 0;
             List<Room> used = new List<Room>();
 
             foreach (Room room in destinations)
             {
-                if (room.getRoomHeight() < 6 || room.getRoomWidth() < 6)
+                if (room.getRoomHeight() < 7 || room.getRoomWidth() < 7)
                 {
                     if (count < x)
                     {
@@ -143,7 +144,7 @@ namespace DungeonShambles
                         used.Add(room);
                     }
                 }
-                else if (room.getRoomHeight() < 9 || room.getRoomWidth() < 9)
+                else if (room.getRoomHeight() < 10 || room.getRoomWidth() < 10)
                 {
                     if (count < x)
                     {
