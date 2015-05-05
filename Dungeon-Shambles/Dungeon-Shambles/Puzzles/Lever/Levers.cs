@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-using System.Collections.Generic;
 using DungeonShambles.Entities;
+
 namespace DungeonShambles
 {
     public class Levers

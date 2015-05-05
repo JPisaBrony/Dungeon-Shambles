@@ -36,7 +36,7 @@ namespace DungeonShambles.UI
             controls = new TextureImporter();
 
             bkgImage.importTexture("Images/800x60.jpg");
-            steveImage.importTexture("meshes/SteveFront.png");
+            steveImage.importTexture("meshes/Steve/SteveFrontStanding.png");
             title.drawText("Story", titleFont, contentBrush);
             description.drawText(steveDesription, contentFont, textBrush);
             controls.drawText("Start  >>", controlsFont, controlsBrush);

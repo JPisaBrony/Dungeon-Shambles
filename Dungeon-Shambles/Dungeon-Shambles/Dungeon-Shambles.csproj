@@ -98,7 +98,6 @@
     <Compile Include="UI\ControlsMenu.cs" />
     <Compile Include="UI\EndScreen.cs" />
     <Compile Include="UI\HUD.cs" />
-    <Compile Include="UI\MainMenu.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\PauseMenu.cs" />
     <Compile Include="UI\Stats.cs" />
@@ -111,29 +110,10 @@
     <Compile Include="UI\StoryMenu.cs" />
     <Compile Include="Animation\Animation.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="UI\Fonts\myRock.png" />
-    <Content Include="UI\Fonts\woodenFont.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="Entities\Projectile\Magic.cs" />
     <None Include="Entities\Projectile\Melee.cs" />
-    <None Include="UI\Fonts\Anonymous.ttf" />
-    <None Include="UI\Fonts\BURNSTOW.TTF" />
-    <None Include="UI\Fonts\Comfortaa-Regular.ttf" />
-    <None Include="UI\Fonts\DeutscheZierschrift.ttf" />
-    <None Include="UI\Fonts\Dungeon.TTF" />
-    <None Include="UI\Fonts\HappySans.ttf" />
-    <None Include="UI\Fonts\ModerneFraktur.ttf" />
-    <None Include="UI\Fonts\myRock.qfont" />
-    <None Include="UI\Fonts\OldNewspaperTypes.ttf" />
-    <None Include="UI\Fonts\Pamela.ttf" />
-    <None Include="UI\Fonts\Rock.TTF" />
-    <None Include="UI\Fonts\Sketch Gothic School.ttf" />
-    <None Include="UI\Fonts\times.ttf" />
-    <None Include="UI\Fonts\woodenFont.qfont" />
-    <None Include="UI\Fonts\XmasTerpiece.ttf" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
