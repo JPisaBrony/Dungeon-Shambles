@@ -41,11 +41,11 @@ namespace DungeonShambles
                         player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
                     break;
                 case 2: // up
-                    if ((r.getRoomHeight()/5.0f - r.getOffsetY() - Globals.TextureSize * 2) < player.getY())
+                    if ((0.2f*r.getRoomHeight() + r.getOffsetY()) > player.getY())
                         player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
                     break;
                 case 3: // right
-                    if (r.getRoomWidth()/5.0f - r.getOffsetX() - Globals.TextureSize * 2 < player.getX())
+                    if (0.2f*r.getRoomWidth() + r.getOffsetX() > player.getX())
                         player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
                     break;
             }
@@ -85,8 +85,6 @@ namespace DungeonShambles
                         return (Room)currentDungeon.getRooms().GetValue(5);
                     case 2:
                         return (Room)currentDungeon.getRooms().GetValue(6);
-                    case 3:
-                        return (Room)currentDungeon.getRooms().GetValue(0);
                 }
 
             //room[3] down to room[10]
@@ -105,44 +103,34 @@ namespace DungeonShambles
                 }
 
             //room[4] up to room[0]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(4)))
-            if (direction == 2)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(4)) && direction == 2)
                 return (Room)currentDungeon.getRooms().GetValue(0);
             //room[1] right to room[0]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(1)))
-            if (direction == 3)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(1)) && direction == 3)
                 return (Room)currentDungeon.getRooms().GetValue(0);
             //room[2] down to room[0]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(2)))
-            if (direction == 0)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(2)) && direction == 0)
                 return (Room)currentDungeon.getRooms().GetValue(0);
             //room[3] left to room[0]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(3)))
-            if (direction == 1)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(3)) && direction == 1)
                 return (Room)currentDungeon.getRooms().GetValue(0);
             //room[7] up to room[1]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(7)))
-            if (direction == 2)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(7)) && direction == 2)
                 return (Room)currentDungeon.getRooms().GetValue(1);
             //room[5] right to room[1]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(5)))
-            if (direction == 3)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(5)) && direction == 3)
                 return (Room)currentDungeon.getRooms().GetValue(1);
             //room[6] down to room[1]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(6)))
-            if (direction == 0)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(6)) && direction == 0)
                 return (Room)currentDungeon.getRooms().GetValue(1);
             //room[10] up to room[3]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(10)))
-            if (direction == 2)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(10)) && direction == 2)
                 return (Room)currentDungeon.getRooms().GetValue(3);
             //room[8] down to room[3]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(8)))
-            if (direction == 0)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(8)) && direction == 0)
                 return (Room)currentDungeon.getRooms().GetValue(3);
             //room[9] left to room[3]
-            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(4)))
-            if (direction == 1)
+            if (currentRoom.Equals(currentDungeon.getRooms().GetValue(9)) && direction == 1)
                 return (Room)currentDungeon.getRooms().GetValue(3);
             return currentRoom;
             }

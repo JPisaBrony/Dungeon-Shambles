@@ -79,38 +79,60 @@ namespace DungeonShambles.Entities
 		}
 
 
-        public Boolean changeX(float delta) 
+        public Boolean changeX(float delta, Dungeon dung) 
 		{
             float mod = Globals.TextureSize * -1 / 10;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
-
-            if (!collisionTests.wallCollision(currentRoom, x + mod - currentRoom.getOffsetX(), y - currentRoom.getOffsetY()))
+            
+            try
             {
-                x += delta * speed;
-                return true;
+                currentRoom.getTileAtLocation((int)(x*5+delta > 0 ? 1 : 0), (int)(y*5+delta > 0 ? 1 : 0));
+                if (!collisionTests.wallCollision(currentRoom, (x + mod - currentRoom.getOffsetX()), (y - currentRoom.getOffsetY())))
+                {
+                    x += delta * speed;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch(Exception e)
             {
+                collisionTests.setCurrentRoom(this, delta > 0 ? 3 : 1, dung);
                 return false;
             }
+
+
 		}
 
-        public Boolean changeY(float delta)
+        public Boolean changeY(float delta, Dungeon dung)
         {
             float mod = Globals.TextureSize * -1 / 10;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
-            
-            if (!collisionTests.wallCollision(currentRoom, x - currentRoom.getOffsetX(), y + mod - currentRoom.getOffsetY()))
+
+            try
             {
-                y += delta * speed;
-                return true;
+                currentRoom.getTileAtLocation((int)(x*5+delta > 0 ? 1 : 0), (int)(y*5+delta > 0 ? 1 : 0));
+                if (!collisionTests.wallCollision(currentRoom, (x - currentRoom.getOffsetX()), (y + mod - currentRoom.getOffsetY())))
+                {
+                    y += delta * speed;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch(Exception e)
             {
+                collisionTests.setCurrentRoom(this, delta > 0 ? 2 : 0, dung);
                 return false;
             }
+            
+
 		}
 
 		public float getSpeed() 
