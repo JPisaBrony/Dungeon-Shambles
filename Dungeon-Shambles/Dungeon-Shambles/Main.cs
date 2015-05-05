@@ -59,7 +59,7 @@ namespace DungeonShambles
 			// clear the color of the window to black
 			GL.ClearColor(Color.Black);
             // create the main character
-            mainChar = new Player();
+
 
 			// create a new dungeon object
 			dungeon = new Dungeon (11, 4, 10);
@@ -69,13 +69,17 @@ namespace DungeonShambles
 			// create main menu
 			MainMenu = new NewMainMenu (mainChar);
 
-            // set the main character to the center of the dungeon
-            mainChar.changeX(0.9f);
-            mainChar.changeY(0.9f);
-            GL.Translate(-0.9, -0.9, 0);
-
             puzzles = new Puzzles(mainChar, dungeon);
             collisions = puzzles.getRockCollision();
+            currentRoom = (Room)dungeon.getRooms().GetValue(0);
+            mainChar = new Player(currentRoom);
+
+            // set the main character to the center of the dungeon
+            mainChar.setX(0.9f);
+            offsetX = 0;
+            mainChar.setY(0.9f);
+            offsetY = 0;
+            GL.Translate(-0.9, -0.9, 0);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -133,6 +137,7 @@ namespace DungeonShambles
 
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
+                }
 			}
             // down key is pressed
 			else if (keyboard [OpenTK.Input.Key.S] && !Globals.displayMainMenu) {
@@ -178,9 +183,7 @@ namespace DungeonShambles
             else {
 				// render the dungeon
 				dungeon.renderDungeon();
-
                 puzzles.renderPuzzles();
-
 				// render the main character
 				//GL.Enable(EnableCap.Blend);
 				// render the main characters animations
@@ -188,17 +191,12 @@ namespace DungeonShambles
 				// set the character to be not moving
 				mainChar.setMoving (false);
 				//GL.Disable(EnableCap.Blend);
-
 				// increment the game timer
 				Globals.time++;
             }
-
-			//anim.renderNext ();
-
             // switch between the two buffer
             SwapBuffers();
         }
-
-        protected override void OnResize(EventArgs e) { }
+C        protected override void OnResize(EventArgs e) { }
     }
 }

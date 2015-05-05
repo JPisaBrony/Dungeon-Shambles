@@ -28,7 +28,7 @@ namespace DungeonShambles.Entities
 		// if the entity is moving or not
 		private Boolean moving;
 
-		public GameEntities(String ci)
+        public GameEntities(String ci, Room room)
         {
 			characterImage.importTexture (ci);
 			x = 0f;
@@ -38,6 +38,7 @@ namespace DungeonShambles.Entities
             mana = 100;
             meleeModifier = 0;
             magicModifier = 0;
+            currentRoom = room;
         }
 
 		public GameEntities(String[] anims, int animSetSize, int animSetAmount, int delay) {
@@ -87,17 +88,17 @@ namespace DungeonShambles.Entities
             magicModifier = aMod;
         }
 
-		public void chase(GameEntities target, Room room)
+		/*public void chase(GameEntities target, Room room)
 		{
 			if (target.getX() > x)
-				changeX(speed, room);
+				changeX(1, room);
 			if (target.getX() < x)
-				changeX(speed*-1, room);
+				changeX(-1, room);
 			if (target.getY() > y)
-				changeY(speed);
+				changeY(1, room);
 			if (target.getY() < y)
-				changeY(speed*-1);
-		}
+				changeY(-1, room);
+		}*/
 
 		public void renderCharacter() 
 		{
@@ -114,18 +115,60 @@ namespace DungeonShambles.Entities
 			}
 		}
 
-		public void changeX(float theSpeed, Room room) 
+        public Boolean changeX(float delta, Dungeon dung) 
 		{
-			if (!collisionTests.wallCollision (room, x - Globals.TextureSize * 2 - speed / 2, y))
-				x += theSpeed;
+            float mod = Globals.TextureSize * -1 / 4;
+            if (delta > 0)
+                mod = Globals.TextureSize * 2;
+            
+            try
+            {
+                currentRoom.getTileAtLocation((int)(x*5+delta > 0 ? 1 : 0), (int)(y*5+delta > 0 ? 1 : 0));
+                if (!collisionTests.wallCollision(currentRoom, (x + mod - currentRoom.getOffsetX()), (y - currentRoom.getOffsetY())))
+                {
+                    x += delta * speed;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                collisionTests.setCurrentRoom(this, delta > 0 ? 3 : 1, dung);
+                return false;
+            }
+
+
 		}
 
-        public void changeX(float speed) {
-            x += speed;
-        }
+        public Boolean changeY(float delta, Dungeon dung)
+        {
+            float mod = Globals.TextureSize * -1 / 4;
+            if (delta > 0)
+                mod = Globals.TextureSize * 2;
 
-		public void changeY(float speed) {
-			y += speed;
+            try
+            {
+                currentRoom.getTileAtLocation((int)(x*5+delta > 0 ? 1 : 0), (int)(y*5+delta > 0 ? 1 : 0));
+                if (!collisionTests.wallCollision(currentRoom, (x - currentRoom.getOffsetX()), (y + mod - currentRoom.getOffsetY())))
+                {
+                    y += delta * speed;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception e)
+            {
+                collisionTests.setCurrentRoom(this, delta > 0 ? 2 : 0, dung);
+                return false;
+            }
+            
+
 		}
 
 		public float getSpeed() 
@@ -162,5 +205,12 @@ namespace DungeonShambles.Entities
 			currentRotation = r;
 		}
 
+        public void setCurrentRoom(Room cr) {
+            currentRoom = cr;
+        }
+
+        public Room getCurrentRoom() {
+            return currentRoom;
+        }
     }    
 }
