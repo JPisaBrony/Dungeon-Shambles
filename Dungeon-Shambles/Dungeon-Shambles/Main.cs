@@ -22,6 +22,7 @@ namespace DungeonShambles
         StoryMenu storyMenu;
         ControlsMenu controlMenu;
         HUD hud;
+        EndScreen endScreen;
 
         string enemyPath = "Images/ghost.png";
 
@@ -77,6 +78,7 @@ namespace DungeonShambles
             storyMenu = new StoryMenu(mainChar);
             controlMenu = new ControlsMenu(mainChar);
             hud = new HUD(mainChar);
+            endScreen = new EndScreen(mainChar);
 
             // set the main character to the center of the dungeon
             mainChar.changeX(0.9f);
@@ -129,14 +131,13 @@ namespace DungeonShambles
                     {
                         Globals.displayMainMenu = false;
                         Globals.displayStoryMenu = true;
-                        Globals.storyPage = 1;
                         Globals.currentPage = 0;
                     }
                     if (Globals.countButton == 1) Exit();
                 }
-                if (Globals.pausePage == 1)
+                if (Globals.displayPauseMenu == true) // changed here
                 {
-                    if (Globals.countButton == 0) { Globals.pausePage = 0; Globals.displayPauseMenu = false; }
+                    if (Globals.countButton == 0) { Globals.displayPauseMenu = false; }
                     if (Globals.countButton == 1) Exit();
                 }
             // esc key is pressed
@@ -149,7 +150,6 @@ namespace DungeonShambles
             else if (keyboard[OpenTK.Input.Key.P])
             {
                 Globals.displayPauseMenu = true;
-                Globals.pausePage = 1;
             }
             // down key if pressed
             else if (keyboard[OpenTK.Input.Key.Down])
@@ -166,14 +166,22 @@ namespace DungeonShambles
             else if (keyboard[OpenTK.Input.Key.Right])
             {
                 Globals.currentPage++;
-                if (Globals.storyPage == 1)
+                if (Globals.displayStoryMenu == true) 
                 {
                     Globals.displayStoryMenu = false;
+                    Globals.displayEndMenu = false;
                 }
+                
             }// left key is pressed
             else if (keyboard[OpenTK.Input.Key.Left])
             {
                 Globals.currentPage--;
+            }
+            else if (keyboard[OpenTK.Input.Key.Y])
+            {
+                Globals.displayEndMenu = false;
+                Globals.displayMainMenu = true;
+                Globals.currentPage = 1;
             }
 
             // boundaries for main menu pages
@@ -225,9 +233,17 @@ namespace DungeonShambles
                     GL.Disable(EnableCap.Blend);
                     if (Globals.displayPauseMenu == true)
                         pauseMenu.renderMenu();
-                    
-                    
-                    hud.drawHUD(0);
+                    if (Globals.displayPauseMenu == false)
+                    {
+                        float currentHealth = (float)((Globals.maxHealth - mainChar.getHealth()) / Globals.maxHealth) / 2;
+                        hud.drawHUD(currentHealth);
+
+                        if (currentHealth == 0.5)
+                        {
+                            Globals.displayEndMenu = true;
+                            endScreen.renderMenu();
+                        }
+                    }
                 }
             }
 

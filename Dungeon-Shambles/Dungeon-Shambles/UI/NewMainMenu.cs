@@ -15,6 +15,8 @@ namespace DungeonShambles
         Font controlsFont = new Font(FontFamily.GenericSerif, 20);
         Brush brush = Brushes.White;
         Brush brushHighlight = Brushes.Purple;
+        Brush titleBrush = Brushes.DarkTurquoise;
+        Brush controlsBrush = Brushes.LightSeaGreen;
 
         public NewMainMenu(GameEntities mainCharacter)
         {
@@ -33,7 +35,7 @@ namespace DungeonShambles
             quitgame.drawText("Quit", buttonFont, brush);
             quitgameHighlight.drawText("Quit", buttonFont, brushHighlight);
             title.drawText("Dungeon Shambles", titleFont, brush);
-            controls.drawText("Next  >>", controlsFont, brush);
+            controls.drawText("Next  >>", controlsFont, controlsBrush);
         }
 
 

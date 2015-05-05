@@ -34,11 +34,11 @@ namespace DungeonShambles.Entities
         public void chase(GameEntities target)
         {
             if (target.getX() > x) this.x += speed;
-            else if (target.getX() < x) this.x -= speed;
+            else if (target.getX() + speed < x) this.x -= speed;
             else
             {
                 if (target.getY() > y) this.y += speed;
-                else if (target.getY() < y) this.y -= speed;
+                else if (target.getY() + speed < y) this.y -= speed;
             }
         }       
     }

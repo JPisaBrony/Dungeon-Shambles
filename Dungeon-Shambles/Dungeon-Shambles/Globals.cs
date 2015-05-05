@@ -17,6 +17,8 @@ namespace DungeonShambles
         public static bool displayStoryMenu = false;
         // boolean for checking if the pause menu should be displayed
         public static bool displayPauseMenu = false;
+        // boolean for checking if the end menu should be displayed
+        public static bool displayEndMenu = false;
         
         // current button for menu
         public static int currentButton = 0;
@@ -25,8 +27,8 @@ namespace DungeonShambles
         // pages of menu
         public static int currentPage = 1;
         public static int lastPage = 2;
-        public static int pausePage = 0;
-        public static int storyPage = 0;
+
+        public static double maxHealth = 100;
 	}
 }
 

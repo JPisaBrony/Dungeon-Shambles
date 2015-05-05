@@ -12,8 +12,9 @@ namespace DungeonShambles.UI
         Font titleFont = new Font(FontFamily.GenericSerif, 35);
         Font contentFont = new Font(FontFamily.GenericSerif, 13);
         Font controlsFont = new Font(FontFamily.GenericSerif, 20);
-        Brush contentBrush = Brushes.Teal;
-        Brush textBrush = Brushes.White;
+        Brush contentBrush = Brushes.DarkTurquoise;
+        Brush textBrush = Brushes.Gray;
+        Brush controlsBrush = Brushes.LightSeaGreen;
 
         string steveDesription = "He is a hot, sexy, valiant young man who is ready for anything the world throws at him." + Environment.NewLine + Environment.NewLine +
                         "Steve is also a professional gamer, and one of the top players in the game “Dungeon Crawler 2015”. " + Environment.NewLine + Environment.NewLine + Environment.NewLine +
@@ -36,9 +37,9 @@ namespace DungeonShambles.UI
 
             bkgImage.importTexture("Images/800x60.jpg");
             steveImage.importTexture("meshes/SteveFront.png");
-            title.drawText("Story", titleFont, textBrush);
-            description.drawText(steveDesription, contentFont, contentBrush);
-            controls.drawText("Start  >>", controlsFont, textBrush);
+            title.drawText("Story", titleFont, contentBrush);
+            description.drawText(steveDesription, contentFont, textBrush);
+            controls.drawText("Start  >>", controlsFont, controlsBrush);
         }
 
         public void renderMenu()

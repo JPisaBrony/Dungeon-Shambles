@@ -11,8 +11,8 @@ namespace DungeonShambles.UI
         TextureImporter bkgImage, title, backControl, wasdImage, udlrImage, enterImage, printImage;
         Font titleFont = new Font(FontFamily.GenericSerif, 35);
         Font controlsFont = new Font(FontFamily.GenericSerif, 20);
-        Brush titleBrush = Brushes.White;
-        //Brush controlsBrush = Brushes.Thistle;
+        Brush titleBrush = Brushes.DeepSkyBlue;
+        Brush controlsBrush = Brushes.LightSeaGreen;
 
         public ControlsMenu(GameEntities mainCharacter)
         {
@@ -31,7 +31,7 @@ namespace DungeonShambles.UI
             enterImage.importTexture("Images/Enter.png");
             printImage.importTexture("Images/Print & F4.png");
             title.drawText("Options", titleFont, titleBrush);
-            backControl.drawText("<<  Back", controlsFont, titleBrush);
+            backControl.drawText("<<  Back", controlsFont, controlsBrush);
         }
 
         public void renderMenu()
