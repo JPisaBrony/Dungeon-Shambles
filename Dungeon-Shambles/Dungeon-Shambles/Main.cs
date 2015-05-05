@@ -305,6 +305,7 @@ namespace DungeonShambles
                             endScreen.renderMenu();
                         }
                     }
+					Globals.time++;
                 }
             }
             // switch between the two buffer
