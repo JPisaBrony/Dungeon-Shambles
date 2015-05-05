@@ -97,18 +97,15 @@ namespace DungeonShambles
             var keyboard = OpenTK.Input.Keyboard.GetState();
             // left key is pressed
 			if (keyboard [OpenTK.Input.Key.A]) {
-                
                 // change the main characters x position
                 if (mainChar.changeX(-1, dungeon))
                 {
                     // move the scene around the character in the x position
-                    GL.Translate(mainChar.getSpeed(), 0, 0); 
-
+                    GL.Translate(mainChar.getSpeed(), 0, 0);
                 }
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D]) {
-
                 // decrease the main characters x position
                 if (mainChar.changeX(1, dungeon))
                 {
@@ -117,20 +114,17 @@ namespace DungeonShambles
                 }
 			}
             // up key is pressed
-			else if (keyboard [OpenTK.Input.Key.W]) {
-                
+			if (keyboard [OpenTK.Input.Key.W]) {                
                 // change the main characters y position
                 if (mainChar.changeY(1, dungeon))
-                {
-                    
+                {                    
                     // move the scene around the character in the y position
                     GL.Translate(0, mainChar.getSpeed() * -1, 0);
 
                 }
 			}
             // down key is pressed
-			else if (keyboard [OpenTK.Input.Key.S]) {
-                collisionTests.setCurrentRoom(mainChar, 0, dungeon);
+			else if (keyboard [OpenTK.Input.Key.S]) {                
                 // decrease the main characters x position
                 if (mainChar.changeY(-1, dungeon))
                 {

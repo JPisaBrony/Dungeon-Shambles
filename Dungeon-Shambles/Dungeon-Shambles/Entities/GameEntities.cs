@@ -81,7 +81,7 @@ namespace DungeonShambles.Entities
 
         public Boolean changeX(float delta, Dungeon dung) 
 		{
-            float mod = Globals.TextureSize * -1 / 10;
+            float mod = Globals.TextureSize * -1 / 4;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
             
@@ -109,7 +109,7 @@ namespace DungeonShambles.Entities
 
         public Boolean changeY(float delta, Dungeon dung)
         {
-            float mod = Globals.TextureSize * -1 / 10;
+            float mod = Globals.TextureSize * -1 / 4;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
 
