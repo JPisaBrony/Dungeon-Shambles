@@ -6,7 +6,6 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DungeonShambles.UI;
 using DungeonShambles.Entities;
-using QuickFont;
 using System.Collections.Generic;
 
 namespace DungeonShambles

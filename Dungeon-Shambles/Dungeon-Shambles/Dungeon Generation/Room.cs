@@ -48,16 +48,16 @@ namespace DungeonShambles
         public void setDoor(int side, int offset) {
             switch (side) {
                 case 0:
-                    setTileAtLocation(offset, 0, false, true);
+					setTileAtLocation(tileNames[9], offset, 0, false, true);
                     break;
                 case 1:
-                    setTileAtLocation(0, offset, false, true);
+                    setTileAtLocation(tileNames[10], 0, offset, false, true);
                     break;
                 case 2:
-                    setTileAtLocation(offset, roomHeight - 1, false, true);
+                    setTileAtLocation(tileNames[11], offset, roomHeight - 1, false, true);
                     break;
                 case 3:
-                    setTileAtLocation(roomWidth - 1, offset, false, true);
+                    setTileAtLocation(tileNames[12], roomWidth - 1, offset, false, true);
                     break;
             }
         }
@@ -72,8 +72,8 @@ namespace DungeonShambles
 			}
 		}
 
-        private void setTileAtLocation(int x, int y, Boolean wall, Boolean door) {
-            tiles[x, y] = new Tile (tileNames [0], tileSize, tileSize, wall, door);
+        private void setTileAtLocation(String name, int x, int y, Boolean wall, Boolean door) {
+            tiles[x, y] = new Tile (name, tileSize, tileSize, wall, door);
         }
 
 		public Tile getTileAtLocation(int x, int y) {

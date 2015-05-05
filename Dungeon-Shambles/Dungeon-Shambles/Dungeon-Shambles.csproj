@@ -41,9 +41,6 @@
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="QuickFont">
-      <HintPath>bin\Debug\QuickFont.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collision Detection\collisionTests.cs" />
@@ -98,9 +95,7 @@
     <Compile Include="UI\ControlsMenu.cs" />
     <Compile Include="UI\EndScreen.cs" />
     <Compile Include="UI\HUD.cs" />
-    <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\PauseMenu.cs" />
-    <Compile Include="UI\Stats.cs" />
     <Compile Include="StaticMethodDump.cs" />
     <Compile Include="Entities\GameEntities.cs" />
     <Compile Include="Entities\PlayerCharacter\Player.cs" />

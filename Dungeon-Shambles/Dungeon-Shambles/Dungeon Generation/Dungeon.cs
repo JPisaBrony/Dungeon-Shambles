@@ -18,7 +18,11 @@ namespace DungeonShambles
 			"meshes/Tiles/SWCorner.png",
 			"meshes/Tiles/NWCorner.png",
 			"meshes/Tiles/NECorner.png",
-			"meshes/Tiles/SECorner.png"
+			"meshes/Tiles/SECorner.png",
+			"meshes/Tiles/SouthWallClosedDoor.png",
+			"meshes/Tiles/WestWallClosedDoor.png",
+			"meshes/Tiles/NorthWallClosedDoor.png",
+			"meshes/Tiles/EastWallClosedDoor.png"
 		};
 
         public Dungeon (int r, int minSize, int maxSize) {
