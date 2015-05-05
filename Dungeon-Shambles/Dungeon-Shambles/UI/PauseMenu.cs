@@ -1,107 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
-using QuickFont;
 using System.Drawing;
+using OpenTK.Graphics.OpenGL;
+using DungeonShambles.Entities;
 
 namespace DungeonShambles.UI
 {
     public class PauseMenu
     {
-        // fields
-        QFont title, buttonHighlight, button, nothing;
-        List<string> buttons;
+        TextureImporter title, resumeGame, resumeGameHighlight, quitGame, quitGameHighlight, bkgImage;
+        GameEntities mainChar;
+        Font titleFont = new Font(FontFamily.GenericSerif, 35);
+        Font buttonFont = new Font(FontFamily.GenericSerif, 25);
+        Brush controlsBrush = Brushes.Teal;
+        Brush normalBrush = Brushes.White;
 
-        int currentButton = 0;
-
-        OpenTK.Input.KeyboardKeyEventArgs oldState;
-
-        TextureImporter text1;
-
-        public PauseMenu()
-		{
-            oldState = new OpenTK.Input.KeyboardKeyEventArgs();
-
-            // gray bkgd color
-            GL.ClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-
-            text1 = new TextureImporter();
-            text1.importTexture("Images/800x60.jpg");
-
-            buttons = new List<string>();
-            buttons.Add("Resume");
-            buttons.Add("Save Game");
-            buttons.Add("Quit");
-
-            button = QFont.FromQFontFile("UI/Fonts/woodenFont.qfont", 1.0f, new QFontLoaderConfiguration(true));
-            button.Options.DropShadowActive = true;
-            buttonHighlight = QFont.FromQFontFile("UI/Fonts/woodenFont.qfont", 1.0f, new QFontLoaderConfiguration(true));
-            buttonHighlight.Options.DropShadowActive = true;
-            button.Options.Colour = new Color4(0.7f, 0.7f, 0.7f, 1.0f);
-
-            title = new QFont("UI/Fonts/Dungeon.TTF", 80, FontStyle.Regular);
-            title.Options.Colour = new Color4(0.7f, 0.7f, 0.7f, 1.0f);
-            title.Options.DropShadowActive = true;
-
-            nothing = new QFont("UI/Fonts/Rock.TTF", 1, FontStyle.Regular);
-        }
-
-      /*  public void Update()
+        public PauseMenu(GameEntities mainCharacter)
         {
-            KeyState();
-        }*/
+            mainChar = mainCharacter;
 
-        public void RenderMenu()
+            bkgImage = new TextureImporter();
+            title = new TextureImporter();
+            resumeGame = new TextureImporter();
+            resumeGameHighlight = new TextureImporter();
+            quitGame = new TextureImporter();
+            quitGameHighlight = new TextureImporter();
+
+            bkgImage.importTexture("Images/800x60.jpg");
+            title.drawText("The Game is Paused ...", titleFont, normalBrush);
+            resumeGame.drawText("Resume", buttonFont, normalBrush);
+            resumeGameHighlight.drawText("Resume", buttonFont, controlsBrush);
+            quitGame.drawText("Quit", buttonFont, normalBrush);
+            quitGameHighlight.drawText("Quit", buttonFont, controlsBrush);
+
+        public void renderMenu()
         {
-            float yOffset = 25;
-            int count = 0;
-
-            QFont.Begin();
-            nothing.Print("NO", QFontAlignment.Centre);
-            text1.renderTexture(1.0f, 0f, 0f);
-            title.Print("Pause Menu", QFontAlignment.Centre);
-
-            yOffset += 175;
-            foreach (string s in buttons)
+            bkgImage.renderTexture(1, mainChar.getX(), mainChar.getY());
+            GL.Enable(EnableCap.Blend);
+            title.renderTexture(1, mainChar.getX() + 0.5f, mainChar.getY() - 0.2f);
+            if (Globals.countButton == Globals.currentButton)
             {
-                if (count == currentButton)
-                {
-                    buttonHighlight.Options.Colour = new Color4(3.0f, 0.0f, 1.5f, 1.9f);
-                    buttonHighlight.Print(s, QFontAlignment.Centre);
-                }
-                else
-                {
-                    button.Options.DropShadowActive = false;
-                    button.Print(s, QFontAlignment.Centre, new Vector2(Globals.WindowWidth * 0.5f, yOffset));
-                }
-                yOffset += button.Measure(s).Height + (50);
-                count++;
+                resumeGameHighlight.renderTexture(1, mainChar.getX() + 0.9f, mainChar.getY() - 0.95f);
+                quitGame.renderTexture(1, mainChar.getX() + 0.9f, mainChar.getY() - 1.15f);
             }
-
-            QFont.End();
-        }
-
-      /*  private void KeyState()
-        {
-            OpenTK.Input.KeyboardKeyEventArgs newState = new KeyboardKeyEventArgs();
-
-            switch (newState.Key)
+            else
             {
-                case Key.Up:
-					if (currentButton != 0)
-						currentButton--;
-					break;
-                case Key.Down:
-					if (currentButton < 2)
-                    	currentButton++;
-                    break;
+                resumeGame.renderTexture(1, mainChar.getX() + 0.9f, mainChar.getY() - 0.95f);
+                quitGameHighlight.renderTexture(1, mainChar.getX() + 0.9f, mainChar.getY() - 1.15f);
             }
-
-            oldState = newState;
+            GL.Disable(EnableCap.Blend);
         }
+
+
        * */
     }
 }

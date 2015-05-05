@@ -13,10 +13,10 @@ namespace DungeonShambles.Entities
 		protected float collisionOffset = Globals.TextureSize / 2;
 		// create a texture for the character
 		protected TextureImporter characterImage = new TextureImporter ();
-        protected Double health;
-		protected Double mana;
-		protected Double meleeModifier;
-		protected Double magicModifier;
+        protected double health;
+		protected double mana;
+		protected double meleeModifier;
+		protected double magicModifier;
 		// character x and y position
 		protected float x, y;
 		// character movement speed can only be multiples of 2
@@ -64,20 +64,19 @@ namespace DungeonShambles.Entities
 			moving = false;
 		}
 
-		public GameEntities(String ci, float inputX, float inputY)
+		public GameEntities(string ci, float inputX, float inputY)
 		{
 			characterImage.importTexture (ci);
 			x = 0f;
 			y = 0f;
 			speed = 0.015f;
-			health = 1;
-			mana = 0;
+			health = 100;
 			meleeModifier = 0;
 			magicModifier = 0;
 		}
 
-		public GameEntities(String ci, float initialX, float initialY,
-			float initialSpeed, Double h, Double m, Double cMod, Double aMod)
+		public GameEntities(string ci, float initialX, float initialY,
+			float initialSpeed, double h, double m, double cMod, double aMod)
         {
 			characterImage.importTexture (ci);
 			x = initialX;
@@ -212,6 +211,11 @@ namespace DungeonShambles.Entities
 
         public Room getCurrentRoom() {
             return currentRoom;
+        }
+        
+        public double getHealth()
+        {
+            return health;
         }
     }    
 }
