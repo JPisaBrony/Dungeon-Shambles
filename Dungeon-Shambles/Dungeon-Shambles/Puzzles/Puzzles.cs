@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using DungeonShambles.Entities;
 
 namespace DungeonShambles
 {
     class Puzzles
     {
-        MainCharacter main;
+        GameEntities main;
         List<Keys> keys = new List<Keys>();
         List<Levers> levers = new List<Levers>();
         List<RockCollision> rocks = new List<RockCollision>();
         List<TargetTest> targets = new List<TargetTest>();
-        public Puzzles(MainCharacter init, Dungeon dungeon)
+        public Puzzles(GameEntities init, Dungeon dungeon)
         {
             main = init;
             Room[] rooms = dungeon.getRooms();
@@ -35,6 +36,7 @@ namespace DungeonShambles
             }
 
             used = spawnLevers(allRooms);
+            Console.WriteLine("Done with levers");
 
             foreach (Room room in used)
             {
@@ -42,7 +44,7 @@ namespace DungeonShambles
             }
 
             spawnKeys(allRooms);
-
+            Console.WriteLine("Done with keys");
         }
 
 
@@ -64,13 +66,21 @@ namespace DungeonShambles
 
         public List<Room> spawnLevers(List<Room> destinations)
         {
+            int leverRooms;
             List<Room> used = new List<Room>();
-            int leverRooms = destinations.Count() /2 -1;
+            if (destinations.Count() < 4)
+            {
+                leverRooms = destinations.Count();
+            }
+            else
+            {
+                leverRooms = 3;
+            }
             
             int count = 0;
             foreach (Room room in destinations)
             {
-                if (room.getRoomWidth() < 5 || room.getRoomHeight() < 5)
+                if (room.getRoomWidth() < 6 || room.getRoomHeight() < 6)
                 {
                     if (count < leverRooms)
                     {
@@ -80,7 +90,7 @@ namespace DungeonShambles
                         used.Add(room);
                     }
                 }
-                else if (room.getRoomWidth() < 7 || room.getRoomHeight() < 7)
+                else if (room.getRoomWidth() < 8 || room.getRoomHeight() < 8)
                 {
                     if (count < leverRooms)
                     {
@@ -123,8 +133,16 @@ namespace DungeonShambles
         //returns list of rooms used
         public List<Room> spawnRocks(List<Room> destinations)
         {
+            int x;
             //Adjust divisor to control room frequency
-            int x = destinations.Count() / 2;
+            if (destinations.Count() < 3)
+            {
+                x = destinations.Count();
+            }
+            else
+            {
+                x = 2;
+            }
             int count = 0;
             List<Room> used = new List<Room>();
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
+using DungeonShambles.Entities;
 namespace DungeonShambles
 {
     public class RockCollision
@@ -47,7 +47,7 @@ namespace DungeonShambles
         {
             rocks.Add(rock);
         }
-        public void collisionTest(MainCharacter main, int direction)
+        public void collisionTest(GameEntities main, int direction)
         {
             foreach (Rock rock in rocks)
             {
@@ -58,28 +58,28 @@ namespace DungeonShambles
                         if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX())*5 - rock.getX()) < offset &&
                             Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseX(- .5f);
+                            rock.increaseX(- .2f);
                         }
                         break;
                     case 2:
                         if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
                             Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseX(.5f);
+                            rock.increaseX(.2f);
                         }
                         break;
                     case 3:
                         if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
                             Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseY(.5f);
+                            rock.increaseY(.2f);
                         }
                         break;
                     case 4:
                         if (Math.Abs((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - rock.getX()) < offset &&
                             Math.Abs((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - rock.getY()) < offset)
                         {
-                            rock.increaseY(-.5f);
+                            rock.increaseY(-.2f);
                         }
                         break;
                 }

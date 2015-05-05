@@ -49,10 +49,10 @@ namespace DungeonShambles.UI
             nothing = new QFont("UI/Fonts/Rock.TTF", 1, FontStyle.Regular);
         }
 
-        public void Update()
+      /*  public void Update()
         {
             KeyState();
-        }
+        }*/
 
         public void RenderMenu()
         {
@@ -84,7 +84,7 @@ namespace DungeonShambles.UI
             QFont.End();
         }
 
-        private void KeyState()
+      /*  private void KeyState()
         {
             OpenTK.Input.KeyboardKeyEventArgs newState = new KeyboardKeyEventArgs();
 
@@ -102,5 +102,6 @@ namespace DungeonShambles.UI
 
             oldState = newState;
         }
+       * */
     }
 }

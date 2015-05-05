@@ -13,7 +13,7 @@ namespace DungeonShambles
 
         public Target(int xPos, int yPos)
         {
-            target.importTexture("meshes/target.jpg");
+            target.importTexture("meshes/Puzzle-Tiles/pressure-plate.png");
             x = xPos;
             y = yPos;
         }

@@ -18,6 +18,9 @@ namespace DungeonShambles
 		Dungeon dungeon;
 		NewMainMenu MainMenu;
 
+        Puzzles puzzles;
+        List<RockCollision> collisions;
+        
         // setup the window width and height
         public Game() : base(Globals.WindowWidth, Globals.WindowHeight) { }
 
@@ -70,6 +73,9 @@ namespace DungeonShambles
             mainChar.changeX(0.9f);
             mainChar.changeY(0.9f);
             GL.Translate(-0.9, -0.9, 0);
+
+            puzzles = new Puzzles(mainChar, dungeon);
+            collisions = puzzles.getRockCollision();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -83,8 +89,16 @@ namespace DungeonShambles
 				mainChar.setRotation (2);
 				// set the player to be moving
 				mainChar.setMoving (true);
+
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 1);
+                }
+
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed (), 0, 0);
+
+                
 			}
             // right key is pressed
 			else if (keyboard [OpenTK.Input.Key.D] && !Globals.displayMainMenu) {
@@ -94,6 +108,12 @@ namespace DungeonShambles
 				mainChar.setRotation (3);
 				// set the player to be moving
 				mainChar.setMoving (true);
+
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 2);
+                }
+
 				// move the scene around the character in the x position
 				GL.Translate (mainChar.getSpeed () * -1, 0, 0);
 			}
@@ -105,6 +125,12 @@ namespace DungeonShambles
 				mainChar.setRotation (1);
 				// set the player to be moving
 				mainChar.setMoving (true);
+
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 3);
+                }
+
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed () * -1, 0);
 			}
@@ -116,6 +142,12 @@ namespace DungeonShambles
 				mainChar.setRotation (0);
 				// set the player to be moving
 				mainChar.setMoving (true);
+
+                foreach (RockCollision test in collisions)
+                {
+                    test.collisionTest(mainChar, 4);
+                }
+
 				// move the scene around the character in the y position
 				GL.Translate (0, mainChar.getSpeed (), 0);
 			// temporary key presses
@@ -126,6 +158,11 @@ namespace DungeonShambles
 			} else if (keyboard [OpenTK.Input.Key.Escape]) {
 				Globals.displayMainMenu = true;
 			}
+
+            else if (keyboard[OpenTK.Input.Key.Space])
+            {
+                puzzles.puzzleActions();
+            }
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -141,6 +178,9 @@ namespace DungeonShambles
             else {
 				// render the dungeon
 				dungeon.renderDungeon();
+
+                puzzles.renderPuzzles();
+
 				// render the main character
 				//GL.Enable(EnableCap.Blend);
 				// render the main characters animations

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
-
+using DungeonShambles.Entities;
 namespace DungeonShambles
 {
     public class Levers
@@ -40,14 +40,14 @@ namespace DungeonShambles
 
 
 
-        public void flipLever(MainCharacter main)
+        public void flipLever(GameEntities main)
         {
             foreach (Lever lever in levers)
             {
-                if (Math.Abs(((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - lever.getX())) < .05 &&
+                if (Math.Abs(((main.getX() - currentRoom.getcoordinateOffsetX()) * 5 - lever.getX())) < .5 &&
 
-                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) > -1.2 &&
-                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) < -.9)
+                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) > -1.5 &&
+                    ((main.getY() - currentRoom.getcoordinateOffsetY()) * 5 - lever.getY()) < -.5)
                 {
                     if (lever.getFlipped() == false)
                     {

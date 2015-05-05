@@ -93,10 +93,10 @@ namespace DungeonShambles.UI
             nothing = new QFont("UI/Fonts/Rock.TTF", 1, FontStyle.Regular);
         }
 
-        public void Update()
+       /* public void Update()
         {
             KeyState();
-        }
+        }*/
 
         public void RenderMenu()
         {
@@ -183,7 +183,7 @@ namespace DungeonShambles.UI
         }
 
         // State of keys
-        public void KeyState()
+        /*public void KeyState()
         {
             OpenTK.Input.KeyboardKeyEventArgs newState = new KeyboardKeyEventArgs();
             
@@ -223,7 +223,7 @@ namespace DungeonShambles.UI
                         }
                     }
                     break;
-                 */
+                 
 
                 case Key.Down:
                     {
@@ -246,5 +246,6 @@ namespace DungeonShambles.UI
             if (currentPage < 1)
                 currentPage = 1;
         }
+         * */
     }
 }

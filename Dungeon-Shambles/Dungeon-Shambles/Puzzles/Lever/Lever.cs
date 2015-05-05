@@ -17,8 +17,8 @@ namespace DungeonShambles
 
         public Lever(float xPos, float yPos)
         {
-            leftLever.importTexture("meshes/LeftLever.png");
-            rightLever.importTexture("meshes/RightLever.png");
+            leftLever.importTexture("meshes/Puzzle-Tiles/Lever1.png");
+            rightLever.importTexture("meshes/Puzzle-Tiles/Lever2.png");
             current = leftLever;
             x = xPos;
             y = yPos;

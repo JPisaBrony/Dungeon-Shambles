@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
-
+using DungeonShambles.Entities;
 namespace DungeonShambles
 {
     
@@ -39,12 +39,12 @@ namespace DungeonShambles
         }
 
 
-        public void pickUpKey(MainCharacter main)
+        public void pickUpKey(GameEntities main)
         {
             foreach (Key key in keys)
 
-                if (Math.Abs(((main.getX() -currentRoom.getcoordinateOffsetX())*5 - key.getX())) < .05 &&
-                    Math.Abs(((main.getY() -currentRoom.getcoordinateOffsetY())*5 - key.getY())) < .05)
+                if (Math.Abs(((main.getX() -currentRoom.getcoordinateOffsetX())*5 - key.getX())) < .5 &&
+                    Math.Abs(((main.getY() -currentRoom.getcoordinateOffsetY())*5 - key.getY())) < .5)
                 {
                     key.pickUp();
                 }

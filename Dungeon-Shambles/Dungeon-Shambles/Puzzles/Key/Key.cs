@@ -13,7 +13,7 @@ namespace DungeonShambles
         private bool pickedUp = false;
         public Key(float xPos, float yPos)
         {
-            key.importTexture("meshes/key.jpg");
+            key.importTexture("meshes/Puzzle-Tiles/key.png");
             x = xPos;
             y = yPos;
         }

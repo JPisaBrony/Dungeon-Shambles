@@ -13,7 +13,7 @@ namespace DungeonShambles
         
         public Rock(int xPos, int yPos)
         {
-            rock.importTexture("meshes/rock.png");
+            rock.importTexture("meshes/Puzzle-Tiles/boulder.png");
             x = xPos;
             y = yPos;
         }
