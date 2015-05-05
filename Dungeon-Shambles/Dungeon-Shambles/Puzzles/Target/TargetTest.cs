@@ -16,6 +16,7 @@ namespace DungeonShambles
         RockCollision rocks;
         public TargetTest(Room r, int x, int[] xValues, int[] yValues, RockCollision input)
         {
+            currentRoom = r;     
             rocks = input;
             int count = 0;
             while (count < x)
@@ -42,18 +43,7 @@ namespace DungeonShambles
                     targets.Add(target);
                     count++;
                 }
-            }
-            
-            foreach (Target target in targets)
-                Console.WriteLine(target.getX() + ", " + target.getY());
-
-            Console.WriteLine("BREAK");
-
-            for (int i = 0; i < xValues.Length; i++)
-                Console.WriteLine(xValues[i] + ", " + yValues[i]);
-
-            Console.WriteLine("BREAK");
-                currentRoom = r;
+            }           
         }
 
         public void addTarget(Target target)

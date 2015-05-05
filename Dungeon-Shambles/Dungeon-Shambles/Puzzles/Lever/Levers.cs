@@ -36,13 +36,6 @@ namespace DungeonShambles
                     count++;
                 }
             }
-
-            /*HashSet<int> numbers = new HashSet<int>();
-            while (numbers.Count < levers.Count)
-            {
-                numbers.Add(rand.Next(0, levers.Count));
-            }
-             */
         }
 
 

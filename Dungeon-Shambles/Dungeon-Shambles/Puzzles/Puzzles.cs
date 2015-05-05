@@ -19,10 +19,9 @@ namespace DungeonShambles
             main = init;
             Room[] rooms = dungeon.getRooms();
 
-            
-
             List<Room> rockRooms = getRockPuzzleRooms(dungeon);
             List<Room> used = spawnRocks(rockRooms);
+            Console.WriteLine("Done with rocks");
 
             List<Room> allRooms = new List<Room>();
 
@@ -107,11 +106,11 @@ namespace DungeonShambles
 
         public List<Room> getRockPuzzleRooms(Dungeon dungeon)
         {
-            Room[] rooms = dungeon.getRooms();
+            Room[] rooms = dungeon.getRooms(); 
             List<Room> rockRooms = new List<Room>();
             foreach (Room room in rooms)
             {
-                if (room.getRoomHeight() > 4 && room.getRoomWidth() > 4)
+                if (room.getRoomHeight() > 5 && room.getRoomWidth() > 5)
                 {
                     rockRooms.Add(room);
                 }
@@ -182,9 +181,6 @@ namespace DungeonShambles
 
         public void renderPuzzles()
         {
-           // keys.renderKeys();
-
-
             foreach (TargetTest test in targets)
             {
                 test.renderTargets();
