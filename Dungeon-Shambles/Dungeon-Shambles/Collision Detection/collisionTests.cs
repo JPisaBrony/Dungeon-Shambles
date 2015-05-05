@@ -8,7 +8,7 @@ using DungeonShambles.Entities;
 namespace DungeonShambles
 {
     public static class collisionTests
-    { 
+    {
 
         public static Boolean collision(GameEntities ob1, GameEntities ob2)
         {
@@ -29,17 +29,25 @@ namespace DungeonShambles
 				return false;
 		}
 
-        public static Boolean passDoor(Room current, float x, float y)
-        {
-            try{
-            if (current.getTileAtLocation((int)(x*5+1), (int)(y*5+1)).getIsDoor())
-                return true;
-            else
-                return false;
-            }
-            catch(Exception e)
-            {
-                return true;
+        public static void setCurrentRoom(GameEntities player, int direction, Dungeon dungeon) {
+            Room r = player.getCurrentRoom();
+            switch (direction) {
+                case 0: // down
+                    if (r.getOffsetY() > player.getY())
+                        player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
+                    break;
+                case 1: // left
+                    if (r.getOffsetX() > player.getX())
+                        player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
+                    break;
+                case 2: // up
+                    if ((r.getRoomHeight()/5.0f - r.getOffsetY() - Globals.TextureSize * 2) < player.getY())
+                        player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
+                    break;
+                case 3: // right
+                    if (r.getRoomWidth()/5.0f - r.getOffsetX() - Globals.TextureSize * 2 < player.getX())
+                        player.setCurrentRoom(roomTransition(player.getCurrentRoom(), dungeon, direction));
+                    break;
             }
         }
 
@@ -72,11 +80,13 @@ namespace DungeonShambles
                 switch (direction)
                 {
                     case 0:
-                        return (Room)currentDungeon.getRooms().GetValue(4);
+                        return (Room)currentDungeon.getRooms().GetValue(7);
                     case 1:
-                        return (Room)currentDungeon.getRooms().GetValue(1);
+                        return (Room)currentDungeon.getRooms().GetValue(5);
                     case 2:
-                        return (Room)currentDungeon.getRooms().GetValue(2);
+                        return (Room)currentDungeon.getRooms().GetValue(6);
+                    case 3:
+                        return (Room)currentDungeon.getRooms().GetValue(0);
                 }
 
             //room[3] down to room[10]

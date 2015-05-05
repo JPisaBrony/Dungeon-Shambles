@@ -1,6 +1,13 @@
-﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Entities/GameEntities.cs">
+    <Files>
+      <File FileName="Dungeon-Shambles/Main.cs" Line="45" Column="45" />
+      <File FileName="Dungeon-Shambles/Entities/PlayerCharacter/Player.cs" Line="38" Column="38" />
+      <File FileName="Dungeon-Shambles/Entities/GameEntities.cs" Line="5" Column="5" />
+      <File FileName="Dungeon-Shambles/TextureImporter.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

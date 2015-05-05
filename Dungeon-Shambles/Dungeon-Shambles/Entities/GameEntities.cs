@@ -81,11 +81,11 @@ namespace DungeonShambles.Entities
 
         public Boolean changeX(float delta) 
 		{
-            float mod = Globals.TextureSize*-1/10;
+            float mod = Globals.TextureSize * -1 / 10;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
 
-            if (!collisionTests.wallCollision(currentRoom, x + mod + currentRoom.getOffsetX(), y + currentRoom.getOffsetY()))
+            if (!collisionTests.wallCollision(currentRoom, x + mod - currentRoom.getOffsetX(), y - currentRoom.getOffsetY()))
             {
                 x += delta * speed;
                 return true;
@@ -98,11 +98,11 @@ namespace DungeonShambles.Entities
 
         public Boolean changeY(float delta)
         {
-            float mod = Globals.TextureSize*-1/10;
+            float mod = Globals.TextureSize * -1 / 10;
             if (delta > 0)
                 mod = Globals.TextureSize * 2;
             
-            if (!collisionTests.wallCollision(currentRoom, x + currentRoom.getOffsetX(), y + mod + currentRoom.getOffsetY()))
+            if (!collisionTests.wallCollision(currentRoom, x - currentRoom.getOffsetX(), y + mod - currentRoom.getOffsetY()))
             {
                 y += delta * speed;
                 return true;
@@ -131,5 +131,12 @@ namespace DungeonShambles.Entities
 		public void setX(float inputX) {x = inputX;}
 		public void setY(float inputY) {y = inputY;}
 
+        public void setCurrentRoom(Room cr) {
+            currentRoom = cr;
+        }
+
+        public Room getCurrentRoom() {
+            return currentRoom;
+        }
     }    
 }
