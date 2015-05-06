@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DungeonShambles.Entities;
 
-namespace DungeonShambles.Projectile
+namespace DungeonShambles
 {
 	public class Projectile : GameEntities
 	{
-		static String image = "ghost.png";
+		static String image = "meshes/Sword/sword.png";
 		public Projectile (GameEntities shooter) :
 		base (image, shooter.getX(), shooter.getY())
 		{
