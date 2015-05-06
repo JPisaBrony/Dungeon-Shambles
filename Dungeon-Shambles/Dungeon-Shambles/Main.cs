@@ -23,8 +23,6 @@ namespace DungeonShambles
         HUD hud;
         EndScreen endScreen;
 
-        string enemyPath = "Images/ghost.png";
-
         Puzzles puzzles;
         List<RockCollision> collisions;
         
