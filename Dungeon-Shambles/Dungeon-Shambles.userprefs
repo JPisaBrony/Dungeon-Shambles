@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
+﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Dungeon Generation/Room.cs">
     <Files>
