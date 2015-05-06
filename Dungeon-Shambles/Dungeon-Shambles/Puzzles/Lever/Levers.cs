@@ -14,6 +14,8 @@ namespace DungeonShambles
         static Random rand = new Random();
         Room currentRoom;
         private ArrayList levers = new ArrayList();
+		bool trueReturned = false;
+
         public Levers(Room r, int x)
         {
             int count = 0;
@@ -64,7 +66,7 @@ namespace DungeonShambles
         }
 
         public bool checkLeverFlips()
-        {
+		{
             bool solved = false;
             if (levers.Count == 1)
             {
@@ -114,7 +116,13 @@ namespace DungeonShambles
                 if (temp1.getFlipped() == true && temp2.getFlipped() == true && temp3.getFlipped())
                     solved = true;
             }
-            return solved;
+
+			if (solved == true)
+			{
+				trueReturned = true;
+			}
+
+			return solved;
         }
 
         public void renderLevers()
@@ -124,5 +132,11 @@ namespace DungeonShambles
                 currentRoom.setAboveTileAtLocation(lever.getX(), lever.getY(), lever.getCurrentTexture());
             }
         }
+
+		public bool getTrueReturned()
+		{
+			return trueReturned;
+		}
+
     }
 }

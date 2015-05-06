@@ -86,5 +86,10 @@ namespace DungeonShambles
                 currentRoom.setAboveTileAtLocation(target.getX(), target.getY(), target.getTexture());
             }
         }
+
+		public Room getRoom()
+		{
+			return currentRoom;
+		}
     }
 }

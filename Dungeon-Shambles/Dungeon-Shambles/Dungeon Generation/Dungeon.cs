@@ -35,7 +35,7 @@ namespace DungeonShambles
 			rooms = new Room[numberOfRooms];
 			Random rng = new Random ();
 			for (int i = 0; i < numberOfRooms; i++) {
-				Room newRoom = new Room (Tilenames, 1);
+				Room newRoom = new Room (Tilenames, 1, i);
                 newRoom.generateRoom (rng.Next(minRoomSize, maxRoomSize), rng.Next(minRoomSize, maxRoomSize));
 				rooms [i] = newRoom;
 			}
