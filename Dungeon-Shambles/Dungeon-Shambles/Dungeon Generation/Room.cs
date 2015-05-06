@@ -10,6 +10,7 @@ namespace DungeonShambles
 		private int tileSize;
         private float coordinateOffsetX;
         private float coordinateOffsetY;
+		private DoorSavedVariables[] doorVariables;
 
 		public Room (string[] tNames, int tSize) {
 			tileSize = tSize;
@@ -45,19 +46,32 @@ namespace DungeonShambles
 			}
 		}
 
-        public void setDoor(int side, int offset) {
+		public void setDoor(int side, int offset, Boolean locked, int index) {
+			doorVariables [index] = new DoorSavedVariables (side, offset);
             switch (side) {
                 case 0:
-					setTileAtLocation(tileNames[9], offset, 0, false, true);
+					if(locked)
+						setTileAtLocation(tileNames[9], offset, 0, true, true);
+					else
+						setTileAtLocation(tileNames[0], offset, 0, false, true);
                     break;
                 case 1:
-                    setTileAtLocation(tileNames[10], 0, offset, false, true);
+					if(locked)
+                    	setTileAtLocation(tileNames[10], 0, offset, true, true);
+					else
+						setTileAtLocation(tileNames[0], 0, offset, false, true);
                     break;
                 case 2:
-                    setTileAtLocation(tileNames[11], offset, roomHeight - 1, false, true);
+					if(locked)
+                    	setTileAtLocation(tileNames[11], offset, roomHeight - 1, true, true);
+					else
+						setTileAtLocation(tileNames[0], offset, roomHeight - 1, false, true);
                     break;
                 case 3:
-                    setTileAtLocation(tileNames[12], roomWidth - 1, offset, false, true);
+					if(locked)
+                    	setTileAtLocation(tileNames[12], roomWidth - 1, offset, true, true);
+					else
+						setTileAtLocation(tileNames[0], roomWidth - 1, offset, false, true);
                     break;
             }
         }
@@ -70,6 +84,16 @@ namespace DungeonShambles
 					tiles [i,j].renderTile (Globals.TextureSize, i * Globals.TextureSize * 2 + offsetX, j * Globals.TextureSize * 2 + offsetY);
 				}
 			}
+		}
+
+		public void setDoorAndAdjacentRoom(Dungeon dungeon, int door, int adj, int index) {
+			Room r = dungeon.getRooms () [adj];
+			setDoor (doorVariables [door].getSide (), doorVariables [door].getOffset (), false, door);
+			r.setDoor (r.getDoorVars()[index].getSide (), r.getDoorVars()[index].getOffset (), false, index);
+		}
+
+		public void setNumberOfDoors(int s) {
+			doorVariables = new DoorSavedVariables[s];
 		}
 
         private void setTileAtLocation(String name, int x, int y, Boolean wall, Boolean door) {
@@ -99,5 +123,9 @@ namespace DungeonShambles
         public float getOffsetY() {
             return coordinateOffsetY;
         }
+
+		public DoorSavedVariables[]  getDoorVars() {
+			return doorVariables;
+		}
 	}
 }

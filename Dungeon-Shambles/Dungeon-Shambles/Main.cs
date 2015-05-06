@@ -239,6 +239,8 @@ namespace DungeonShambles
             else if (keyboard[OpenTK.Input.Key.Space])
             {
                 puzzles.puzzleActions();
+				mainChar.getCurrentRoom().setDoorAndAdjacentRoom (dungeon, 1, 2, 0);
+				//mainChar.getCurrentRoom ().setDoorUnlocked (dungeon, 0);
             }
             // boundaries for main menu pages
             if (Globals.currentPage > Globals.lastPage)
