@@ -14,7 +14,7 @@ namespace DungeonShambles
     {
         // object references to pass between OnLoad and OnRenderFrame
         GameEntities mainChar;
-        Enemy enemy;
+		GameEntities enemy;
         Dungeon dungeon;
         NewMainMenu MainMenu;
         PauseMenu pauseMenu;
@@ -22,8 +22,6 @@ namespace DungeonShambles
         ControlsMenu controlMenu;
         HUD hud;
         EndScreen endScreen;
-
-        string enemyPath = "Images/ghost.png";
 
         Puzzles puzzles;
         List<RockCollision> collisions;
@@ -67,8 +65,7 @@ namespace DungeonShambles
             GL.ClearColor(Color.Black);
             // create the main character
 			mainChar = new Player ();
-            enemy = new Enemy(enemyPath, mainChar.getX() + 1.5f, mainChar.getY() + 1.5f);
-
+            
             // create a new dungeon object
 			dungeon = new Dungeon (11, 4, 10);
             // generate a new dungeon
@@ -96,6 +93,8 @@ namespace DungeonShambles
             mainChar.setY(0.9f);
             //offsetY = 0;
             GL.Translate(-0.9, -0.9, 0);
+			enemy = new Ghost(mainChar.getX(), mainChar.getY());
+			enemy.setCurrentRoom (mainChar.getCurrentRoom());
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -138,7 +137,7 @@ namespace DungeonShambles
 				}
 			}
             // up key is pressed
-            if (keyboard[OpenTK.Input.Key.W] && !Globals.displayMainMenu)
+            else if (keyboard[OpenTK.Input.Key.W] && !Globals.displayMainMenu)
             {
                 // change the main characters y position
 				if (mainChar.changeY (1, dungeon)) {
@@ -249,7 +248,7 @@ namespace DungeonShambles
             if (Globals.currentPage < 1)
                 Globals.currentPage = 1;
 
-            enemy.chase(mainChar);
+			enemy.chase(mainChar, dungeon);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -290,7 +289,7 @@ namespace DungeonShambles
 					//GL.Enable(EnableCap.Blend);
 					// render the main characters animations
 					mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
-                    enemy.renderEnemy();
+					enemy.renderCharacter();
 					// set the character to be not moving
 					mainChar.setMoving (false);
 
