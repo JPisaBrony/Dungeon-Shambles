@@ -71,7 +71,7 @@ namespace DungeonShambles
 			mainChar = new Player ();
             
             // create a new dungeon object
-			dungeon = new Dungeon (11, 4, 20);
+			dungeon = new Dungeon (11, 4, 10);
             // generate a new dungeon
             dungeon.generateDungeon();
 
@@ -178,7 +178,6 @@ namespace DungeonShambles
 					// move the scene around the character in the y position
 					GL.Translate (0, mainChar.getSpeed (), 0);
 				}
-                // temporary key presses
             // enter key is pressed
             }
             else if (keyboard[OpenTK.Input.Key.Enter])
@@ -255,10 +254,11 @@ namespace DungeonShambles
                     Exit();
                 }
             }
-
+			if (keyboard [OpenTK.Input.Key.E]) {
+				puzzles.puzzleActions();
+			}
 			if (keyboard[OpenTK.Input.Key.Space])
             {
-				puzzles.puzzleActions();
 				if (!renderSword) {
 					renderSword = true;
 					switch (mainChar.getRotation ()) {
@@ -286,17 +286,10 @@ namespace DungeonShambles
 				}
             }
 
-                //***************************************
-                // ASK JP: where the method to win is
-            else if (keyboard[OpenTK.Input.Key.RShift])
 			if (Globals.time % 30 == 0)
-			puzzles.TargetActions (dungeon);
-
 				renderSword = false;
-            {
-                Globals.displayWinMenu = true;
-            }
 
+			puzzles.TargetActions (dungeon);
 
             // boundaries for main menu pages
             if (Globals.currentPage > Globals.lastPage)
@@ -369,7 +362,6 @@ namespace DungeonShambles
 					if (renderSword)
 						sword.renderCharacter ();
 
-
                     if (Globals.displayWinMenu == true) winScreen.renderMenu();
                     if (Globals.displayPauseMenu == true) pauseMenu.renderMenu();                        
                     if (Globals.displayPauseMenu == false && Globals.displayWinMenu == false)
@@ -385,7 +377,7 @@ namespace DungeonShambles
                         }
                     }
 					if (puzzles.allSolved ()) {
-						this.Close ();
+						puzzles.TargetActions (dungeon);
 					}
 
 					Globals.time++;
