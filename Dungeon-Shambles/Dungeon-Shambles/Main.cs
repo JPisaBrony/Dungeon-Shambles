@@ -22,6 +22,7 @@ namespace DungeonShambles
         ControlsMenu controlMenu;
         HUD hud;
         EndScreen endScreen;
+        WinScreen winScreen;
 
         Puzzles puzzles;
         List<RockCollision> collisions;
@@ -74,13 +75,14 @@ namespace DungeonShambles
 			// set initial room
 			mainChar.setCurrentRoom ((Room)dungeon.getRooms().GetValue(0));
 
-            // create main menu
+            // create menus
             MainMenu = new NewMainMenu(mainChar);
             pauseMenu = new PauseMenu(mainChar);
             storyMenu = new StoryMenu(mainChar);
             controlMenu = new ControlsMenu(mainChar);
             hud = new HUD(mainChar);
             endScreen = new EndScreen(mainChar);
+            winScreen = new WinScreen(mainChar);
 
             puzzles = new Puzzles(mainChar, dungeon);
             collisions = puzzles.getRockCollision();
@@ -230,9 +232,20 @@ namespace DungeonShambles
             }
             else if (keyboard[OpenTK.Input.Key.Y])
             {
-                Globals.displayEndMenu = false;
-                Globals.displayMainMenu = true;
-                Globals.currentPage = 1;
+                if (Globals.displayEndMenu == true || Globals.displayWinMenu == true)
+                {
+                    Globals.displayEndMenu = false;
+                    Globals.displayWinMenu = false;
+                    Globals.displayMainMenu = true;
+                    Globals.currentPage = 1;
+                }
+            }
+            else if (keyboard[OpenTK.Input.Key.N])
+            {
+                if (Globals.displayEndMenu == true || Globals.displayWinMenu == true)
+                {
+                    Exit();
+                }
             }
 
             else if (keyboard[OpenTK.Input.Key.Space])
@@ -241,6 +254,15 @@ namespace DungeonShambles
 				mainChar.getCurrentRoom().setDoorAndAdjacentRoom (dungeon, 1, 2, 0);
 				//mainChar.getCurrentRoom ().setDoorUnlocked (dungeon, 0);
             }
+
+                //***************************************
+                // ASK JP: where the method to win is
+            else if (keyboard[OpenTK.Input.Key.RShift])
+            {
+                Globals.displayWinMenu = true;
+            }
+
+
             // boundaries for main menu pages
             if (Globals.currentPage > Globals.lastPage)
                 Globals.currentPage = Globals.lastPage;
@@ -293,10 +315,12 @@ namespace DungeonShambles
 					// set the character to be not moving
 					mainChar.setMoving (false);
 
-                    if (Globals.displayPauseMenu == true)
-                        pauseMenu.renderMenu();
-                    if (Globals.displayPauseMenu == false)
+
+                    if (Globals.displayWinMenu == true) winScreen.renderMenu();
+                    if (Globals.displayPauseMenu == true) pauseMenu.renderMenu();                        
+                    if (Globals.displayPauseMenu == false && Globals.displayWinMenu == false)
                     {
+                        // health of player
                         float currentHealth = (float)((Globals.maxHealth - mainChar.getHealth()) / Globals.maxHealth) / 2;
                         hud.drawHUD(currentHealth);
 

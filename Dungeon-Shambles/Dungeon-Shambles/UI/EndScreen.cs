@@ -23,7 +23,7 @@ namespace DungeonShambles.UI
             content = new TextureImporter();
             controls = new TextureImporter();
 
-            controls.drawText("Start Over  >>", controlsFont, Brushes.White);
+            controls.drawText("Start Over? Y / N", controlsFont, Brushes.White);
             bkgImage.importTexture("Images/gameOver.jpg");
             content.drawText("Looks like dreams don't come true...", contFont, contentBrush);
         }

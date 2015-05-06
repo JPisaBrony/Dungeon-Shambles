@@ -41,6 +41,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\Audio.cs" />
+    <Compile Include="Audio\AudioImporter.cs" />
     <Compile Include="Collision Detection\collisionTests.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDamage.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDefence.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Cranting\Enchantments\ReflectMagicDamage.cs" />
     <Compile Include="Cranting\PhysicalAttribute.cs" />
     <Compile Include="Cranting\MagicAttribute.cs" />
+    <Compile Include="Entities\NonPlayerCharacters\Sword.cs" />
     <Compile Include="Items\Armor\Armor.cs" />
     <Compile Include="Items\Armor\Boots.cs" />
     <Compile Include="Items\Armor\Chest.cs" />
@@ -102,6 +105,7 @@
     <Compile Include="UI\StoryMenu.cs" />
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Dungeon Generation\DoorSavedVariables.cs" />
+    <Compile Include="UI\winMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
