@@ -89,8 +89,6 @@ namespace DungeonShambles
 
             puzzles = new Puzzles(mainChar, dungeon);
             collisions = puzzles.getRockCollision();
-            //currentRoom = (Room)dungeon.getRooms().GetValue(0);
-            //mainChar = new Player(currentRoom);
 
             // set the main character to the center of the dungeon
             mainChar.setX(0.9f);
@@ -349,19 +347,21 @@ namespace DungeonShambles
                     Globals.currentPage = 0;
                     // render the dungeon
                     dungeon.renderDungeon();
-					// render the puzzles
-                	puzzles.renderPuzzles();
                     // render the main character
-					//GL.Enable(EnableCap.Blend);
+					GL.Enable(EnableCap.Blend);
 					// render the main characters animations
 					mainChar.renderAnimation (mainChar.getRotation(), Globals.TextureSize, mainChar.getX (), mainChar.getY (), mainChar.getMoving());
 					if (enemy != null)
 						enemy.renderCharacter ();
 					// set the character to be not moving
 					mainChar.setMoving (false);
+
+					// render the puzzles
+					puzzles.renderPuzzles();
+
 					if (renderSword)
 						sword.renderCharacter ();
-
+					GL.Disable (EnableCap.Blend);
                     if (Globals.displayWinMenu == true) winScreen.renderMenu();
                     if (Globals.displayPauseMenu == true) pauseMenu.renderMenu();                        
                     if (Globals.displayPauseMenu == false && Globals.displayWinMenu == false)
@@ -377,7 +377,7 @@ namespace DungeonShambles
                         }
                     }
 					if (puzzles.allSolved ()) {
-						puzzles.TargetActions (dungeon);
+						Globals.displayEndMenu = true;
 					}
 
 					Globals.time++;

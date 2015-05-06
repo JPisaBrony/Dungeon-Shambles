@@ -49,9 +49,8 @@ namespace DungeonShambles.UI
             title.renderTexture(1, mainChar.getX() + 0.1f, mainChar.getY() - 0.15f);
             description.renderTexture(1, mainChar.getX() + 0.1f, mainChar.getY() - 0.4f);
             controls.renderTexture(1, mainChar.getX() + 1.6f, mainChar.getY() - 1.8f);
-            GL.Disable(EnableCap.Blend);
             steveImage.renderTexture(0.2f, mainChar.getX() + 0.5f, mainChar.getY() - 0.4f);
-
+			GL.Disable(EnableCap.Blend);
         }
     }
 }
