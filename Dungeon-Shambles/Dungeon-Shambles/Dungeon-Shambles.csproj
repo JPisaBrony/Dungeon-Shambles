@@ -41,11 +41,10 @@
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="QuickFont">
-      <HintPath>bin\Debug\QuickFont.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\Audio.cs" />
+    <Compile Include="Audio\AudioImporter.cs" />
     <Compile Include="Collision Detection\collisionTests.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDamage.cs" />
     <Compile Include="Cranting\CraftingStatMods\IncreaseDefence.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Cranting\PhysicalAttribute.cs" />
     <Compile Include="Cranting\MagicAttribute.cs" />
     <Compile Include="Entities\Enemy.cs" />
+    <Compile Include="Entities\NonPlayerCharacters\Sword.cs" />
     <Compile Include="Items\Armor\Armor.cs" />
     <Compile Include="Items\Armor\Boots.cs" />
     <Compile Include="Items\Armor\Chest.cs" />
@@ -88,10 +88,7 @@
     <Compile Include="UI\ControlsMenu.cs" />
     <Compile Include="UI\EndScreen.cs" />
     <Compile Include="UI\HUD.cs" />
-    <Compile Include="UI\MainMenu.cs" />
-    <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\PauseMenu.cs" />
-    <Compile Include="UI\Stats.cs" />
     <Compile Include="StaticMethodDump.cs" />
     <Compile Include="Entities\GameEntities.cs" />
     <Compile Include="Entities\PlayerCharacter\Player.cs" />
@@ -124,5 +121,7 @@
     <None Include="UI\Fonts\woodenFont.qfont" />
     <None Include="UI\Fonts\XmasTerpiece.ttf" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
 </Project>

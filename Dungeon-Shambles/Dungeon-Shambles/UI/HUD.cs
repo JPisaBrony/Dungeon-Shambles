@@ -9,14 +9,10 @@ namespace DungeonShambles.UI
     {
         GameEntities mainChar;
         TextureImporter hpBar;
-        TextureImporter health;
-        public double h = (100 % 100) ;
-
-        
+        TextureImporter health;        
 
         public HUD(GameEntities main)
         {
-
             mainChar = main;
             hpBar = new TextureImporter();
             health = new TextureImporter();

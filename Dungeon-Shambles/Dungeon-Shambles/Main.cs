@@ -6,8 +6,8 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
 using DungeonShambles.UI;
 using DungeonShambles.Entities;
-using QuickFont;
 using System.Collections.Generic;
+using DungeonShambles.Audio;
 
 namespace DungeonShambles
 {
@@ -22,7 +22,7 @@ namespace DungeonShambles
         StoryMenu storyMenu;
         ControlsMenu controlMenu;
         HUD hud;
-        EndScreen endScreen;
+        EndScreen endScreen; 
 
         string enemyPath = "Images/ghost.png";
 
