@@ -308,6 +308,10 @@ namespace DungeonShambles
                             endScreen.renderMenu();
                         }
                     }
+					if (puzzles.allSolved ()) {
+						this.Close ();
+					}
+
 					Globals.time++;
                 }
             }

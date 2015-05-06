@@ -18,7 +18,8 @@ namespace DungeonShambles
 		List<int> roomValues = new List<int>();
 		int LeversSolved = 0;
 		int keysSolved = 0;
-		int targetsSolved = 0;
+		int targetsSolved = 1;
+
 
         public Puzzles(GameEntities init, Dungeon dungeon)
         {
@@ -243,12 +244,31 @@ namespace DungeonShambles
         }
 
 		public void TargetActions(Dungeon dungeon) {
-			foreach (TargetTest test in targets) 
+
+
+			int targetsLocalSolved = 0;
+
+			bool firstSolved = false;
+				if (targets[0].pressTest()) {
+				firstSolved = true;
+					openCorrectdoors (targets[0].getRoom(), dungeon);
+			}
+			if (firstSolved) 
 			{
-				if (test.pressTest ()) {
-					openCorrectdoors (test.getRoom(), dungeon);
+				foreach (TargetTest test in targets) 
+				{
+					if (test.pressTest ()) 
+					{
+						targetsLocalSolved++;
+					}
 				}
 			}
+			if (targetsLocalSolved > targetsSolved) 
+			{
+				openRandomizedDoor (dungeon);
+				targetsSolved++;
+			}
+
 
 			int keysLocalSolved = 0;
 			foreach (Keys test in keys) {
@@ -325,5 +345,13 @@ namespace DungeonShambles
 				openRandomizedDoor (dungeon);
 			}
 		}
-    }
+
+		public bool allSolved()
+		{
+			if (targetsSolved + LeversSolved + keysSolved == 10)
+				return true;
+			else
+				return false;
+        }
+	}
 }

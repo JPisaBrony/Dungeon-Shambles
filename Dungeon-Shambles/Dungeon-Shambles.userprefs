@@ -1,10 +1,14 @@
-﻿<Properties StartupItem="Dungeon-Shambles\Dungeon-Shambles.csproj" GitUserInfo="UsingGIT">
+﻿<Properties StartupItem="Dungeon-Shambles/Dungeon-Shambles.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Dungeon Generation/Room.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dungeon-Shambles/Puzzles/Puzzles.cs">
     <Files>
-      <File FileName="Dungeon-Shambles/Main.cs" Line="32" Column="32" />
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Room.cs" Line="35" Column="35" />
-      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="22" Column="22" />
+      <File FileName="Dungeon-Shambles/Main.cs" Line="36" Column="36" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/Dungeon.cs" Line="26" Column="26" />
+      <File FileName="Dungeon-Shambles/Dungeon Generation/DoorSavedVariables.cs" Line="43" Column="43" />
+      <File FileName="Dungeon-Shambles/Puzzles/Puzzles.cs" Line="34" Column="34" />
+      <File FileName="Dungeon-Shambles/Puzzles/Key/Keys.cs" Line="30" Column="30" />
+      <File FileName="Dungeon-Shambles/Puzzles/Lever/Levers.cs" Line="1" Column="1" />
+      <File FileName="Dungeon-Shambles/Puzzles/Lever/Lever.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
