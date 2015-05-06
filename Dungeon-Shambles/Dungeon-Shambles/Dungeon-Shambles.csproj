@@ -33,9 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <Package>opentk</Package>
-    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4" />
     <Reference Include="System.Drawing" />
     <Reference Include="AssimpNet">
       <HintPath>bin\Debug\AssimpNet.dll</HintPath>
@@ -62,7 +60,6 @@
     <Compile Include="Cranting\Enchantments\ReflectMagicDamage.cs" />
     <Compile Include="Cranting\PhysicalAttribute.cs" />
     <Compile Include="Cranting\MagicAttribute.cs" />
-    <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Items\Armor\Armor.cs" />
     <Compile Include="Items\Armor\Boots.cs" />
     <Compile Include="Items\Armor\Chest.cs" />

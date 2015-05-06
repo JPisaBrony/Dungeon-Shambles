@@ -13,8 +13,10 @@ namespace DungeonShambles
 		protected float collisionOffset = Globals.TextureSize / 2;
 		// create a texture for the character
 		protected TextureImporter characterImage = new TextureImporter ();
-        protected double health;
-		protected double mana;
+		protected double maxHealth;
+		protected double maxMana;
+        protected double currentHealth;
+		protected double currentMana;
 		protected double meleeModifier;
 		protected double magicModifier;
 		// character x and y position
@@ -35,8 +37,8 @@ namespace DungeonShambles
 			x = 0f;
 			y = 0f;
 			speed = 0.025f;
-            health = 100;
-            mana = 100;
+            currentHealth = 100;
+            currentMana = 100;
             meleeModifier = 0;
             magicModifier = 0;
             currentRoom = room;
@@ -56,8 +58,8 @@ namespace DungeonShambles
 			x = 0f;
 			y = 0f;
 			speed = 0.025f;
-			health = 100;
-			mana = 100;
+			currentHealth = 100;
+			currentMana = 100;
 			meleeModifier = 0;
 			magicModifier = 0;
 			currentRotation = 0;
@@ -70,7 +72,7 @@ namespace DungeonShambles
 			x = 0f;
 			y = 0f;
 			speed = 0.015f;
-			health = 100;
+			currentHealth = 100;
 			meleeModifier = 0;
 			magicModifier = 0;
 		}
@@ -82,23 +84,23 @@ namespace DungeonShambles
 			x = initialX;
 			y = initialY;
 			speed = initialSpeed;
-            health = h;
-            mana = m;
+            currentHealth = h;
+            currentMana = m;
             meleeModifier = cMod;
             magicModifier = aMod;
         }
 
-		/*public void chase(GameEntities target, Room room)
+		public void chase(GameEntities target, Dungeon dung)
 		{
-			if (target.getX() > x)
-				changeX(1, room);
-			if (target.getX() < x)
-				changeX(-1, room);
-			if (target.getY() > y)
-				changeY(1, room);
-			if (target.getY() < y)
-				changeY(-1, room);
-		}*/
+			if (target.getX () > x)
+				changeX (1, dung);
+			else if (target.getX () + speed < x)
+				changeX (-1, dung);
+			else if (target.getY () > y)
+				changeY (1, dung);
+			else if (target.getY () + speed < y)
+				changeY (-1, dung);
+		}
 
 		public void renderCharacter() 
 		{
@@ -215,7 +217,7 @@ namespace DungeonShambles
         
         public double getHealth()
         {
-            return health;
+            return currentHealth;
         }
     }    
 }
