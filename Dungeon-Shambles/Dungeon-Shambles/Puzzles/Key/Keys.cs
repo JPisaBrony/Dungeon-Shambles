@@ -39,7 +39,7 @@ namespace DungeonShambles
         }
 
 
-        public void pickUpKey(GameEntities main)
+        public bool pickUpKey(GameEntities main)
         {
             foreach (Key key in keys)
 
@@ -47,7 +47,9 @@ namespace DungeonShambles
 					Math.Abs(((main.getY() -currentRoom.getOffsetY())*5 - key.getY())) < .5)
                 {
                     key.pickUp();
+					return true;
                 }
+			return false;
         }
         
 

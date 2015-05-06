@@ -11,10 +11,12 @@ namespace DungeonShambles
         private float coordinateOffsetX;
         private float coordinateOffsetY;
 		private DoorSavedVariables[] doorVariables;
+		private int roomNumber;
 
-		public Room (string[] tNames, int tSize) {
+		public Room (string[] tNames, int tSize, int n) {
 			tileSize = tSize;
 			tileNames = tNames;
+			roomNumber = n;
 		}
 
 		public void generateRoom(int w, int h) {
@@ -126,6 +128,10 @@ namespace DungeonShambles
 
 		public DoorSavedVariables[]  getDoorVars() {
 			return doorVariables;
+		}
+
+		public int getRoomNumber() {
+			return roomNumber;
 		}
 	}
 }
