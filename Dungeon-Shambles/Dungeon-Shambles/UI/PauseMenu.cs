@@ -37,7 +37,7 @@ namespace DungeonShambles.UI
 		{
 			bkgImage.renderTexture(1, mainChar.getX(), mainChar.getY());
 			GL.Enable(EnableCap.Blend);
-			title.renderTexture(1, mainChar.getX() + 0.5f, mainChar.getY() - 0.2f);
+			title.renderTexture(1, mainChar.getX() + 0.5f, mainChar.getY() - 0.3f);
 			if (Globals.countButton == Globals.currentButton)
 			{
 				resumeGameHighlight.renderTexture(1, mainChar.getX() + 0.9f, mainChar.getY() - 0.95f);

@@ -11,16 +11,16 @@ namespace DungeonShambles
 		
         // boolean for checking if the main menu should be displayed
         public static bool displayMainMenu = true;
-        // boolean for checking if the control menu should be displayed
-        //public static bool displayControlMenu = false;
 		// game time variable
 		public static int time = 0;
         // boolean for checking if the story menu should be displayed
         public static bool displayStoryMenu = false;
         // boolean for checking if the pause menu should be displayed
         public static bool displayPauseMenu = false;
-        // boolean for checking if the end menu should be displayed
+        // boolean for checking if the end screen should be displayed
         public static bool displayEndMenu = false;
+        // boolean for checking if the win screen should be displayed
+        public static bool displayWinMenu = false;
         
         // current button for menu
         public static int currentButton = 0;

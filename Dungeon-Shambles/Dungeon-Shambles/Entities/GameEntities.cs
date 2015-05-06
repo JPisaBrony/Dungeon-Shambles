@@ -13,8 +13,6 @@ namespace DungeonShambles
 		protected float collisionOffset = Globals.TextureSize / 2;
 		// create a texture for the character
 		protected TextureImporter characterImage = new TextureImporter ();
-		protected double maxHealth;
-		protected double maxMana;
         protected double currentHealth;
 		protected double currentMana;
 		protected double meleeModifier;
@@ -60,7 +58,7 @@ namespace DungeonShambles
 			speed = 0.025f;
 			currentHealth = 100;
 			currentMana = 100;
-			meleeModifier = 0;
+			meleeModifier = 10;
 			magicModifier = 0;
 			currentRotation = 0;
 			moving = false;
@@ -171,6 +169,40 @@ namespace DungeonShambles
             }
             
 
+		}
+
+		public void changeImage(int direction)
+		{
+			characterImage.removeTexture ();
+			switch(direction)
+			{
+			case 0:
+				characterImage.importTexture ("meshes/Sword/swordDown.png");
+				break;
+			case 1:
+				characterImage.importTexture ("meshes/Sword/swordLeft.png");
+				break;
+			case 2:
+				characterImage.importTexture ("meshes/Sword/swordUp.png");
+				break;
+			case 3:
+				characterImage.importTexture ("meshes/Sword/swordRight.png");
+				break;
+			}
+		}
+
+		public double getDamage() 
+		{
+			return meleeModifier;
+		}
+
+		public void changeHealth(double damage)
+		{
+			currentHealth -= damage;
+		}
+
+		public void setHealth(){
+			currentHealth = Globals.maxHealth;
 		}
 
 		public float getSpeed() 
