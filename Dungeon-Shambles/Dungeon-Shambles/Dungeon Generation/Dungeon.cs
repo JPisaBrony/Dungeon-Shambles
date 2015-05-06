@@ -35,7 +35,7 @@ namespace DungeonShambles
 			rooms = new Room[numberOfRooms];
 			Random rng = new Random ();
 			for (int i = 0; i < numberOfRooms; i++) {
-				Room newRoom = new Room (Tilenames, 1);
+				Room newRoom = new Room (Tilenames, 1, i);
                 newRoom.generateRoom (rng.Next(minRoomSize, maxRoomSize), rng.Next(minRoomSize, maxRoomSize));
 				rooms [i] = newRoom;
 			}
@@ -50,44 +50,56 @@ namespace DungeonShambles
             int currentRandomNumber = 0;
             Room smallerRoom;
 
+			rooms [0].setNumberOfDoors (4);
+			rooms [1].setNumberOfDoors (4);
+			rooms [2].setNumberOfDoors (1);
+			rooms [3].setNumberOfDoors (4);
+			rooms [4].setNumberOfDoors (1);
+			rooms [5].setNumberOfDoors (1);
+			rooms [6].setNumberOfDoors (1);
+			rooms [7].setNumberOfDoors (1);
+			rooms [8].setNumberOfDoors (1);
+			rooms [9].setNumberOfDoors (1);
+			rooms [10].setNumberOfDoors (1);
+
             currentRandomNumber = rng.Next(1, rooms[1].getRoomHeight() - 1);
-            rooms[0].setDoor(1, currentRandomNumber);
-            rooms[1].setDoor(3, currentRandomNumber);
+            rooms[0].setDoor(1, currentRandomNumber, true, 0);
+            rooms[1].setDoor(3, currentRandomNumber, true, 0);
             currentRandomNumber = rng.Next(1, rooms[2].getRoomWidth() - 1);
-            rooms[0].setDoor(2, currentRandomNumber);
-            rooms[2].setDoor(0, currentRandomNumber);
+            rooms[0].setDoor(2, currentRandomNumber, true, 1);
+            rooms[2].setDoor(0, currentRandomNumber, true, 0);
             currentRandomNumber = rng.Next(1, rooms[3].getRoomHeight() - 1);
-            rooms[0].setDoor(3, currentRandomNumber);
-            rooms[3].setDoor(1, currentRandomNumber);
+            rooms[0].setDoor(3, currentRandomNumber, true, 2);
+            rooms[3].setDoor(1, currentRandomNumber, true, 0);
             currentRandomNumber = rng.Next(1, rooms[4].getRoomWidth() - 1);
-            rooms[0].setDoor(0, currentRandomNumber);
-            rooms[4].setDoor(2, currentRandomNumber);
+            rooms[0].setDoor(0, currentRandomNumber, true, 3);
+            rooms[4].setDoor(2, currentRandomNumber, true, 0);
 
             smallerRoom = getSmallerRoom(rooms[1], rooms[5], 0);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomHeight() - 1);
-            rooms[1].setDoor(1, currentRandomNumber);
-            rooms[5].setDoor(3, currentRandomNumber);
+            rooms[1].setDoor(1, currentRandomNumber, true, 1);
+            rooms[5].setDoor(3, currentRandomNumber, true, 0);
             smallerRoom = getSmallerRoom(rooms[1], rooms[6], 1);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomWidth() - 1);
-            rooms[1].setDoor(2, currentRandomNumber);
-            rooms[6].setDoor(0, currentRandomNumber);
+            rooms[1].setDoor(2, currentRandomNumber, true, 2);
+            rooms[6].setDoor(0, currentRandomNumber, true, 0);
             smallerRoom = getSmallerRoom(rooms[1], rooms[7], 1);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomWidth() - 1);
-            rooms[1].setDoor(0, currentRandomNumber);
-            rooms[7].setDoor(2, currentRandomNumber);
+            rooms[1].setDoor(0, currentRandomNumber, true, 3);
+            rooms[7].setDoor(2, currentRandomNumber, true, 0);
 
             smallerRoom = getSmallerRoom(rooms[3], rooms[8], 1);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomWidth() - 1);
-            rooms[3].setDoor(2, currentRandomNumber);
-            rooms[8].setDoor(0, currentRandomNumber);
+            rooms[3].setDoor(2, currentRandomNumber, true, 1);
+            rooms[8].setDoor(0, currentRandomNumber, true, 0);
             smallerRoom = getSmallerRoom(rooms[3], rooms[9], 0);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomHeight() - 1);
-            rooms[3].setDoor(3, currentRandomNumber);
-            rooms[9].setDoor(1, currentRandomNumber);
+            rooms[3].setDoor(3, currentRandomNumber, true, 2);
+            rooms[9].setDoor(1, currentRandomNumber, true, 0);
             smallerRoom = getSmallerRoom(rooms[3], rooms[10], 1);
             currentRandomNumber = rng.Next(1, smallerRoom.getRoomWidth() - 1);
-            rooms[3].setDoor(0, currentRandomNumber);
-            rooms[10].setDoor(2, currentRandomNumber);
+            rooms[3].setDoor(0, currentRandomNumber, true, 3);
+            rooms[10].setDoor(2, currentRandomNumber, true, 0);
 
             /*
             int roomOffset = 1;

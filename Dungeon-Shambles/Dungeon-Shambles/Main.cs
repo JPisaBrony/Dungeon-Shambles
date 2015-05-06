@@ -245,7 +245,7 @@ namespace DungeonShambles
 
 			if (keyboard[OpenTK.Input.Key.Space])
             {
-                puzzles.puzzleActions();
+				puzzles.puzzleActions();
 				if (!renderSword) {
 					renderSword = true;
 					switch (mainChar.getRotation ()) {
@@ -273,6 +273,8 @@ namespace DungeonShambles
 				}
             }
 			if (Globals.time % 30 == 0)
+			puzzles.TargetActions (dungeon);
+
 				renderSword = false;
             // boundaries for main menu pages
             if (Globals.currentPage > Globals.lastPage)

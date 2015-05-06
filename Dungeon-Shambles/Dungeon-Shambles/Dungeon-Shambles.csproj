@@ -101,6 +101,7 @@
     <Compile Include="UI\NewMainMenu.cs" />
     <Compile Include="UI\StoryMenu.cs" />
     <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Dungeon Generation\DoorSavedVariables.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

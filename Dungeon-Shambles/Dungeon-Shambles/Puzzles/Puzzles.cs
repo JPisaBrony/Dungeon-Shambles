@@ -15,6 +15,11 @@ namespace DungeonShambles
         List<Levers> levers = new List<Levers>();
         List<RockCollision> rocks = new List<RockCollision>();
         List<TargetTest> targets = new List<TargetTest>();
+		List<int> roomValues = new List<int>();
+		int LeversSolved = 0;
+		int keysSolved = 0;
+		int targetsSolved = 0;
+
         public Puzzles(GameEntities init, Dungeon dungeon)
         {
             main = init;
@@ -43,6 +48,10 @@ namespace DungeonShambles
                 allRooms.Remove(room);
             }
 
+			for (int i = 1; i < 7; i++) {
+				roomValues.Add (i);
+			}
+
             spawnKeys(allRooms);
             Console.WriteLine("Done with keys");
         }
@@ -50,7 +59,7 @@ namespace DungeonShambles
 
         public void spawnKeys(List<Room> destinations)
         {
-            int keyRooms = destinations.Count() / 2;
+            int keyRooms = destinations.Count();
             int count = 0;
 
             foreach (Room room in destinations)
@@ -221,7 +230,7 @@ namespace DungeonShambles
             }
         }
 
-        public void puzzleActions()
+		public void puzzleActions()
         {
             foreach (Keys test in keys)
             {
@@ -233,9 +242,88 @@ namespace DungeonShambles
             }
         }
 
+		public void TargetActions(Dungeon dungeon) {
+			foreach (TargetTest test in targets) 
+			{
+				if (test.pressTest ()) {
+					openCorrectdoors (test.getRoom(), dungeon);
+				}
+			}
+
+			int keysLocalSolved = 0;
+			foreach (Keys test in keys) {
+				if (test.checkKeys ()) {
+					keysLocalSolved++;
+				}
+			}
+			if (keysLocalSolved != keysSolved) 
+			{
+
+				openRandomizedDoor (dungeon);
+				keysSolved++;
+			}
+
+			int leversLocalSolved = 0;
+			foreach (Levers test in levers) {
+
+				if (test.checkLeverFlips ()){
+					leversLocalSolved++;
+				}
+			}
+			if (leversLocalSolved != LeversSolved) {
+				openRandomizedDoor (dungeon);
+				LeversSolved++;
+			}
+		}
+
         public List<RockCollision> getRockCollision()
         {
             return rocks;
         }
+
+		private void openRandomizedDoor(Dungeon dungeon) {
+			Room one = dungeon.getRooms () [1];
+			Room three = dungeon.getRooms () [3];
+			Random rng = new Random ();
+			int randomNum = rng.Next (0, roomValues.Count ());
+			if (roomValues.Count != 0) {
+				int index = roomValues [randomNum];
+				switch (index) {
+				case 1:
+					one.setDoorAndAdjacentRoom (dungeon, 1, 5, 0);
+					break;
+				case 2:
+					one.setDoorAndAdjacentRoom (dungeon, 2, 6, 0);
+					break;
+				case 3:
+					one.setDoorAndAdjacentRoom (dungeon, 3, 7, 0);
+					break;
+				case 4:
+					three.setDoorAndAdjacentRoom (dungeon, 1, 8, 0);
+					break;
+				case 5:
+					three.setDoorAndAdjacentRoom (dungeon, 2, 9, 0);
+					break;
+				case 6:
+					three.setDoorAndAdjacentRoom (dungeon, 3, 10, 0);
+					break;
+				}
+				roomValues.Remove (index);
+			}
+		}
+
+		private void openCorrectdoors(Room r, Dungeon dungeon)
+		{
+			if(r.getRoomNumber() == 0)
+			{
+				r.setDoorAndAdjacentRoom (dungeon, 1, 2, 0);
+				r.setDoorAndAdjacentRoom (dungeon, 0, 1, 0);
+				r.setDoorAndAdjacentRoom (dungeon, 2, 3, 0);
+				r.setDoorAndAdjacentRoom (dungeon, 3, 4, 0);
+			}
+			if (r.getRoomNumber () == 2) {
+				openRandomizedDoor (dungeon);
+			}
+		}
     }
 }
