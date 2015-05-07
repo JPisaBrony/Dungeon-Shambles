@@ -377,7 +377,7 @@ namespace DungeonShambles
                         }
                     }
 					if (puzzles.allSolved ()) {
-						Globals.displayEndMenu = true;
+						Globals.displayWinMenu = true;
 					}
 
 					Globals.time++;

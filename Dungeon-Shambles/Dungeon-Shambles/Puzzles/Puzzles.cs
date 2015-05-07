@@ -348,7 +348,7 @@ namespace DungeonShambles
 
 		public bool allSolved()
 		{
-			if (targetsSolved + LeversSolved + keysSolved == 10)
+			if (targetsSolved + LeversSolved + keysSolved == 11)
 				return true;
 			else
 				return false;
